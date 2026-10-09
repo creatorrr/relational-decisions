@@ -1,0 +1,585 @@
+{
+  "overall": {
+    "programs": 48,
+    "assessments": 576,
+    "queries": 272,
+    "assessment_accuracy": 0.2361111111111111,
+    "assessment_macro_f1": 0.17072795297652862,
+    "query_probability_mae": 0.19847053742769105,
+    "query_probability_max_error": 1.0,
+    "query_probability_within_1e-9": 0.5477941176470589,
+    "confusion_matrix": {
+      "supported": {
+        "supported": 0,
+        "refuted": 1,
+        "both": 117,
+        "unknown": 70
+      },
+      "refuted": {
+        "supported": 0,
+        "refuted": 4,
+        "both": 81,
+        "unknown": 45
+      },
+      "both": {
+        "supported": 0,
+        "refuted": 5,
+        "both": 87,
+        "unknown": 34
+      },
+      "unknown": {
+        "supported": 0,
+        "refuted": 1,
+        "both": 86,
+        "unknown": 45
+      }
+    }
+  },
+  "by_family": {
+    "binding_join": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 24,
+      "assessment_accuracy": 0.2708333333333333,
+      "assessment_macro_f1": 0.20658554482083896,
+      "query_probability_mae": 0.06666666666666667,
+      "query_probability_max_error": 0.6,
+      "query_probability_within_1e-9": 0.75,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 6,
+          "unknown": 6
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 1,
+          "both": 6,
+          "unknown": 5
+        },
+        "both": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 5,
+          "unknown": 7
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 5,
+          "unknown": 7
+        }
+      }
+    },
+    "conditioning": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 24,
+      "assessment_accuracy": 0.1875,
+      "assessment_macro_f1": 0.13778801843317973,
+      "query_probability_mae": 0.2767057733868478,
+      "query_probability_max_error": 0.8536585365853658,
+      "query_probability_within_1e-9": 0.5833333333333334,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 15,
+          "unknown": 9
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 3,
+          "unknown": 3
+        },
+        "both": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 4,
+          "unknown": 4
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 5,
+          "unknown": 5
+        }
+      }
+    },
+    "conjunction": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 16,
+      "assessment_accuracy": 0.125,
+      "assessment_macro_f1": 0.09109311740890688,
+      "query_probability_mae": 0.29500000000000004,
+      "query_probability_max_error": 0.56,
+      "query_probability_within_1e-9": 0.3125,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 11,
+          "unknown": 9
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 9,
+          "unknown": 3
+        },
+        "both": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 4,
+          "unknown": 2
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 8,
+          "unknown": 2
+        }
+      }
+    },
+    "contradictory_reports": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 24,
+      "assessment_accuracy": 0.3125,
+      "assessment_macro_f1": 0.17842493847415913,
+      "query_probability_mae": 0.2833333333333333,
+      "query_probability_max_error": 1.0,
+      "query_probability_within_1e-9": 0.4583333333333333,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 9,
+          "unknown": 1
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 7,
+          "unknown": 3
+        },
+        "both": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 12,
+          "unknown": 2
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 11,
+          "unknown": 3
+        }
+      }
+    },
+    "cyclic_reachability": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 28,
+      "assessment_accuracy": 0.2708333333333333,
+      "assessment_macro_f1": 0.19464285714285715,
+      "query_probability_mae": 0.06314285714285715,
+      "query_probability_max_error": 0.52,
+      "query_probability_within_1e-9": 0.6428571428571429,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 9,
+          "unknown": 3
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 2,
+          "both": 6,
+          "unknown": 4
+        },
+        "both": {
+          "supported": 0,
+          "refuted": 1,
+          "both": 10,
+          "unknown": 1
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 11,
+          "unknown": 1
+        }
+      }
+    },
+    "disjunction": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 16,
+      "assessment_accuracy": 0.3333333333333333,
+      "assessment_macro_f1": 0.2540229885057471,
+      "query_probability_mae": 0.35625,
+      "query_probability_max_error": 0.76,
+      "query_probability_within_1e-9": 0.375,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 6,
+          "unknown": 6
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 1,
+          "both": 9,
+          "unknown": 2
+        },
+        "both": {
+          "supported": 0,
+          "refuted": 2,
+          "both": 8,
+          "unknown": 2
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 5,
+          "unknown": 7
+        }
+      }
+    },
+    "exclusive_choice": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 20,
+      "assessment_accuracy": 0.20833333333333334,
+      "assessment_macro_f1": 0.1477272727272727,
+      "query_probability_mae": 0.30095238095238097,
+      "query_probability_max_error": 0.9333333333333333,
+      "query_probability_within_1e-9": 0.6,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 12,
+          "unknown": 4
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 9,
+          "unknown": 3
+        },
+        "both": {
+          "supported": 0,
+          "refuted": 1,
+          "both": 7,
+          "unknown": 2
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 1,
+          "both": 6,
+          "unknown": 3
+        }
+      }
+    },
+    "left_recursion": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 28,
+      "assessment_accuracy": 0.2708333333333333,
+      "assessment_macro_f1": 0.17923015236567763,
+      "query_probability_mae": 0.10678571428571428,
+      "query_probability_max_error": 0.88,
+      "query_probability_within_1e-9": 0.7857142857142857,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 10,
+          "unknown": 2
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 6,
+          "unknown": 6
+        },
+        "both": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 8,
+          "unknown": 4
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 7,
+          "unknown": 5
+        }
+      }
+    },
+    "missing_vs_negative": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 24,
+      "assessment_accuracy": 0.25,
+      "assessment_macro_f1": 0.1456582633053221,
+      "query_probability_mae": 0.35833333333333334,
+      "query_probability_max_error": 1.0,
+      "query_probability_within_1e-9": 0.4583333333333333,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 0,
+          "refuted": 1,
+          "both": 6,
+          "unknown": 1
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 11,
+          "unknown": 3
+        },
+        "both": {
+          "supported": 0,
+          "refuted": 1,
+          "both": 10,
+          "unknown": 1
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 12,
+          "unknown": 2
+        }
+      }
+    },
+    "repeated_choice": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 20,
+      "assessment_accuracy": 0.20833333333333334,
+      "assessment_macro_f1": 0.13311948676824378,
+      "query_probability_mae": 0.16,
+      "query_probability_max_error": 0.4,
+      "query_probability_within_1e-9": 0.6,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 11,
+          "unknown": 7
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 4,
+          "unknown": 2
+        },
+        "both": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 7,
+          "unknown": 5
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 9,
+          "unknown": 3
+        }
+      }
+    },
+    "shared_diamond": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 24,
+      "assessment_accuracy": 0.14583333333333334,
+      "assessment_macro_f1": 0.10846560846560846,
+      "query_probability_mae": 0.08741666666666666,
+      "query_probability_max_error": 0.294,
+      "query_probability_within_1e-9": 0.4583333333333333,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 12,
+          "unknown": 10
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 6,
+          "unknown": 6
+        },
+        "both": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 5,
+          "unknown": 3
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 4,
+          "unknown": 2
+        }
+      }
+    },
+    "staged_chain": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 24,
+      "assessment_accuracy": 0.25,
+      "assessment_macro_f1": 0.18670576735092864,
+      "query_probability_mae": 0.16033333333333333,
+      "query_probability_max_error": 0.4,
+      "query_probability_within_1e-9": 0.375,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 10,
+          "unknown": 12
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 5,
+          "unknown": 5
+        },
+        "both": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 7,
+          "unknown": 1
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 3,
+          "unknown": 5
+        }
+      }
+    }
+  },
+  "by_domain": {
+    "deliveries": {
+      "programs": 16,
+      "assessments": 192,
+      "queries": 88,
+      "assessment_accuracy": 0.25,
+      "assessment_macro_f1": 0.17211365996412725,
+      "query_probability_mae": 0.2163787878787879,
+      "query_probability_max_error": 1.0,
+      "query_probability_within_1e-9": 0.5681818181818182,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 39,
+          "unknown": 17
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 1,
+          "both": 26,
+          "unknown": 15
+        },
+        "both": {
+          "supported": 0,
+          "refuted": 2,
+          "both": 32,
+          "unknown": 10
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 35,
+          "unknown": 15
+        }
+      }
+    },
+    "gardens": {
+      "programs": 16,
+      "assessments": 192,
+      "queries": 92,
+      "assessment_accuracy": 0.23958333333333334,
+      "assessment_macro_f1": 0.16893326447466572,
+      "query_probability_mae": 0.21710505983941827,
+      "query_probability_max_error": 1.0,
+      "query_probability_within_1e-9": 0.5108695652173914,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 0,
+          "refuted": 1,
+          "both": 37,
+          "unknown": 26
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 29,
+          "unknown": 19
+        },
+        "both": {
+          "supported": 0,
+          "refuted": 2,
+          "both": 29,
+          "unknown": 9
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 1,
+          "both": 22,
+          "unknown": 17
+        }
+      }
+    },
+    "rooms": {
+      "programs": 16,
+      "assessments": 192,
+      "queries": 92,
+      "assessment_accuracy": 0.21875,
+      "assessment_macro_f1": 0.1735443869590211,
+      "query_probability_mae": 0.16270638414969732,
+      "query_probability_max_error": 1.0,
+      "query_probability_within_1e-9": 0.5652173913043478,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 41,
+          "unknown": 27
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 3,
+          "both": 26,
+          "unknown": 11
+        },
+        "both": {
+          "supported": 0,
+          "refuted": 1,
+          "both": 26,
+          "unknown": 15
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 29,
+          "unknown": 13
+        }
+      }
+    }
+  },
+  "paraphrase_assessment_agreement": 0.4791666666666667,
+  "paraphrase_query_probability_mean_difference": 0.2420477565524512,
+  "probability_source": "submitted_engine_outputs"
+}

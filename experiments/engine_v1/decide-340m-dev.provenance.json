@@ -1,0 +1,50 @@
+{
+  "source_commit": "45e30d120b6dad0c66e8cbef803bd29474536c51",
+  "command": [
+    "rd-bench",
+    "--backend",
+    "gliner",
+    "--split",
+    "dev",
+    "--model",
+    "fastino/GLiNER2.5-Decide",
+    "--revision",
+    "9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90",
+    "--schedule",
+    "frontier",
+    "--mode",
+    "hard",
+    "--batch-size",
+    "4",
+    "--search-quantum",
+    "64",
+    "--cache",
+    "runs/decide-340m-fresh-cache",
+    "--output",
+    "runs/engine-v1-gliner-decide-340m-dev"
+  ],
+  "checkpoint_card_parameter_label": "340M",
+  "checkpoint_saved_tensor_elements": 486444053,
+  "checkpoint_saved_tensor_elements_by_module": {
+    "classifier": 2101249,
+    "count_embed": 18906112,
+    "count_pred": 2140180,
+    "encoder": 433921024,
+    "span_rep": 29375488
+  },
+  "resource_measurement": "Python resource.getrusage(resource.RUSAGE_SELF); Linux ru_maxrss in KiB. Wall timer starts before backend loading; evaluator metadata timer starts after backend loading.",
+  "validation": {
+    "rescored_metrics_match": true,
+    "independent_reference_exact_programs": 48,
+    "independent_reference_exact_queries": 272,
+    "settings_match_small_except_model_and_revision": true,
+    "cache_hits": 0,
+    "predicted_labels": {
+      "unknown": 194,
+      "both": 371,
+      "refuted": 11
+    },
+    "heldout_archive_sha256": "17de8385bc988a1fce546db426a4932fe92019b1080069240405347d5c37fa5e",
+    "heldout_contents_inspected_or_evaluated": false
+  }
+}

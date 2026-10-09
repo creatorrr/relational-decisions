@@ -126,14 +126,17 @@ must therefore include the complete ordered schema and world input when
 jointly scoring predicates.
 
 The first probe used a 73.9M-parameter model on CPU in FP32. The development
-box had a 16 GiB RAM limit, four CPU cores of quota, and no GPU. Larger-model
-capacity estimates have not yet been benchmarked.
+box has a 16 GiB RAM limit, four CPU cores of quota, and no GPU. GLiNER2.5-Decide
+(marketed as 340M) also runs locally in FP32: its dev evaluation took 7.0 minutes
+after initialization and peaked at 4.24 GiB process RSS.
 
 The first engine matches all 192 open programs exactly with oracle assessments
 in both hard and soft modes. The first GLiNER Small development baseline reaches
-22.0% four-way assessment accuracy and 0.2007 query-probability MAE. It predicts
-"both" for most propositions, so this adapter/checkpoint combination is not yet
-a reliable language grounding system. The
-[baseline report](experiments/engine_v1/README.md) preserves those results.
+22.05% four-way assessment accuracy and 0.2007 query-probability MAE. Under the
+same settings, Decide reaches 23.61% and 0.1985 respectively, and never predicts
+"supported". Both remain below the 32.64% majority-label accuracy baseline, so
+the current formulation is not yet a reliable language grounding system. The
+[baseline report](experiments/engine_v1/README.md) preserves predictions,
+traces, and the full comparison. Heldout remains unused.
 
 Licensed under the [Apache License 2.0](LICENSE).
