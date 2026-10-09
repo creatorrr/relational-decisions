@@ -44,7 +44,10 @@ class FinalEvaluationTests(unittest.TestCase):
         }
 
         class PublicFixtureBackend:
-            identity: ClassVar[dict] = {"backend": "public-dev-fixture"}
+            identity: ClassVar[dict] = {
+                "backend": "public-dev-fixture",
+                "label_order": ("supported", "refuted", "both", "unknown"),
+            }
 
             def assess(self, world, candidates):
                 return OracleBackend(labels[world]).assess(world, candidates)

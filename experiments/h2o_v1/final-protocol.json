@@ -1,6 +1,6 @@
 {
   "version": "h2o-final-heldout-v1",
-  "frozen_utc": "2026-10-09T06:45:09.700133+00:00",
+  "frozen_utc": "2026-10-09T06:46:51.966729+00:00",
   "authorization": "User selected H2O-Lightning and requested the heldout run.",
   "selection_commit": "a4ac1f2d6bc3ec3e762c911e9279249853c6db16",
   "selection_evidence": "Same eight dev programs: 85/96 assessment accuracy, 40/42 exact queries; no full H2O dev run.",
@@ -417,9 +417,10 @@
     "src/relational_decisions/openjev.py": "2b431919ad41a434e986deb6471f2e757239d772841131a51687908aa74dda1b",
     "src/relational_decisions/prompts.py": "484433455edccd6593c0eb978b6716ff2be13024f2da15f21572b5df16364b89",
     "src/relational_decisions/terms.py": "4732653f3b11eec62e7652b597b188f19b2feb784f167857169963c5f6b91b43",
-    "experiments/h2o_v1/final_eval.py": "7f3fbde93d017433764e4cbdffd4ab5d4adba9b490f4fb423b6414f113664cba",
+    "experiments/h2o_v1/final_eval.py": "4092bd3bb5da248e1d69439dcd4d25dfac297e4476a9164aa5d02190a0f39f78",
     "experiments/h2o_v1/requirements.lock.txt": "d17663ce8808ebbe699a637de379bd9351cdf252a440d791649d10d7b7ae5e00",
     "benchmarks/nl_logic_v1/logic.py": "20716d37e7f843fb41eab7f77b816f986cea52e05e2cdc5f276064cfcc794cf9",
     "benchmarks/nl_logic_v1/score.py": "4c489c700c346596e8a8e81c357c5ae97a19009e9f0e0913bb6a1003479d6f7a"
-  }
+  },
+  "preflight_amendment": "Normalize tuple/list fields before comparing runtime identity to JSON. Previous preflight read no archive members and produced zero predictions. Model and evaluation settings unchanged."
 }

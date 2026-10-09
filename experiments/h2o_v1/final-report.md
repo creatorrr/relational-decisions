@@ -5,6 +5,12 @@ diagnostic and authorized a final heldout run on 2026-10-09. The system is
 frozen in [final-protocol.json](final-protocol.json) before opening any archive
 members. Status: protocol frozen; final evaluation pending.
 
+A preflight attempt stopped before reading inputs because the runner compared
+an in-memory tuple with its JSON list representation. The comparison was fixed
+and the runner hash re-frozen before opening heldout; the selected model,
+prompt, precision, engine configuration, and metrics did not change. The failed
+preflight produced zero heldout predictions and did not read gold.
+
 The final run covers all 48 heldout programs (24 underlying worlds, two
 paraphrases each), 576 proposition assessments, and 272 queries. It uses the
 same pinned checkpoint, native choice prompts, temperature 0.8, BF16 backbone,
@@ -34,7 +40,7 @@ interruptions with the identical frozen configuration, never for improving a
 heldout score.
 
 ```bash
-python experiments/h2o_v1/final_eval.py --output runs/h2o-final-heldout
+python experiments/h2o_v1/final_eval.py --output runs/h2o-final-heldout-v1
 ```
 
 Run in the same pinned environment as the dev diagnostic. Add `--resume` only

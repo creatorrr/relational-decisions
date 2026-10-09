@@ -190,11 +190,13 @@ def run_locked(args):
     start = time.perf_counter()
     try:
         backend = H2OLightningBackend(threads=protocol["threads"])
-        if backend.identity != protocol["backend_identity"]:
+        # JSON normalizes tuple-valued fields such as label_order to lists.
+        identity = json.loads(json.dumps(backend.identity))
+        if identity != protocol["backend_identity"]:
             raise ValueError(
                 "Runtime backend identity differs from the frozen selection"
             )
-        metadata["backend"] = backend.identity
+        metadata["backend"] = identity
         metadata["config"] = protocol["engine_config"]
         # This is the first access to heldout inputs. No gold member is read here.
         input_bytes = read_member(archive, "heldout.inputs.jsonl")
