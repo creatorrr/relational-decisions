@@ -9,7 +9,8 @@ The scope is fixed before scoring: 96 proposition assessments and 42 queries,
 with the original GLiNER request groups replayed. The world text, frozen
 `binary-reports-v2` questions, yes/no order and descriptions, positive/negative
 product mapping, and hard-mode symbolic engine are unchanged. No prompt or
-temperature search is performed. Heldout stays sealed.
+temperature search is performed. Heldout stayed sealed during this dev diagnostic.
+The subsequent [GGUF final evaluation](../gguf_v1/final-report.md) is complete.
 
 ## Result
 

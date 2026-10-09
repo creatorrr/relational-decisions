@@ -1,0 +1,8 @@
+{
+  "status": "complete",
+  "total_attempt_wall_seconds": 3545.579126265002,
+  "peak_rss_kib": 520312,
+  "server_peak_rss_kib": 4876596,
+  "attempts": 1,
+  "resource_totals_complete": true
+}

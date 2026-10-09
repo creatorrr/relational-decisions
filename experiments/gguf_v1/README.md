@@ -1,5 +1,8 @@
 # Local GGUF decisions
 
+The [final heldout evaluation](final-report.md) is complete: 504/576 correct
+assessments (87.50%), 250/272 exact queries (91.91%), and query MAE 0.03461.
+
 The user requested H2O-Lightning and LiquidAI d1 GGUF trials before continuing
 the final evaluation. The previous BF16 heldout attempt was stopped without
 reading gold or scoring partial predictions. Both GGUFs are tested on the same

@@ -1,0 +1,9 @@
+{
+  "programs": 48,
+  "correct_assessments": 504,
+  "assessments": 576,
+  "exact_rational_query_matches": 250,
+  "queries": 272,
+  "prediction_seal_sha256": "26673ffc5f0093a1778e5b5d4c0348067a488debcf1c2440442faa6dd97b78c2",
+  "verification": "Fraction equality against frozen gold after completed evaluation; no tolerance needed for the 250 matches."
+}

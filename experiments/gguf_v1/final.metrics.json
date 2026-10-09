@@ -1,0 +1,588 @@
+{
+  "overall": {
+    "programs": 48,
+    "assessments": 576,
+    "queries": 272,
+    "assessment_accuracy": 0.875,
+    "assessment_macro_f1": 0.8544590568641062,
+    "query_probability_mae": 0.03461269507803121,
+    "query_probability_max_error": 1.0,
+    "query_probability_within_1e-9": 0.9191176470588235,
+    "confusion_matrix": {
+      "supported": {
+        "supported": 178,
+        "refuted": 0,
+        "both": 0,
+        "unknown": 2
+      },
+      "refuted": {
+        "supported": 0,
+        "refuted": 132,
+        "both": 0,
+        "unknown": 0
+      },
+      "both": {
+        "supported": 32,
+        "refuted": 37,
+        "both": 62,
+        "unknown": 1
+      },
+      "unknown": {
+        "supported": 0,
+        "refuted": 0,
+        "both": 0,
+        "unknown": 132
+      }
+    }
+  },
+  "by_family": {
+    "binding_join": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 24,
+      "assessment_accuracy": 0.8958333333333334,
+      "assessment_macro_f1": 0.8872019793072424,
+      "query_probability_mae": 0.0,
+      "query_probability_max_error": 0.0,
+      "query_probability_within_1e-9": 1.0,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 12,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 0
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 12,
+          "both": 0,
+          "unknown": 0
+        },
+        "both": {
+          "supported": 2,
+          "refuted": 3,
+          "both": 7,
+          "unknown": 0
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 12
+        }
+      }
+    },
+    "conditioning": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 24,
+      "assessment_accuracy": 0.875,
+      "assessment_macro_f1": 0.8539127362656774,
+      "query_probability_mae": 0.03826530612244898,
+      "query_probability_max_error": 0.9183673469387755,
+      "query_probability_within_1e-9": 0.9583333333333334,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 17,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 1
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 12,
+          "both": 0,
+          "unknown": 0
+        },
+        "both": {
+          "supported": 2,
+          "refuted": 3,
+          "both": 5,
+          "unknown": 0
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 8
+        }
+      }
+    },
+    "conjunction": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 16,
+      "assessment_accuracy": 0.875,
+      "assessment_macro_f1": 0.8277777777777777,
+      "query_probability_mae": 0.01,
+      "query_probability_max_error": 0.08,
+      "query_probability_within_1e-9": 0.875,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 22,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 0
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 8,
+          "both": 0,
+          "unknown": 0
+        },
+        "both": {
+          "supported": 1,
+          "refuted": 5,
+          "both": 4,
+          "unknown": 0
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 8
+        }
+      }
+    },
+    "contradictory_reports": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 24,
+      "assessment_accuracy": 0.7708333333333334,
+      "assessment_macro_f1": 0.6884615384615385,
+      "query_probability_mae": 0.18333333333333335,
+      "query_probability_max_error": 1.0,
+      "query_probability_within_1e-9": 0.6666666666666666,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 12,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 0
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 10,
+          "both": 0,
+          "unknown": 0
+        },
+        "both": {
+          "supported": 6,
+          "refuted": 5,
+          "both": 1,
+          "unknown": 0
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 14
+        }
+      }
+    },
+    "cyclic_reachability": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 28,
+      "assessment_accuracy": 0.9166666666666666,
+      "assessment_macro_f1": 0.9115384615384616,
+      "query_probability_mae": 0.0,
+      "query_probability_max_error": 0.0,
+      "query_probability_within_1e-9": 1.0,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 12,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 0
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 12,
+          "both": 0,
+          "unknown": 0
+        },
+        "both": {
+          "supported": 2,
+          "refuted": 2,
+          "both": 8,
+          "unknown": 0
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 12
+        }
+      }
+    },
+    "disjunction": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 16,
+      "assessment_accuracy": 0.875,
+      "assessment_macro_f1": 0.861111111111111,
+      "query_probability_mae": 0.09312500000000001,
+      "query_probability_max_error": 0.6300000000000001,
+      "query_probability_within_1e-9": 0.8125,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 12,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 0
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 12,
+          "both": 0,
+          "unknown": 0
+        },
+        "both": {
+          "supported": 3,
+          "refuted": 3,
+          "both": 6,
+          "unknown": 0
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 12
+        }
+      }
+    },
+    "exclusive_choice": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 20,
+      "assessment_accuracy": 0.9166666666666666,
+      "assessment_macro_f1": 0.9011015325670498,
+      "query_probability_mae": 0.03571428571428571,
+      "query_probability_max_error": 0.7142857142857143,
+      "query_probability_within_1e-9": 0.95,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 14,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 0
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 12,
+          "both": 0,
+          "unknown": 0
+        },
+        "both": {
+          "supported": 1,
+          "refuted": 3,
+          "both": 6,
+          "unknown": 0
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 12
+        }
+      }
+    },
+    "left_recursion": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 28,
+      "assessment_accuracy": 0.8958333333333334,
+      "assessment_macro_f1": 0.8884962406015038,
+      "query_probability_mae": 0.0,
+      "query_probability_max_error": 0.0,
+      "query_probability_within_1e-9": 1.0,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 12,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 0
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 12,
+          "both": 0,
+          "unknown": 0
+        },
+        "both": {
+          "supported": 4,
+          "refuted": 0,
+          "both": 7,
+          "unknown": 1
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 12
+        }
+      }
+    },
+    "missing_vs_negative": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 24,
+      "assessment_accuracy": 0.875,
+      "assessment_macro_f1": 0.8345238095238096,
+      "query_probability_mae": 0.0,
+      "query_probability_max_error": 0.0,
+      "query_probability_within_1e-9": 1.0,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 10,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 0
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 14,
+          "both": 0,
+          "unknown": 0
+        },
+        "both": {
+          "supported": 4,
+          "refuted": 2,
+          "both": 4,
+          "unknown": 0
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 14
+        }
+      }
+    },
+    "repeated_choice": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 20,
+      "assessment_accuracy": 0.875,
+      "assessment_macro_f1": 0.8422619047619048,
+      "query_probability_mae": 0.05,
+      "query_probability_max_error": 0.4,
+      "query_probability_within_1e-9": 0.85,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 19,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 1
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 8,
+          "both": 0,
+          "unknown": 0
+        },
+        "both": {
+          "supported": 1,
+          "refuted": 4,
+          "both": 5,
+          "unknown": 0
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 10
+        }
+      }
+    },
+    "shared_diamond": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 24,
+      "assessment_accuracy": 0.8333333333333334,
+      "assessment_macro_f1": 0.8077485380116959,
+      "query_probability_mae": 0.0295,
+      "query_probability_max_error": 0.42,
+      "query_probability_within_1e-9": 0.875,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 20,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 0
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 8,
+          "both": 0,
+          "unknown": 0
+        },
+        "both": {
+          "supported": 5,
+          "refuted": 3,
+          "both": 4,
+          "unknown": 0
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 8
+        }
+      }
+    },
+    "staged_chain": {
+      "programs": 4,
+      "assessments": 48,
+      "queries": 24,
+      "assessment_accuracy": 0.8958333333333334,
+      "assessment_macro_f1": 0.8733766233766234,
+      "query_probability_mae": 0.001,
+      "query_probability_max_error": 0.024,
+      "query_probability_within_1e-9": 0.9583333333333334,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 16,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 0
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 12,
+          "both": 0,
+          "unknown": 0
+        },
+        "both": {
+          "supported": 1,
+          "refuted": 4,
+          "both": 5,
+          "unknown": 0
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 10
+        }
+      }
+    }
+  },
+  "by_domain": {
+    "deliveries": {
+      "programs": 16,
+      "assessments": 192,
+      "queries": 92,
+      "assessment_accuracy": 0.8854166666666666,
+      "assessment_macro_f1": 0.8679150486650086,
+      "query_probability_mae": 0.02583007985803017,
+      "query_probability_max_error": 0.9183673469387755,
+      "query_probability_within_1e-9": 0.9456521739130435,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 56,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 0
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 48,
+          "both": 0,
+          "unknown": 0
+        },
+        "both": {
+          "supported": 11,
+          "refuted": 10,
+          "both": 22,
+          "unknown": 1
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 44
+        }
+      }
+    },
+    "gardens": {
+      "programs": 16,
+      "assessments": 192,
+      "queries": 92,
+      "assessment_accuracy": 0.8489583333333334,
+      "assessment_macro_f1": 0.8262358103942262,
+      "query_probability_mae": 0.04134782608695652,
+      "query_probability_max_error": 1.0,
+      "query_probability_within_1e-9": 0.8913043478260869,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 64,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 2
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 42,
+          "both": 0,
+          "unknown": 0
+        },
+        "both": {
+          "supported": 10,
+          "refuted": 17,
+          "both": 19,
+          "unknown": 0
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 38
+        }
+      }
+    },
+    "rooms": {
+      "programs": 16,
+      "assessments": 192,
+      "queries": 88,
+      "assessment_accuracy": 0.890625,
+      "assessment_macro_f1": 0.868417378678729,
+      "query_probability_mae": 0.03675324675324675,
+      "query_probability_max_error": 1.0,
+      "query_probability_within_1e-9": 0.9204545454545454,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 58,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 0
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 42,
+          "both": 0,
+          "unknown": 0
+        },
+        "both": {
+          "supported": 11,
+          "refuted": 10,
+          "both": 21,
+          "unknown": 0
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 50
+        }
+      }
+    }
+  },
+  "paraphrase_assessment_agreement": 0.8784722222222222,
+  "paraphrase_query_probability_mean_difference": 0.04746068427370948,
+  "probability_source": "submitted_engine_outputs",
+  "verified_reference_queries": 272,
+  "verified_ground_truth_programs": 48,
+  "scope": "Final heldout evaluation of the frozen selected system"
+}

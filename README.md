@@ -214,4 +214,11 @@ while reducing runtime to 8.89 minutes. LiquidAI d1 Q8_0 takes 4.28 minutes but
 grounding accuracy falls to 76.04%, so H2O Q8_0 is selected for the final heldout
 evaluation. Both models use causal attention with independent question suffixes.
 
+The [completed heldout run](experiments/gguf_v1/final-report.md) scores
+**87.50% grounding accuracy (504/576)** and **250/272 exact query probabilities
+(91.91%)**, with query MAE **0.03461**. All 272 submitted queries match the
+independent exact evaluator given predicted facts. Contradictory reports
+account for 70 of the 72 grounding errors. The complete CPU run took
+59.09 minutes with 4.65 GiB peak server RSS and 0.50 GiB peak client RSS.
+
 Licensed under the [Apache License 2.0](LICENSE).

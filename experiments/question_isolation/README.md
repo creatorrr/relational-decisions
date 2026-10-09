@@ -9,7 +9,8 @@ The initial protocol froze two additional dev runs before their predictions
 were observed. At the user's request we then stopped the exhaustive sweep:
 the native-isolation run completed 24 programs, and the remaining comparisons
 use only the first eight dev programs as a quick diagnostic. Neither is used
-to select a prompt. Heldout remains sealed.
+to select a prompt. Heldout remained sealed during these controls. The subsequent
+[H2O Q8 final evaluation](../gguf_v1/final-report.md) is complete.
 
 ## Practical notes
 
