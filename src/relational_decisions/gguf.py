@@ -44,7 +44,10 @@ def label_probabilities(response, ids, temperature):
     """Full-vocabulary log normalizer cancels in the label-only softmax."""
     if response.get("truncated") is not False:
         raise ValueError("Missing truncation status or truncated prompt")
-    rows = response["completion_probabilities"][0]["top_logprobs"]
+    records = response.get("completion_probabilities", [])
+    if len(records) != 1:
+        raise ValueError("Server did not return exactly one token-score record")
+    rows = records[0]["top_logprobs"]
     scores = {row["id"]: row["logprob"] for row in rows}
     if any(i not in scores or not math.isfinite(scores[i]) for i in ids):
         raise ValueError("Answer token absent or invalid in returned log probabilities")
@@ -212,6 +215,12 @@ class GGUFBackend:
             readout="verified leading-space A/B tokens; pre-sampling logprobs; label softmax",
             prefix_reuse="reset and prefill exact group common prefix, then cached suffixes",
             n_probs=128,
+            unused_token_control={
+                "grammar": 'root ::= " A"',
+                "samplers": ["temperature"],
+                "temperature": -1,
+                "score_source": "raw model logits before grammar or sampling",
+            },
             prompt_model=DEFAULT_MODEL,
             prompt_revision=DEFAULT_REVISION,
             prompt_source_sha256={
@@ -319,7 +328,11 @@ class GGUFBackend:
                         "post_sampling_probs": False,
                         "cache_prompt": True,
                         "seed": 0,
-                        "samplers": [],
+                        # Force an ASCII dummy token: arbitrary byte tokens can
+                        # make the server omit its probability record. The raw
+                        # pre-sampling score path ignores grammar and samplers.
+                        "grammar": 'root ::= " A"',
+                        "samplers": ["temperature"],
                     },
                 )
                 if response["tokens_evaluated"] != len(tokens):

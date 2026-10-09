@@ -25,6 +25,7 @@ class GGUFReadoutTests(unittest.TestCase):
 
     def test_missing_answer_and_truncation_fail_closed(self):
         for response in (
+            {"truncated": False},
             self.response({357: -1}),
             self.response({357: float("nan"), 417: -2}),
             {**self.response({357: -1, 417: -2}), "truncated": True},

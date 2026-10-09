@@ -96,3 +96,25 @@ changed the driver checksum, with no behavioral change.
 
 The replacement final protocol and final report are saved alongside this
 experiment. Gold is read only after all 48 programs' predictions are sealed.
+
+### Completion transport correction before scoring
+
+The first Q8 heldout attempt stopped after four completed programs because a
+completion response omitted its token-probability record. Gold remained unread;
+partial predictions were not scored or used for selection. The interruption
+is recorded in `final-v1-interruption.json` and its original protocol is retained.
+
+llama.cpp omits a token record when the unused sampled token leaves an incomplete
+UTF-8 character. The original empty sampler list also failed to explicitly
+select greedy sampling. The corrected transport constrains the unused token to
+ASCII with `root ::= " A"` and enables the temperature sampler. Scores still
+come from the server's raw model logits before grammar, bias, or sampling.
+Neither the question prompt nor the A/B readout changes.
+
+`verify_score_control.py` reproduces the missing record on a public dev prompt
+by forcing an incomplete UTF-8 byte token. ASCII grammar restores the record;
+the raw A/B probabilities are bitwise identical even under that artificial
+sampler bias. The corrected adapter also preserves all 12 assessments of the
+first dev program and its probability distributions within floating-point
+roundoff. Results are in `score-control-check.json`. The final v2 protocol
+freezes this correction and restarts all 48 programs with fresh caches.

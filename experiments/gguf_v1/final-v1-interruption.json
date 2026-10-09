@@ -1,0 +1,8 @@
+{
+  "reason": "Completion endpoint omitted its probability record; reproduced using an incomplete UTF-8 dummy token on public dev. ASCII grammar fixes transport without changing raw label scores.",
+  "completed_programs": 4,
+  "gold_read": false,
+  "scored": false,
+  "protocol_commit": "b8918b27472a1623390cc0ec5cf8993908b94782",
+  "partial_outputs": "Retained locally, excluded from final score. Corrected protocol restarts all 48 programs."
+}
