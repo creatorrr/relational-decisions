@@ -1,0 +1,698 @@
+{
+  "metadata": {
+    "model": "fastino/gliner2.5-small-v1",
+    "revision": "df5910e44bc4ffdb0d95399a83b0ca4516349aa5",
+    "source_commit": "08c8c8df0803075035ac6a02e8ee8c5554d2e06b",
+    "python": "3.12.14",
+    "packages": {
+      "gliner2": "2.1.0",
+      "torch": "2.14.1+cpu",
+      "transformers": "4.57.6"
+    },
+    "device": "cpu",
+    "dtype": "torch.float32",
+    "parameters": 73881879,
+    "load_seconds": 1.3182025860000977,
+    "encoder": "DebertaV2Model",
+    "classifier": "Sequential(\n  (0): Linear(in_features=384, out_features=768, bias=True)\n  (1): ReLU()\n  (2): Dropout(p=0.1, inplace=False)\n  (3): Linear(in_features=768, out_features=1, bias=True)\n)"
+  },
+  "text": "Battery dies before lunch, but the keyboard and the screen are the best I have used on a laptop.",
+  "cases": {
+    "sentiment_alone": {
+      "seconds": 0.0720982569998796,
+      "tokens": 36,
+      "logits": {
+        "sentiment": {
+          "positive": 4.875983238220215,
+          "negative": -5.7070631980896,
+          "mixed": -4.777557849884033,
+          "neutral": -4.824856281280518
+        }
+      },
+      "probabilities": {
+        "sentiment": {
+          "positive": 0.9998492508009864,
+          "negative": 2.5338205641807216e-05,
+          "mixed": 6.41881561028445e-05,
+          "neutral": 6.122283726890059e-05
+        }
+      }
+    },
+    "combined": {
+      "seconds": 0.050321726999982275,
+      "tokens": 81,
+      "logits": {
+        "sentiment": {
+          "positive": 3.2690606117248535,
+          "negative": -3.390076160430908,
+          "mixed": -3.0266387462615967,
+          "neutral": -2.6463561058044434
+        },
+        "battery": {
+          "good": 2.2294161319732666,
+          "bad": -2.161388397216797,
+          "not_mentioned": -3.259680986404419
+        },
+        "keyboard": {
+          "good": 2.7407877445220947,
+          "bad": -3.30269718170166,
+          "not_mentioned": -3.755838632583618
+        },
+        "screen": {
+          "good": 2.8888282775878906,
+          "bad": -3.3225972652435303,
+          "not_mentioned": -3.7344167232513428
+        }
+      },
+      "probabilities": {
+        "sentiment": {
+          "positive": 0.9942097153640211,
+          "negative": 0.001274828160563846,
+          "mixed": 0.001833540519219068,
+          "neutral": 0.002681915956195997
+        },
+        "battery": {
+          "good": 0.9837462209931247,
+          "bad": 0.012189359866404842,
+          "not_mentioned": 0.004064419140470522
+        },
+        "keyboard": {
+          "good": 0.9961332164591368,
+          "bad": 0.002364096865319653,
+          "not_mentioned": 0.0015026866755436534
+        },
+        "screen": {
+          "good": 0.9966756022582552,
+          "bad": 0.001999705261243021,
+          "not_mentioned": 0.001324692480501721
+        }
+      }
+    },
+    "combined_repeat": {
+      "seconds": 0.07181717299999946,
+      "tokens": 81,
+      "logits": {
+        "sentiment": {
+          "positive": 3.2690606117248535,
+          "negative": -3.390076160430908,
+          "mixed": -3.0266387462615967,
+          "neutral": -2.6463561058044434
+        },
+        "battery": {
+          "good": 2.2294161319732666,
+          "bad": -2.161388397216797,
+          "not_mentioned": -3.259680986404419
+        },
+        "keyboard": {
+          "good": 2.7407877445220947,
+          "bad": -3.30269718170166,
+          "not_mentioned": -3.755838632583618
+        },
+        "screen": {
+          "good": 2.8888282775878906,
+          "bad": -3.3225972652435303,
+          "not_mentioned": -3.7344167232513428
+        }
+      },
+      "probabilities": {
+        "sentiment": {
+          "positive": 0.9942097153640211,
+          "negative": 0.001274828160563846,
+          "mixed": 0.001833540519219068,
+          "neutral": 0.002681915956195997
+        },
+        "battery": {
+          "good": 0.9837462209931247,
+          "bad": 0.012189359866404842,
+          "not_mentioned": 0.004064419140470522
+        },
+        "keyboard": {
+          "good": 0.9961332164591368,
+          "bad": 0.002364096865319653,
+          "not_mentioned": 0.0015026866755436534
+        },
+        "screen": {
+          "good": 0.9966756022582552,
+          "bad": 0.001999705261243021,
+          "not_mentioned": 0.001324692480501721
+        }
+      }
+    },
+    "reversed_tasks": {
+      "seconds": 0.05833568900015962,
+      "tokens": 81,
+      "logits": {
+        "screen": {
+          "good": 3.0319149494171143,
+          "bad": -3.6029279232025146,
+          "not_mentioned": -4.19506311416626
+        },
+        "keyboard": {
+          "good": 2.9240195751190186,
+          "bad": -3.5423784255981445,
+          "not_mentioned": -3.9660823345184326
+        },
+        "battery": {
+          "good": 2.268270969390869,
+          "bad": -2.4743359088897705,
+          "not_mentioned": -3.2916648387908936
+        },
+        "sentiment": {
+          "positive": 3.2852118015289307,
+          "negative": -3.6238906383514404,
+          "mixed": -3.071009874343872,
+          "neutral": -2.523374319076538
+        }
+      },
+      "probabilities": {
+        "screen": {
+          "good": 0.9979636563654972,
+          "bad": 0.0013111098425145741,
+          "not_mentioned": 0.0007252337919881877
+        },
+        "keyboard": {
+          "good": 0.9974339752064845,
+          "bad": 0.001550826408445023,
+          "not_mentioned": 0.0010151983850705294
+        },
+        "battery": {
+          "good": 0.9875909993533141,
+          "bad": 0.008607739715863125,
+          "not_mentioned": 0.003801260930822836
+        },
+        "sentiment": {
+          "positive": 0.9942964787554333,
+          "negative": 0.0009929579032587285,
+          "mixed": 0.0017260123616821505,
+          "neutral": 0.0029845509796259813
+        }
+      }
+    },
+    "changed_later_labels": {
+      "seconds": 0.06170768400011184,
+      "tokens": 79,
+      "logits": {
+        "sentiment": {
+          "positive": 3.245384931564331,
+          "negative": -3.5061991214752197,
+          "mixed": -3.1274590492248535,
+          "neutral": -2.764439821243286
+        },
+        "battery": {
+          "good": 2.3751590251922607,
+          "bad": -2.3820338249206543,
+          "not_mentioned": -3.5291941165924072
+        },
+        "keyboard": {
+          "good": 2.824636697769165,
+          "bad": -3.2660937309265137,
+          "not_mentioned": -3.61200213432312
+        },
+        "screen": {
+          "red": -1.1367448568344116,
+          "blue": -0.5432088375091553,
+          "green": -0.6922467350959778
+        }
+      },
+      "probabilities": {
+        "sentiment": {
+          "positive": 0.9946974257435954,
+          "negative": 0.0011628275045455813,
+          "mixed": 0.0016982437271921848,
+          "neutral": 0.002441503024666758
+        },
+        "battery": {
+          "good": 0.9888094128171802,
+          "bad": 0.008493564473577839,
+          "not_mentioned": 0.0026970227092420625
+        },
+        "keyboard": {
+          "good": 0.9961493485344091,
+          "bad": 0.0022550378685800274,
+          "not_mentioned": 0.0015956135970108694
+        },
+        "screen": {
+          "red": 0.2288284559713014,
+          "blue": 0.4142661499731731,
+          "green": 0.3569053940555254
+        }
+      }
+    },
+    "swapped_later_labels": {
+      "seconds": 0.050633513000093444,
+      "tokens": 81,
+      "logits": {
+        "sentiment": {
+          "positive": 3.276416063308716,
+          "negative": -3.3903651237487793,
+          "mixed": -3.029324769973755,
+          "neutral": -2.6510844230651855
+        },
+        "battery": {
+          "good": 2.228956699371338,
+          "bad": -2.1281840801239014,
+          "not_mentioned": -3.228057622909546
+        },
+        "keyboard": {
+          "good": 2.736210584640503,
+          "bad": -3.2382888793945312,
+          "not_mentioned": -3.7180681228637695
+        },
+        "screen": {
+          "bad": -3.384593963623047,
+          "good": 2.8258955478668213,
+          "not_mentioned": -3.733734130859375
+        }
+      },
+      "probabilities": {
+        "sentiment": {
+          "positive": 0.9942696102830506,
+          "negative": 0.0012651962146294042,
+          "mixed": 0.0018153305535548382,
+          "neutral": 0.0026498629487653022
+        },
+        "battery": {
+          "good": 0.9832056184121677,
+          "bad": 0.012599756560235884,
+          "not_mentioned": 0.0041946250275963545
+        },
+        "keyboard": {
+          "good": 0.9959003279569443,
+          "bad": 0.0025323499767858095,
+          "not_mentioned": 0.001567322066269969
+        },
+        "screen": {
+          "bad": 0.0020014000366789047,
+          "good": 0.996587023997095,
+          "not_mentioned": 0.0014115759662261197
+        }
+      }
+    }
+  },
+  "tokens": [
+    "\u2581(",
+    "[P]",
+    "\u2581sentiment",
+    "\u2581(",
+    "[L]",
+    "\u2581positive",
+    "[L]",
+    "\u2581negative",
+    "[L]",
+    "\u2581mixed",
+    "[L]",
+    "\u2581neutral",
+    "\u2581)",
+    "\u2581)",
+    "[SEP_STRUCT]",
+    "\u2581(",
+    "[P]",
+    "\u2581battery",
+    "\u2581(",
+    "[L]",
+    "\u2581good",
+    "[L]",
+    "\u2581bad",
+    "[L]",
+    "\u2581not",
+    "_",
+    "mentioned",
+    "\u2581)",
+    "\u2581)",
+    "[SEP_STRUCT]",
+    "\u2581(",
+    "[P]",
+    "\u2581keyboard",
+    "\u2581(",
+    "[L]",
+    "\u2581good",
+    "[L]",
+    "\u2581bad",
+    "[L]",
+    "\u2581not",
+    "_",
+    "mentioned",
+    "\u2581)",
+    "\u2581)",
+    "[SEP_STRUCT]",
+    "\u2581(",
+    "[P]",
+    "\u2581screen",
+    "\u2581(",
+    "[L]",
+    "\u2581good",
+    "[L]",
+    "\u2581bad",
+    "[L]",
+    "\u2581not",
+    "_",
+    "mentioned",
+    "\u2581)",
+    "\u2581)",
+    "[SEP_TEXT]",
+    "\u2581battery",
+    "\u2581dies",
+    "\u2581before",
+    "\u2581lunch",
+    "\u2581,",
+    "\u2581but",
+    "\u2581the",
+    "\u2581keyboard",
+    "\u2581and",
+    "\u2581the",
+    "\u2581screen",
+    "\u2581are",
+    "\u2581the",
+    "\u2581best",
+    "\u2581i",
+    "\u2581have",
+    "\u2581used",
+    "\u2581on",
+    "\u2581a",
+    "\u2581laptop",
+    "\u2581."
+  ],
+  "schema_markers": [
+    [
+      1,
+      4,
+      6,
+      8,
+      10
+    ],
+    [
+      16,
+      19,
+      21,
+      23
+    ],
+    [
+      31,
+      34,
+      36,
+      38
+    ],
+    [
+      46,
+      49,
+      51,
+      53
+    ]
+  ],
+  "attention": {
+    "layer_masks": [
+      {
+        "module": "DisentangledSelfAttention",
+        "shape": [
+          1,
+          1,
+          81,
+          81
+        ],
+        "dtype": "torch.int64",
+        "unique": [
+          1
+        ]
+      },
+      {
+        "module": "DisentangledSelfAttention",
+        "shape": [
+          1,
+          1,
+          81,
+          81
+        ],
+        "dtype": "torch.int64",
+        "unique": [
+          1
+        ]
+      },
+      {
+        "module": "DisentangledSelfAttention",
+        "shape": [
+          1,
+          1,
+          81,
+          81
+        ],
+        "dtype": "torch.int64",
+        "unique": [
+          1
+        ]
+      },
+      {
+        "module": "DisentangledSelfAttention",
+        "shape": [
+          1,
+          1,
+          81,
+          81
+        ],
+        "dtype": "torch.int64",
+        "unique": [
+          1
+        ]
+      },
+      {
+        "module": "DisentangledSelfAttention",
+        "shape": [
+          1,
+          1,
+          81,
+          81
+        ],
+        "dtype": "torch.int64",
+        "unique": [
+          1
+        ]
+      },
+      {
+        "module": "DisentangledSelfAttention",
+        "shape": [
+          1,
+          1,
+          81,
+          81
+        ],
+        "dtype": "torch.int64",
+        "unique": [
+          1
+        ]
+      },
+      {
+        "module": "DisentangledSelfAttention",
+        "shape": [
+          1,
+          1,
+          81,
+          81
+        ],
+        "dtype": "torch.int64",
+        "unique": [
+          1
+        ]
+      },
+      {
+        "module": "DisentangledSelfAttention",
+        "shape": [
+          1,
+          1,
+          81,
+          81
+        ],
+        "dtype": "torch.int64",
+        "unique": [
+          1
+        ]
+      },
+      {
+        "module": "DisentangledSelfAttention",
+        "shape": [
+          1,
+          1,
+          81,
+          81
+        ],
+        "dtype": "torch.int64",
+        "unique": [
+          1
+        ]
+      },
+      {
+        "module": "DisentangledSelfAttention",
+        "shape": [
+          1,
+          1,
+          81,
+          81
+        ],
+        "dtype": "torch.int64",
+        "unique": [
+          1
+        ]
+      },
+      {
+        "module": "DisentangledSelfAttention",
+        "shape": [
+          1,
+          1,
+          81,
+          81
+        ],
+        "dtype": "torch.int64",
+        "unique": [
+          1
+        ]
+      },
+      {
+        "module": "DisentangledSelfAttention",
+        "shape": [
+          1,
+          1,
+          81,
+          81
+        ],
+        "dtype": "torch.int64",
+        "unique": [
+          1
+        ]
+      }
+    ],
+    "layers": [
+      {
+        "layer": 0,
+        "future_attention_mass_mean": 0.5863031457971644,
+        "first_slot_to_later_slot_mean": 0.011337884701788425,
+        "later_slot_to_first_slot_mean": 0.009412231855094433
+      },
+      {
+        "layer": 1,
+        "future_attention_mass_mean": 0.5510111993232382,
+        "first_slot_to_later_slot_mean": 0.0024042350705713034,
+        "later_slot_to_first_slot_mean": 0.0017956540687009692
+      },
+      {
+        "layer": 2,
+        "future_attention_mass_mean": 0.5989725874284658,
+        "first_slot_to_later_slot_mean": 0.0022354836110025644,
+        "later_slot_to_first_slot_mean": 0.0020623807795345783
+      },
+      {
+        "layer": 3,
+        "future_attention_mass_mean": 0.5017981195646058,
+        "first_slot_to_later_slot_mean": 0.009022368118166924,
+        "later_slot_to_first_slot_mean": 0.006149676162749529
+      },
+      {
+        "layer": 4,
+        "future_attention_mass_mean": 0.5014974021126704,
+        "first_slot_to_later_slot_mean": 0.014796401374042034,
+        "later_slot_to_first_slot_mean": 0.014888212084770203
+      },
+      {
+        "layer": 5,
+        "future_attention_mass_mean": 0.5892235398783114,
+        "first_slot_to_later_slot_mean": 0.008592156693339348,
+        "later_slot_to_first_slot_mean": 0.007332244887948036
+      },
+      {
+        "layer": 6,
+        "future_attention_mass_mean": 0.5511465818303112,
+        "first_slot_to_later_slot_mean": 0.0003512967377901077,
+        "later_slot_to_first_slot_mean": 0.0008948654867708683
+      },
+      {
+        "layer": 7,
+        "future_attention_mass_mean": 0.47894525724183384,
+        "first_slot_to_later_slot_mean": 0.004122237209230661,
+        "later_slot_to_first_slot_mean": 0.0034800164867192507
+      },
+      {
+        "layer": 8,
+        "future_attention_mass_mean": 0.502888965999148,
+        "first_slot_to_later_slot_mean": 0.0026058817747980356,
+        "later_slot_to_first_slot_mean": 0.0006198662449605763
+      },
+      {
+        "layer": 9,
+        "future_attention_mass_mean": 0.4729764961902006,
+        "first_slot_to_later_slot_mean": 0.0016569612780585885,
+        "later_slot_to_first_slot_mean": 0.0012697646161541343
+      },
+      {
+        "layer": 10,
+        "future_attention_mass_mean": 0.5510866769547325,
+        "first_slot_to_later_slot_mean": 0.0065770880319178104,
+        "later_slot_to_first_slot_mean": 0.009099352173507214
+      },
+      {
+        "layer": 11,
+        "future_attention_mass_mean": 0.5264723036024306,
+        "first_slot_to_later_slot_mean": 0.021825259551405907,
+        "later_slot_to_first_slot_mean": 0.01931602694094181
+      }
+    ]
+  },
+  "perturbation": {
+    "same_shape": true,
+    "changed_positions": [
+      50,
+      52
+    ],
+    "first_task_hidden_max_abs_delta": 0.014427974820137024,
+    "first_task_logits_before": [
+      3.2690606117248535,
+      -3.390076160430908,
+      -3.0266387462615967,
+      -2.6463561058044434
+    ],
+    "first_task_logits_after": [
+      3.276416063308716,
+      -3.3903651237487793,
+      -3.029324769973755,
+      -2.6510844230651855
+    ],
+    "first_task_logit_max_abs_delta": 0.007355451583862305
+  },
+  "separate_batch_logits": {
+    "sentiment": {
+      "positive": 4.875983238220215,
+      "negative": -5.7070631980896,
+      "mixed": -4.777557849884033,
+      "neutral": -4.824856281280518
+    },
+    "battery": {
+      "good": 5.195809364318848,
+      "bad": -5.186420917510986,
+      "not_mentioned": -5.202879428863525
+    },
+    "keyboard": {
+      "good": 5.185265064239502,
+      "bad": -5.529652118682861,
+      "not_mentioned": -5.440523147583008
+    },
+    "screen": {
+      "good": 5.077065944671631,
+      "bad": -5.069507598876953,
+      "not_mentioned": -5.142991542816162
+    }
+  },
+  "public_classify_text": {
+    "sentiment": {
+      "label": "positive",
+      "confidence": 0.9942097663879395
+    },
+    "battery": {
+      "label": "good",
+      "confidence": 0.9837462902069092
+    },
+    "keyboard": {
+      "label": "good",
+      "confidence": 0.9961333274841309
+    },
+    "screen": {
+      "label": "good",
+      "confidence": 0.9966756105422974
+    }
+  }
+}

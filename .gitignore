@@ -1,0 +1,24 @@
+# Local environments, caches, and model artifacts
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.cache/
+models/
+*.safetensors
+*.gguf
+*.bin
+
+# Keep frozen heldout prompts and answers outside version control.
+benchmarks/**/sealed/
+*heldout*.jsonl
+
+# Local experiment runs; checked-in reference results are explicit artifacts.
+runs/
+*.log
+.env
+.env.*
+!.env.example
+
+.DS_Store

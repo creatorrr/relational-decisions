@@ -1,0 +1,467 @@
+{
+  "input": {
+    "id": "f83116bec37f77dc-v1",
+    "group_id": "f83116bec37f77dc",
+    "family": "shared_diamond",
+    "domain": "gardens",
+    "world_text": "Recorded status: Access to Garden Maple-0363 is possible.\nRecorded status: Garden Maple-0362 does not require watering.\nRecorded status: Access to Garden Maple-0360 is possible.\nRecorded status: Garden Maple-0361 requires watering.\nRecorded status: There is no request for a caretaker to visit Garden Maple-0361.\nRecorded status: Access to Garden Maple-0362 is possible.\nRecorded status: Garden Maple-0360 requires watering.\nRecorded status: There is no request for a caretaker to visit Garden Maple-0363.\nRecorded status: Access to Garden Maple-0363 is impossible.\nRecorded status: Garden Maple-0363 does not require watering.\nRecorded status: There is a request for a caretaker to visit Garden Maple-0361.\nRecorded status: There is a request for a caretaker to visit Garden Maple-0360.",
+    "entities": [
+      {
+        "id": "maple_02_6_0",
+        "name": "Garden Maple-0360"
+      },
+      {
+        "id": "maple_02_6_1",
+        "name": "Garden Maple-0361"
+      },
+      {
+        "id": "maple_02_6_2",
+        "name": "Garden Maple-0362"
+      },
+      {
+        "id": "maple_02_6_3",
+        "name": "Garden Maple-0363"
+      }
+    ],
+    "predicates": [
+      {
+        "name": "needs_attention",
+        "arity": 1,
+        "definition": "{entity} needs watering"
+      },
+      {
+        "name": "ready",
+        "arity": 1,
+        "definition": "{entity} is accessible"
+      },
+      {
+        "name": "requested",
+        "arity": 1,
+        "definition": "A caretaker visit has been requested for {entity}"
+      }
+    ],
+    "candidates": [
+      {
+        "id": "p00",
+        "atom": [
+          "needs_attention",
+          "maple_02_6_0"
+        ],
+        "negative_atom": [
+          "not_needs_attention",
+          "maple_02_6_0"
+        ],
+        "proposition": "Garden Maple-0360 needs watering",
+        "negative_proposition": "Garden Maple-0360 does not need watering"
+      },
+      {
+        "id": "p01",
+        "atom": [
+          "ready",
+          "maple_02_6_0"
+        ],
+        "negative_atom": [
+          "not_ready",
+          "maple_02_6_0"
+        ],
+        "proposition": "Garden Maple-0360 is accessible",
+        "negative_proposition": "Garden Maple-0360 is inaccessible"
+      },
+      {
+        "id": "p02",
+        "atom": [
+          "requested",
+          "maple_02_6_0"
+        ],
+        "negative_atom": [
+          "not_requested",
+          "maple_02_6_0"
+        ],
+        "proposition": "A caretaker visit has been requested for Garden Maple-0360",
+        "negative_proposition": "No caretaker visit has been requested for Garden Maple-0360"
+      },
+      {
+        "id": "p03",
+        "atom": [
+          "needs_attention",
+          "maple_02_6_1"
+        ],
+        "negative_atom": [
+          "not_needs_attention",
+          "maple_02_6_1"
+        ],
+        "proposition": "Garden Maple-0361 needs watering",
+        "negative_proposition": "Garden Maple-0361 does not need watering"
+      },
+      {
+        "id": "p04",
+        "atom": [
+          "ready",
+          "maple_02_6_1"
+        ],
+        "negative_atom": [
+          "not_ready",
+          "maple_02_6_1"
+        ],
+        "proposition": "Garden Maple-0361 is accessible",
+        "negative_proposition": "Garden Maple-0361 is inaccessible"
+      },
+      {
+        "id": "p05",
+        "atom": [
+          "requested",
+          "maple_02_6_1"
+        ],
+        "negative_atom": [
+          "not_requested",
+          "maple_02_6_1"
+        ],
+        "proposition": "A caretaker visit has been requested for Garden Maple-0361",
+        "negative_proposition": "No caretaker visit has been requested for Garden Maple-0361"
+      },
+      {
+        "id": "p06",
+        "atom": [
+          "needs_attention",
+          "maple_02_6_2"
+        ],
+        "negative_atom": [
+          "not_needs_attention",
+          "maple_02_6_2"
+        ],
+        "proposition": "Garden Maple-0362 needs watering",
+        "negative_proposition": "Garden Maple-0362 does not need watering"
+      },
+      {
+        "id": "p07",
+        "atom": [
+          "ready",
+          "maple_02_6_2"
+        ],
+        "negative_atom": [
+          "not_ready",
+          "maple_02_6_2"
+        ],
+        "proposition": "Garden Maple-0362 is accessible",
+        "negative_proposition": "Garden Maple-0362 is inaccessible"
+      },
+      {
+        "id": "p08",
+        "atom": [
+          "requested",
+          "maple_02_6_2"
+        ],
+        "negative_atom": [
+          "not_requested",
+          "maple_02_6_2"
+        ],
+        "proposition": "A caretaker visit has been requested for Garden Maple-0362",
+        "negative_proposition": "No caretaker visit has been requested for Garden Maple-0362"
+      },
+      {
+        "id": "p09",
+        "atom": [
+          "needs_attention",
+          "maple_02_6_3"
+        ],
+        "negative_atom": [
+          "not_needs_attention",
+          "maple_02_6_3"
+        ],
+        "proposition": "Garden Maple-0363 needs watering",
+        "negative_proposition": "Garden Maple-0363 does not need watering"
+      },
+      {
+        "id": "p10",
+        "atom": [
+          "ready",
+          "maple_02_6_3"
+        ],
+        "negative_atom": [
+          "not_ready",
+          "maple_02_6_3"
+        ],
+        "proposition": "Garden Maple-0363 is accessible",
+        "negative_proposition": "Garden Maple-0363 is inaccessible"
+      },
+      {
+        "id": "p11",
+        "atom": [
+          "requested",
+          "maple_02_6_3"
+        ],
+        "negative_atom": [
+          "not_requested",
+          "maple_02_6_3"
+        ],
+        "proposition": "A caretaker visit has been requested for Garden Maple-0363",
+        "negative_proposition": "No caretaker visit has been requested for Garden Maple-0363"
+      }
+    ],
+    "program": {
+      "facts": [
+        [
+          "entity",
+          "maple_02_6_0"
+        ],
+        [
+          "entity",
+          "maple_02_6_1"
+        ],
+        [
+          "entity",
+          "maple_02_6_2"
+        ],
+        [
+          "entity",
+          "maple_02_6_3"
+        ]
+      ],
+      "rules": [
+        {
+          "head": [
+            "left",
+            "?x"
+          ],
+          "body": [
+            [
+              "needs_attention",
+              "?x"
+            ],
+            [
+              "gate",
+              "g0"
+            ],
+            [
+              "gate",
+              "g1"
+            ]
+          ]
+        },
+        {
+          "head": [
+            "right",
+            "?x"
+          ],
+          "body": [
+            [
+              "requested",
+              "?x"
+            ],
+            [
+              "gate",
+              "g0"
+            ],
+            [
+              "gate",
+              "g2"
+            ]
+          ]
+        },
+        {
+          "head": [
+            "act",
+            "?x"
+          ],
+          "body": [
+            [
+              "left",
+              "?x"
+            ]
+          ]
+        },
+        {
+          "head": [
+            "act",
+            "?x"
+          ],
+          "body": [
+            [
+              "right",
+              "?x"
+            ]
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "id": "g0",
+          "outcomes": [
+            {
+              "p": "1/5",
+              "facts": [
+                [
+                  "gate",
+                  "g0"
+                ]
+              ]
+            },
+            {
+              "p": "4/5",
+              "facts": []
+            }
+          ]
+        },
+        {
+          "id": "g1",
+          "outcomes": [
+            {
+              "p": "7/10",
+              "facts": [
+                [
+                  "gate",
+                  "g1"
+                ]
+              ]
+            },
+            {
+              "p": "3/10",
+              "facts": []
+            }
+          ]
+        },
+        {
+          "id": "g2",
+          "outcomes": [
+            {
+              "p": "4/5",
+              "facts": [
+                [
+                  "gate",
+                  "g2"
+                ]
+              ]
+            },
+            {
+              "p": "1/5",
+              "facts": []
+            }
+          ]
+        }
+      ],
+      "evidence": [],
+      "queries": [
+        {
+          "id": "shared_left",
+          "atom": [
+            "left",
+            "maple_02_6_0"
+          ]
+        },
+        {
+          "id": "shared_right",
+          "atom": [
+            "right",
+            "maple_02_6_0"
+          ]
+        },
+        {
+          "id": "act_0",
+          "atom": [
+            "act",
+            "maple_02_6_0"
+          ]
+        },
+        {
+          "id": "act_1",
+          "atom": [
+            "act",
+            "maple_02_6_1"
+          ]
+        },
+        {
+          "id": "act_2",
+          "atom": [
+            "act",
+            "maple_02_6_2"
+          ]
+        },
+        {
+          "id": "act_3",
+          "atom": [
+            "act",
+            "maple_02_6_3"
+          ]
+        }
+      ]
+    }
+  },
+  "gold": {
+    "id": "f83116bec37f77dc-v1",
+    "group_id": "f83116bec37f77dc",
+    "assessments": {
+      "p00": "supported",
+      "p01": "supported",
+      "p02": "supported",
+      "p03": "supported",
+      "p04": "unknown",
+      "p05": "both",
+      "p06": "refuted",
+      "p07": "supported",
+      "p08": "unknown",
+      "p09": "refuted",
+      "p10": "both",
+      "p11": "refuted"
+    },
+    "oracle_facts": [
+      [
+        "needs_attention",
+        "maple_02_6_0"
+      ],
+      [
+        "ready",
+        "maple_02_6_0"
+      ],
+      [
+        "requested",
+        "maple_02_6_0"
+      ],
+      [
+        "needs_attention",
+        "maple_02_6_1"
+      ],
+      [
+        "requested",
+        "maple_02_6_1"
+      ],
+      [
+        "not_requested",
+        "maple_02_6_1"
+      ],
+      [
+        "not_needs_attention",
+        "maple_02_6_2"
+      ],
+      [
+        "ready",
+        "maple_02_6_2"
+      ],
+      [
+        "not_needs_attention",
+        "maple_02_6_3"
+      ],
+      [
+        "ready",
+        "maple_02_6_3"
+      ],
+      [
+        "not_ready",
+        "maple_02_6_3"
+      ],
+      [
+        "not_requested",
+        "maple_02_6_3"
+      ]
+    ],
+    "query_probabilities": {
+      "shared_left": "7/50",
+      "shared_right": "4/25",
+      "act_0": "47/250",
+      "act_1": "47/250",
+      "act_2": "0",
+      "act_3": "0"
+    },
+    "evidence_probability": "1",
+    "enumerated_worlds": 8
+  }
+}

@@ -1,0 +1,3 @@
+# Optional: only needed for validate.py --problog.
+# Generation, the exact oracle, and scoring otherwise use the standard library.
+problog==2.3.0

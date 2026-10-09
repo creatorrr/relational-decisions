@@ -1,0 +1,21 @@
+{
+  "version": "nl-logic-v1",
+  "assessment_instruction": "Treat the world description as unordered explicit reports about one snapshot. No report has priority. For each candidate proposition, determine whether the description explicitly asserts it, explicitly asserts its listed negative, both, or neither. Do not infer an unreported assertion from commonsense, absence, or the program's rules. The rules run after these primitive assessments.",
+  "labels": {
+    "supported": "The positive assertion is reported and the negative assertion is not reported.",
+    "refuted": "The negative assertion is reported and the positive assertion is not reported.",
+    "both": "Both the positive and the negative assertions are reported.",
+    "unknown": "Neither assertion is reported. Missing information is not a negative assertion."
+  },
+  "tracks": {
+    "language": "Predict assessments from world_text, entities, and candidates. Score against gold assessments.",
+    "logic": "Use gold oracle_facts plus program to predict exact query probabilities.",
+    "end_to_end": "Convert predicted assessments to explicit signed facts and evaluate program query probabilities."
+  },
+  "constraints": [
+    "Keep gold records separate from model inputs.",
+    "Use train and dev only during development.",
+    "Freeze the complete inference and batching protocol before final heldout evaluation.",
+    "Count world groups, not paraphrases, as independent evaluation units."
+  ]
+}

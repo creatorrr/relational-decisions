@@ -1,0 +1,79 @@
+{
+  "version": "nl-logic-v1",
+  "created": "2026-10-09",
+  "seed": "nl-logic-v1-frozen-2026-10-09",
+  "split_unit": "underlying symbolic world; both renderings stay together",
+  "split_type": "stratified within-family; split-specific surface templates and entity vocabularies",
+  "counts": {
+    "train": {
+      "groups": 72,
+      "programs": 144,
+      "queries": 816,
+      "assessments": 1728,
+      "families": {
+        "exclusive_choice": 12,
+        "shared_diamond": 12,
+        "cyclic_reachability": 12,
+        "disjunction": 12,
+        "contradictory_reports": 12,
+        "missing_vs_negative": 12,
+        "binding_join": 12,
+        "conditioning": 12,
+        "staged_chain": 12,
+        "repeated_choice": 12,
+        "left_recursion": 12,
+        "conjunction": 12
+      }
+    },
+    "dev": {
+      "groups": 24,
+      "programs": 48,
+      "queries": 272,
+      "assessments": 576,
+      "families": {
+        "conjunction": 4,
+        "repeated_choice": 4,
+        "shared_diamond": 4,
+        "binding_join": 4,
+        "staged_chain": 4,
+        "contradictory_reports": 4,
+        "missing_vs_negative": 4,
+        "disjunction": 4,
+        "exclusive_choice": 4,
+        "conditioning": 4,
+        "cyclic_reachability": 4,
+        "left_recursion": 4
+      }
+    },
+    "heldout": {
+      "groups": 24,
+      "programs": 48,
+      "queries": 272,
+      "assessments": 576,
+      "families": {
+        "left_recursion": 4,
+        "exclusive_choice": 4,
+        "missing_vs_negative": 4,
+        "contradictory_reports": 4,
+        "staged_chain": 4,
+        "cyclic_reachability": 4,
+        "shared_diamond": 4,
+        "repeated_choice": 4,
+        "conjunction": 4,
+        "conditioning": 4,
+        "binding_join": 4,
+        "disjunction": 4
+      }
+    }
+  },
+  "sha256": {
+    "data/train.inputs.jsonl": "3836dd23a552ef0ecfb01fde50593c4d28a6b43c1ad7416c8a122e1a0a6675eb",
+    "data/train.gold.jsonl": "04c8891377de801501ae5e01c5544784be88e9925444519bd5dbb67e162d5221",
+    "data/dev.inputs.jsonl": "0b0268b8866e38070532168de2e929a93bf279badaba32d84a4150650b9f15ef",
+    "data/dev.gold.jsonl": "864c8094a581aba418c8178cbd20cc4b1d7f7927d400e3e218aedd5e5f2e0f62",
+    "sealed/heldout-v1.tar.gz": "17de8385bc988a1fce546db426a4932fe92019b1080069240405347d5c37fa5e"
+  },
+  "ground_truth": "exact rational enumeration of independent categorical choices and least-fixed-point positive Datalog",
+  "heldout_policy": "No model predictions, prompt selection, calibration, or error inspection on heldout until final evaluation.",
+  "model_evaluations_at_creation": 0
+}

@@ -1,0 +1,20 @@
+{
+  "analytical_fixtures": 8,
+  "open_programs_checked": 192,
+  "problog_worlds_checked": 96,
+  "problog_max_absolute_error": 6.661338147750939e-16,
+  "open_assessment_counts": {
+    "refuted": 518,
+    "supported": 754,
+    "both": 506,
+    "unknown": 526
+  },
+  "open_query_counts": {
+    "zero": 490,
+    "fractional": 550,
+    "one": 48
+  },
+  "all_manifest_checksums_valid": true,
+  "heldout_archive_opened": false,
+  "heldout_model_evaluations": 0
+}
