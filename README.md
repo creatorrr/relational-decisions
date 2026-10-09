@@ -76,3 +76,5 @@ jointly scoring predicates.
 The first probe used a 73.9M-parameter model on CPU in FP32. The development
 box had a 16 GiB RAM limit, four CPU cores of quota, and no GPU. Larger-model
 capacity estimates have not yet been benchmarked.
+
+Licensed under the [Apache License 2.0](LICENSE).
