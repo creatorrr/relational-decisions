@@ -177,4 +177,12 @@ MAE (0.1697 versus 0.1732), but neither reliably distinguishes explicit evidence
 contradictions, and missing information. Full results and the documented recovery
 of an interrupted 340M run are preserved in the prompt report.
 
+[OpenDecision-Large](experiments/opendecision_v1/README.md) improves frozen-prompt
+dev assessment accuracy to 41.67%, with macro-F1 0.3981 and query MAE 0.1672.
+The query improvement is small, and the model still confuses missing information
+and explicit negative reports. It took 38.09 minutes on CPU and peaked at
+3.77 GiB RSS. Because this comparison also isolates questions and changes their
+input placement, separate GLiNER controls test those effects before attributing
+the gain to the checkpoint alone.
+
 Licensed under the [Apache License 2.0](LICENSE).

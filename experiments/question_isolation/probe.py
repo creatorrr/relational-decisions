@@ -20,6 +20,7 @@ def main():
     args = parser.parse_args()
     if args.output.exists():
         parser.error("Choose a new output file")
+    args.output.parent.mkdir(parents=True, exist_ok=True)
     protocol = json.loads(Path(__file__).with_name("protocol.json").read_text())
     backend = IsolatedGLiNERBackend(
         protocol["model"], protocol["revision"], layout="isolated-native"

@@ -1,0 +1,95 @@
+{
+  "created": "2026-10-09T04:58:08.503514+00:00",
+  "split": "dev",
+  "backend": {
+    "backend": "opendecision",
+    "adapter_version": "question-in-state-v1",
+    "model": "Tokz-labs/OpenDecision-Large",
+    "revision": "37ced3072592962b1e0cfdcc77eb511f8a3f7b54",
+    "prompt_version": "binary-reports-v2",
+    "world_prefix": "Unordered reports about one snapshot. No report has priority. Missing information is unknown.\n\n",
+    "task_templates": [
+      {
+        "name": "decision_0_positive",
+        "candidate_id": "candidate",
+        "channel": "positive",
+        "instruction": "Is \"{positive}\" explicitly stated in the reports? Match the exact named entity. A paraphrase counts as stated.",
+        "labels": {
+          "yes": "The reports explicitly state this statement.",
+          "no": "The reports do not state this statement."
+        },
+        "output_labels": {}
+      },
+      {
+        "name": "decision_0_negative",
+        "candidate_id": "candidate",
+        "channel": "negative",
+        "instruction": "Is \"{negative}\" explicitly stated in the reports? Match the exact named entity. A paraphrase counts as stated.",
+        "labels": {
+          "yes": "The reports explicitly state this statement.",
+          "no": "The reports do not state this statement."
+        },
+        "output_labels": {}
+      }
+    ],
+    "state_template": "Question: {instruction}\n\n{world_prefix}{world}",
+    "decision_name": "answer",
+    "label_order": [
+      "supported",
+      "refuted",
+      "both",
+      "unknown"
+    ],
+    "score_composition": "independent-positive-negative-product",
+    "score_head": "policy",
+    "activation": "softmax",
+    "calibration": "none",
+    "architecture": "cross_encoder",
+    "cross_question_attention": false,
+    "config": {
+      "architecture": "cross_encoder",
+      "backbone": "microsoft/deberta-v3-large",
+      "max_state_tokens": 512,
+      "max_candidate_tokens": 48,
+      "max_header_tokens": 20,
+      "cross_candidate_tokens": 32,
+      "row_chunk_size": 128,
+      "pack_size": 16,
+      "pack_candidate_tokens": 3072,
+      "pack_cell_budget": 6000000
+    },
+    "dtype": "float32",
+    "device": "cpu",
+    "threads": 4,
+    "question_batch_size": 8,
+    "python": "3.12.14",
+    "machine": "x86_64",
+    "opendecision_source_commit": "fb5da5376cd72f699b001bb89be47b592fbce030",
+    "packages": {
+      "opendecision": "0.1.0",
+      "torch": "2.14.1+cpu",
+      "transformers": "5.17.0",
+      "tokenizers": "0.23.2"
+    },
+    "deterministic_algorithms": true,
+    "truncation": "reject"
+  },
+  "config": {
+    "schedule": "frontier",
+    "mode": "hard",
+    "batch_size": 4,
+    "search_quantum": 64,
+    "max_steps": 200000,
+    "max_nodes": 100000,
+    "max_tables": 20000
+  },
+  "complete_assessments": true,
+  "input_sha256": "0b0268b8866e38070532168de2e929a93bf279badaba32d84a4150650b9f15ef",
+  "programs": 48,
+  "status": "complete",
+  "elapsed_seconds": 2285.365565451999,
+  "backend_calls": 160,
+  "batches": 160,
+  "max_diagram_nodes": 13,
+  "max_tables": 39
+}

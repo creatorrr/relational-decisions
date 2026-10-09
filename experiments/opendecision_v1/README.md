@@ -5,6 +5,49 @@ Evaluate `Tokz-labs/OpenDecision-Large` with the previously train-selected
 model's dev predictions were scored. No OpenDecision-specific prompt selection,
 temperature fitting, or heldout evaluation is included.
 
+## Results
+
+| Model / frozen binary prompt | Assessment accuracy | Macro-F1 | Query probability MAE | Queries correct within 1e-9 |
+| --- | ---: | ---: | ---: | ---: |
+| GLiNER Decide 340M | 26.56% | 0.1938 | 0.1732 | 59.56% |
+| GLiNER Decide 1B | 26.74% | 0.2533 | 0.1697 | 63.60% |
+| **OpenDecision-Large** | **41.67%** | **0.3981** | **0.1672** | **63.60%** |
+
+OpenDecision gets 240/576 assessments correct, above the 32.64% majority-label
+baseline. The classification gain over 340M is 15.10 percentage points; an
+exploratory paired bootstrap over 24 worlds gives a 95% percentile interval
+of +10.07 to +20.14 points. This is a development result conditional on the
+frozen transferred prompt and layout, not a heldout estimate.
+
+The downstream improvement is small. OpenDecision and 1B both get 173/272
+query probabilities correct; OpenDecision's mean absolute error is slightly
+lower. These query probabilities come from the symbolic engine, not classifier
+confidence scores. All 272 outputs exactly match the independent exhaustive
+reference when conditioned on the predicted signed facts.
+
+The model still struggles with absent and negative evidence: recall is 53.7%
+for supported, 27.7% for refuted, 60.3% for both, and 20.5% for unknown.
+It predicts `both` 265 times out of 576. Equivalent paraphrases receive the
+same assessment only 49.65% of the time. This is an improvement in grounding
+accuracy, but the resulting system remains unreliable.
+
+Model architecture, question isolation, and serialization all changed in the
+initial comparison. The [GLiNER controls](../question_isolation/README.md)
+test isolation and layout separately before attributing the gain to the model.
+They were proposed after an interim score on the first 16 OpenDecision programs;
+the OpenDecision run continued unchanged. A later 32-program interim was also
+reported. The table above supersedes both partial results.
+
+The fresh CPU FP32 run took 38.09 minutes after initialization (38.21 including
+loading) and peaked at 3.77 GiB process RSS. All 160 backend calls were uncached.
+The old 340M timing includes restart recovery and is not a fresh full-run latency
+comparison. See `opendecision-dev.resources.json` for raw measurements.
+
+`summarize.py` independently rescores the archived predictions, checks exact
+query probabilities, verifies matching core engine source and numerical-library
+versions, and writes `comparison.json`. Predictions, full traces, runtime
+metadata, and resources are preserved as `opendecision-dev.*`.
+
 ## Model and input contract
 
 - Model revision: `37ced3072592962b1e0cfdcc77eb511f8a3f7b54`.

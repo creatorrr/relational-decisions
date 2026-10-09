@@ -66,7 +66,7 @@ def main():
     inputs, baseline = read_rows(inputs_path), read_rows(trace_path)
     if set(inputs) != set(baseline):
         parser.error("Baseline and input IDs differ")
-    output.mkdir(parents=True)
+    output.mkdir(parents=True, exist_ok=True)
     resources = {
         "status": "failed",
         "command": sys.argv,

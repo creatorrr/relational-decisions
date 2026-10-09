@@ -1,0 +1,127 @@
+{
+  "backend": {
+    "backend": "opendecision",
+    "adapter_version": "question-in-state-v1",
+    "model": "Tokz-labs/OpenDecision-Large",
+    "revision": "37ced3072592962b1e0cfdcc77eb511f8a3f7b54",
+    "prompt_version": "binary-reports-v2",
+    "world_prefix": "Unordered reports about one snapshot. No report has priority. Missing information is unknown.\n\n",
+    "task_templates": [
+      {
+        "name": "decision_0_positive",
+        "candidate_id": "candidate",
+        "channel": "positive",
+        "instruction": "Is \"{positive}\" explicitly stated in the reports? Match the exact named entity. A paraphrase counts as stated.",
+        "labels": {
+          "yes": "The reports explicitly state this statement.",
+          "no": "The reports do not state this statement."
+        },
+        "output_labels": {}
+      },
+      {
+        "name": "decision_0_negative",
+        "candidate_id": "candidate",
+        "channel": "negative",
+        "instruction": "Is \"{negative}\" explicitly stated in the reports? Match the exact named entity. A paraphrase counts as stated.",
+        "labels": {
+          "yes": "The reports explicitly state this statement.",
+          "no": "The reports do not state this statement."
+        },
+        "output_labels": {}
+      }
+    ],
+    "state_template": "Question: {instruction}\n\n{world_prefix}{world}",
+    "decision_name": "answer",
+    "label_order": [
+      "supported",
+      "refuted",
+      "both",
+      "unknown"
+    ],
+    "score_composition": "independent-positive-negative-product",
+    "score_head": "policy",
+    "activation": "softmax",
+    "calibration": "none",
+    "architecture": "cross_encoder",
+    "cross_question_attention": false,
+    "config": {
+      "architecture": "cross_encoder",
+      "backbone": "microsoft/deberta-v3-large",
+      "max_state_tokens": 512,
+      "max_candidate_tokens": 48,
+      "max_header_tokens": 20,
+      "cross_candidate_tokens": 32,
+      "row_chunk_size": 128,
+      "pack_size": 16,
+      "pack_candidate_tokens": 3072,
+      "pack_cell_budget": 6000000
+    },
+    "dtype": "float32",
+    "device": "cpu",
+    "threads": 4,
+    "question_batch_size": 8,
+    "python": "3.12.14",
+    "machine": "x86_64",
+    "opendecision_source_commit": "fb5da5376cd72f699b001bb89be47b592fbce030",
+    "packages": {
+      "opendecision": "0.1.0",
+      "torch": "2.14.1+cpu",
+      "transformers": "5.17.0",
+      "tokenizers": "0.23.2"
+    },
+    "deterministic_algorithms": true,
+    "truncation": "reject"
+  },
+  "parameters": 433914882,
+  "assessments": {
+    "Oak": {
+      "supported": 0.5734445566240538,
+      "refuted": 0.03647256403166321,
+      "both": 0.32590833070663017,
+      "unknown": 0.06417446668126559
+    },
+    "Elm": {
+      "supported": 0.04962383586022412,
+      "refuted": 0.5048066862210945,
+      "both": 0.06599636000540698,
+      "unknown": 0.3795731179132744
+    }
+  },
+  "repeat_bitwise_identical": true,
+  "first_candidate_max_difference_with_second_candidate_removed": 0.0,
+  "first_layer_attention_masks": [
+    {
+      "shape": [
+        8,
+        1,
+        80,
+        80
+      ],
+      "first_token_attends_to_last_real_token": true,
+      "last_real_token_attends_to_first_token": true
+    },
+    {
+      "shape": [
+        8,
+        1,
+        80,
+        80
+      ],
+      "first_token_attends_to_last_real_token": true,
+      "last_real_token_attends_to_first_token": true
+    },
+    {
+      "shape": [
+        4,
+        1,
+        79,
+        79
+      ],
+      "first_token_attends_to_last_real_token": true,
+      "last_real_token_attends_to_first_token": true
+    }
+  ],
+  "interpretation": "Bidirectional attention within each option row; separate questions/options occupy independent batch rows. Policy softmax couples only options belonging to one question.",
+  "wall_seconds_including_load": 13.965935530999559,
+  "peak_rss_kib": 3897652
+}

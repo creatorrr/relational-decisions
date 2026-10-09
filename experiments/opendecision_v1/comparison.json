@@ -1,0 +1,178 @@
+{
+  "models": {
+    "opendecision": {
+      "overall": {
+        "programs": 48,
+        "assessments": 576,
+        "queries": 272,
+        "assessment_accuracy": 0.4166666666666667,
+        "assessment_macro_f1": 0.3981382374960714,
+        "query_probability_mae": 0.1672050370009072,
+        "query_probability_max_error": 1.0,
+        "query_probability_within_1e-9": 0.6360294117647058,
+        "confusion_matrix": {
+          "supported": {
+            "supported": 101,
+            "refuted": 2,
+            "both": 68,
+            "unknown": 17
+          },
+          "refuted": {
+            "supported": 12,
+            "refuted": 36,
+            "both": 59,
+            "unknown": 23
+          },
+          "both": {
+            "supported": 30,
+            "refuted": 4,
+            "both": 76,
+            "unknown": 16
+          },
+          "unknown": {
+            "supported": 36,
+            "refuted": 7,
+            "both": 62,
+            "unknown": 27
+          }
+        }
+      },
+      "predicted_labels": {
+        "supported": 179,
+        "refuted": 49,
+        "both": 265,
+        "unknown": 83
+      },
+      "paraphrase_assessment_agreement": 0.4965277777777778,
+      "paraphrase_query_probability_mean_difference": 0.10312097787555899,
+      "verified_reference_programs": 48,
+      "verified_reference_queries": 272,
+      "rescored_metrics_match": true
+    },
+    "gliner-340m": {
+      "overall": {
+        "programs": 48,
+        "assessments": 576,
+        "queries": 272,
+        "assessment_accuracy": 0.265625,
+        "assessment_macro_f1": 0.19377982725808812,
+        "query_probability_mae": 0.17318010949362764,
+        "query_probability_max_error": 1.0,
+        "query_probability_within_1e-9": 0.5955882352941176,
+        "confusion_matrix": {
+          "supported": {
+            "supported": 22,
+            "refuted": 21,
+            "both": 0,
+            "unknown": 145
+          },
+          "refuted": {
+            "supported": 2,
+            "refuted": 22,
+            "both": 0,
+            "unknown": 106
+          },
+          "both": {
+            "supported": 7,
+            "refuted": 17,
+            "both": 0,
+            "unknown": 102
+          },
+          "unknown": {
+            "supported": 6,
+            "refuted": 17,
+            "both": 0,
+            "unknown": 109
+          }
+        }
+      },
+      "predicted_labels": {
+        "supported": 37,
+        "refuted": 77,
+        "both": 0,
+        "unknown": 462
+      },
+      "paraphrase_assessment_agreement": 0.7361111111111112,
+      "paraphrase_query_probability_mean_difference": 0.023529411764705882,
+      "verified_reference_programs": 48,
+      "verified_reference_queries": 272,
+      "rescored_metrics_match": true
+    },
+    "gliner-1b": {
+      "overall": {
+        "programs": 48,
+        "assessments": 576,
+        "queries": 272,
+        "assessment_accuracy": 0.2673611111111111,
+        "assessment_macro_f1": 0.25333230011386076,
+        "query_probability_mae": 0.16974483329917334,
+        "query_probability_max_error": 1.0,
+        "query_probability_within_1e-9": 0.6360294117647058,
+        "confusion_matrix": {
+          "supported": {
+            "supported": 37,
+            "refuted": 20,
+            "both": 107,
+            "unknown": 24
+          },
+          "refuted": {
+            "supported": 13,
+            "refuted": 19,
+            "both": 71,
+            "unknown": 27
+          },
+          "both": {
+            "supported": 21,
+            "refuted": 15,
+            "both": 70,
+            "unknown": 20
+          },
+          "unknown": {
+            "supported": 24,
+            "refuted": 17,
+            "both": 63,
+            "unknown": 28
+          }
+        }
+      },
+      "predicted_labels": {
+        "supported": 95,
+        "refuted": 71,
+        "both": 311,
+        "unknown": 99
+      },
+      "paraphrase_assessment_agreement": 0.4305555555555556,
+      "paraphrase_query_probability_mean_difference": 0.1366451287832206,
+      "verified_reference_programs": 48,
+      "verified_reference_queries": 272,
+      "rescored_metrics_match": true
+    }
+  },
+  "comparisons": {
+    "gliner-340m": {
+      "accuracy_difference_opendecision_minus_baseline": 0.15104166666666666,
+      "exploratory_paired_world_bootstrap_95_percentile_interval": [
+        0.10069444444444443,
+        0.201432291666666
+      ],
+      "worlds": 24,
+      "draws": 5000,
+      "seed": 20261009
+    },
+    "gliner-1b": {
+      "accuracy_difference_opendecision_minus_baseline": 0.14930555555555555,
+      "exploratory_paired_world_bootstrap_95_percentile_interval": [
+        0.08854166666666667,
+        0.21006944444444445
+      ],
+      "worlds": 24,
+      "draws": 5000,
+      "seed": 20261009
+    }
+  },
+  "matched_questions_labels_engine_and_input": true,
+  "matched_core_engine_source_and_torch_transformers_tokenizers": true,
+  "serialization_identical_across_models": false,
+  "interpretation": "Frozen GLiNER train-selected prompt transferred to OpenDecision with complete questions in the state; different model architecture and native serialization. Development comparison, not a heldout result or each model's optimized prompt.",
+  "heldout_contents_inspected_or_evaluated": false
+}

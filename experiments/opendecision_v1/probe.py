@@ -16,6 +16,7 @@ def main():
     args = parser.parse_args()
     if args.output.exists():
         parser.error("Choose a new output file")
+    args.output.parent.mkdir(parents=True, exist_ok=True)
     start = time.perf_counter()
     backend = OpenDecisionBackend()
     model = backend.model.model
