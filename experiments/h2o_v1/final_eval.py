@@ -16,6 +16,7 @@ from pathlib import Path
 from relational_decisions.decisions import DecisionCache
 from relational_decisions.engine import Engine, EngineConfig
 from relational_decisions.h2o import H2OLightningBackend
+from relational_decisions.gguf import GGUFBackend
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "benchmarks/nl_logic_v1"))
@@ -101,7 +102,7 @@ def verify_and_score(inputs, gold, predictions):
         verified += len(reference)
     metrics["verified_reference_queries"] = verified
     metrics["verified_ground_truth_programs"] = len(inputs)
-    metrics["scope"] = "Final heldout evaluation of the frozen selected H2O system"
+    metrics["scope"] = "Final heldout evaluation of the frozen selected system"
     return metrics
 
 
@@ -188,8 +189,12 @@ def run_locked(args):
     metadata["attempts"].append(attempt)
     write_json(metadata_path, metadata)
     start = time.perf_counter()
+    backend = None
     try:
-        backend = H2OLightningBackend(threads=protocol["threads"])
+        if "gguf_model" in protocol:
+            backend = GGUFBackend(protocol["gguf_model"], threads=protocol["threads"])
+        else:
+            backend = H2OLightningBackend(threads=protocol["threads"])
         # JSON normalizes tuple-valued fields such as label_order to lists.
         identity = json.loads(json.dumps(backend.identity))
         if identity != protocol["backend_identity"]:
@@ -286,6 +291,9 @@ def run_locked(args):
         metadata["status"] = "failed"
         raise
     finally:
+        if isinstance(backend, GGUFBackend):
+            attempt.update(backend.resources())
+            backend.close()
         attempt.update(
             finished_utc=now(),
             wall_seconds=time.perf_counter() - start,
@@ -301,6 +309,9 @@ def run_locked(args):
                 ),
                 "peak_rss_kib": max(
                     a["peak_rss_kib"] or 0 for a in metadata["attempts"]
+                ),
+                "server_peak_rss_kib": max(
+                    a.get("server_peak_rss_kib", 0) for a in metadata["attempts"]
                 ),
                 "attempts": len(metadata["attempts"]),
                 "resource_totals_complete": all(

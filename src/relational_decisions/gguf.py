@@ -68,7 +68,9 @@ class GGUFBackend:
 
         self.kind = model
         spec = MODELS[model]
-        path = Path(hf_hub_download(spec["repo"], spec["filename"], revision=spec["revision"]))
+        path = Path(
+            hf_hub_download(spec["repo"], spec["filename"], revision=spec["revision"])
+        )
         if file_sha(path) != spec["sha256"]:
             raise ValueError("GGUF checksum mismatch")
         binary = Path(server_binary or os.environ["LLAMA_SERVER_BIN"]).resolve()
@@ -78,11 +80,30 @@ class GGUFBackend:
         self.server_peak_rss_kib = 0
         self.http_seconds = 0.0
         self.http_calls = 0
-        flags = ["-t", str(threads), "-tb", str(threads), "-b", "512",
-                 "--cache-ram", "0", "--no-context-shift"]
+        flags = [
+            "-t",
+            str(threads),
+            "-tb",
+            str(threads),
+            "-b",
+            "512",
+            "--cache-ram",
+            "0",
+            "--no-context-shift",
+        ]
         if model == "h2o-q8":
-            flags += ["-c", "2048", "-np", "1", "-ub", "128",
-                      "--ctx-checkpoints", "32", "--checkpoint-min-step", "0"]
+            flags += [
+                "-c",
+                "2048",
+                "-np",
+                "1",
+                "-ub",
+                "128",
+                "--ctx-checkpoints",
+                "32",
+                "--checkpoint-min-step",
+                "0",
+            ]
         else:
             flags += ["-c", "16384", "-np", "8", "-ub", "512"]
         # Refuse to accidentally attach to an existing service on this port.
@@ -93,8 +114,18 @@ class GGUFBackend:
         else:
             raise ValueError("Server port already in use")
         self.process = subprocess.Popen(
-            [str(binary), "-m", str(path), "--host", "127.0.0.1", "--port", str(port), *flags],
-            stdout=self.log, stderr=subprocess.STDOUT,
+            [
+                str(binary),
+                "-m",
+                str(path),
+                "--host",
+                "127.0.0.1",
+                "--port",
+                str(port),
+                *flags,
+            ],
+            stdout=self.log,
+            stderr=subprocess.STDOUT,
         )
         atexit.register(self.close)
         try:
@@ -112,7 +143,9 @@ class GGUFBackend:
                     time.sleep(0.2)
             if props["build_info"] != BUILD or Path(props["model_path"]) != path:
                 raise ValueError("Unexpected server build or loaded model")
-            template = Candidate("candidate", ("p",), ("n",), "{positive}", "{negative}")
+            template = Candidate(
+                "candidate", ("p",), ("n",), "{positive}", "{negative}"
+            )
             self._identity = {
                 "backend": "llama.cpp-" + model,
                 "adapter_version": "native-choice-gguf-v1",
@@ -134,7 +167,8 @@ class GGUFBackend:
                 self._prepare_h2o()
             else:
                 self._identity.update(
-                    endpoint="/v1/systemone", question_group_size_max=8,
+                    endpoint="/v1/systemone",
+                    question_group_size_max=8,
                     readout="max over A/space-A and B/space-B token aliases, then softmax",
                     temperature=1.0,
                     calibration="GGUF has no temperature metadata; llama.cpp default 1.0",
@@ -148,24 +182,50 @@ class GGUFBackend:
         from huggingface_hub import snapshot_download
         from transformers import AutoTokenizer
 
-        path = Path(snapshot_download(DEFAULT_MODEL, revision=DEFAULT_REVISION,
-            allow_patterns=["tokenizer*.json", "chat_template.jinja", "config.json",
-                            "h2o_lightning_shim.py", "serve_config.json"]))
-        spec = importlib.util.spec_from_file_location("_h2o_gguf_contract", path / "h2o_lightning_shim.py")
+        path = Path(
+            snapshot_download(
+                DEFAULT_MODEL,
+                revision=DEFAULT_REVISION,
+                allow_patterns=[
+                    "tokenizer*.json",
+                    "chat_template.jinja",
+                    "config.json",
+                    "h2o_lightning_shim.py",
+                    "serve_config.json",
+                ],
+            )
+        )
+        spec = importlib.util.spec_from_file_location(
+            "_h2o_gguf_contract", path / "h2o_lightning_shim.py"
+        )
         shim = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(shim)
         self.renderer = H2OLightningBackend.__new__(H2OLightningBackend)
         self.renderer.tokenizer = AutoTokenizer.from_pretrained(path)
-        self.renderer.contract = shim.Contract(json.loads((path / "serve_config.json").read_text()), env={})
+        self.renderer.contract = shim.Contract(
+            json.loads((path / "serve_config.json").read_text()), env={}
+        )
         self._identity.update(
-            endpoint="/completion", temperature=0.8,
+            endpoint="/completion",
+            temperature=0.8,
             calibration="published H2O choice temperature; no benchmark calibration",
             readout="verified leading-space A/B tokens; pre-sampling logprobs; label softmax",
             prefix_reuse="reset and prefill exact group common prefix, then cached suffixes",
-            n_probs=128, prompt_model=DEFAULT_MODEL, prompt_revision=DEFAULT_REVISION,
-            prompt_source_sha256={p.name: file_sha(p) for p in path.iterdir() if p.name in (
-                "tokenizer.json", "tokenizer_config.json", "chat_template.jinja",
-                "h2o_lightning_shim.py", "serve_config.json")},
+            n_probs=128,
+            prompt_model=DEFAULT_MODEL,
+            prompt_revision=DEFAULT_REVISION,
+            prompt_source_sha256={
+                p.name: file_sha(p)
+                for p in path.iterdir()
+                if p.name
+                in (
+                    "tokenizer.json",
+                    "tokenizer_config.json",
+                    "chat_template.jinja",
+                    "h2o_lightning_shim.py",
+                    "serve_config.json",
+                )
+            },
         )
 
     @property
@@ -174,9 +234,11 @@ class GGUFBackend:
 
     def request(self, route, payload=None):
         tick = time.perf_counter()
-        req = urllib.request.Request(self.url + "/" + route,
+        req = urllib.request.Request(
+            self.url + "/" + route,
             None if payload is None else json.dumps(payload).encode(),
-            {"Content-Type": "application/json"})
+            {"Content-Type": "application/json"},
+        )
         with urllib.request.urlopen(req, timeout=300) as response:
             result = json.load(response)
         self.http_seconds += time.perf_counter() - tick
@@ -190,17 +252,34 @@ class GGUFBackend:
             tasks = build_tasks(candidates, PROMPT)
             scores = {}
             for start in range(0, len(tasks), 8):
-                group = tasks[start:start + 8]
-                questions = {t.name: {"type": "choice", "instructions": t.instruction,
-                                      "criteria": t.labels} for t in group}
-                result = self.request("v1/systemone", {"state": WORLD_PREFIX + world, "questions": questions})
-                if set(result["answers"]) != set(questions) or result["usage"]["output_tokens"] != 0:
+                group = tasks[start : start + 8]
+                questions = {
+                    t.name: {
+                        "type": "choice",
+                        "instructions": t.instruction,
+                        "criteria": t.labels,
+                    }
+                    for t in group
+                }
+                result = self.request(
+                    "v1/systemone",
+                    {"state": WORLD_PREFIX + world, "questions": questions},
+                )
+                if (
+                    set(result["answers"]) != set(questions)
+                    or result["usage"]["output_tokens"] != 0
+                ):
                     raise ValueError("Invalid native decision response")
                 for task in group:
                     values = result["answers"][task.name]["probabilities"]
-                    if set(values) != set(task.labels) or any(
-                        not math.isfinite(v) or not 0 <= v <= 1 for v in values.values()
-                    ) or not math.isclose(sum(values.values()), 1.0, abs_tol=1e-6):
+                    if (
+                        set(values) != set(task.labels)
+                        or any(
+                            not math.isfinite(v) or not 0 <= v <= 1
+                            for v in values.values()
+                        )
+                        or not math.isclose(sum(values.values()), 1.0, abs_tol=1e-6)
+                    ):
                         raise ValueError("Invalid decision probabilities")
                     scores[task.name] = values
         else:
@@ -208,31 +287,62 @@ class GGUFBackend:
             for text, tokens, _ in requests:
                 if len(tokens) + 1 > 2048:
                     raise ValueError("Prompt exceeds frozen GGUF context")
-                actual = self.request("tokenize", {"content": text, "add_special": False, "parse_special": True})["tokens"]
+                actual = self.request(
+                    "tokenize",
+                    {"content": text, "add_special": False, "parse_special": True},
+                )["tokens"]
                 if actual != tokens:
-                    raise ValueError("GGUF tokenizer differs from pinned native tokenizer")
+                    raise ValueError(
+                        "GGUF tokenizer differs from pinned native tokenizer"
+                    )
             prefix = common_prefix([r[1] for r in requests])
             # Reset at every group so results do not depend on prior worlds.
-            self.request("completion", {"prompt": prefix, "n_predict": 0,
-                "cache_prompt": False, "temperature": -1, "samplers": []})
+            self.request(
+                "completion",
+                {
+                    "prompt": prefix,
+                    "n_predict": 0,
+                    "cache_prompt": False,
+                    "temperature": -1,
+                    "samplers": [],
+                },
+            )
             scores = {}
             for task, (_, tokens, ids) in zip(tasks, requests):
-                response = self.request("completion", {"prompt": tokens,
-                    "n_predict": 1, "temperature": -1, "n_probs": 128,
-                    "post_sampling_probs": False, "cache_prompt": True,
-                    "seed": 0, "samplers": []})
+                response = self.request(
+                    "completion",
+                    {
+                        "prompt": tokens,
+                        "n_predict": 1,
+                        "temperature": -1,
+                        "n_probs": 128,
+                        "post_sampling_probs": False,
+                        "cache_prompt": True,
+                        "seed": 0,
+                        "samplers": [],
+                    },
+                )
                 if response["tokens_evaluated"] != len(tokens):
                     raise ValueError("Server did not evaluate the complete prompt")
-                scores[task.name] = dict(zip(task.labels, label_probabilities(response, ids, 0.8)))
+                scores[task.name] = dict(
+                    zip(task.labels, label_probabilities(response, ids, 0.8))
+                )
         return decode_scores(tasks, scores)
 
     def resources(self):
         if self.process is not None and self.process.poll() is None:
-            for line in Path(f"/proc/{self.process.pid}/status").read_text().splitlines():
+            for line in (
+                Path(f"/proc/{self.process.pid}/status").read_text().splitlines()
+            ):
                 if line.startswith("VmHWM:"):
-                    self.server_peak_rss_kib = max(self.server_peak_rss_kib, int(line.split()[1]))
-        return {"server_peak_rss_kib": self.server_peak_rss_kib,
-                "http_seconds": self.http_seconds, "http_calls": self.http_calls}
+                    self.server_peak_rss_kib = max(
+                        self.server_peak_rss_kib, int(line.split()[1])
+                    )
+        return {
+            "server_peak_rss_kib": self.server_peak_rss_kib,
+            "http_seconds": self.http_seconds,
+            "http_calls": self.http_calls,
+        }
 
     def close(self):
         if self.process is not None and self.process.poll() is None:

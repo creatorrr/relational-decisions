@@ -68,7 +68,9 @@ def score_subset(inputs, predictions, gold):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--model", choices=["gliner-state", "openjev", "h2o", "h2o-q8", "d1-q8"], required=True
+        "--model",
+        choices=["gliner-state", "openjev", "h2o", "h2o-q8", "d1-q8"],
+        required=True,
     )
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()

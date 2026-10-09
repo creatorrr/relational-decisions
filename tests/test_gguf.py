@@ -8,9 +8,12 @@ from relational_decisions.gguf import label_probabilities
 
 class GGUFReadoutTests(unittest.TestCase):
     def response(self, scores):
-        return {"truncated": False, "completion_probabilities": [{
-            "top_logprobs": [{"id": i, "logprob": p} for i, p in scores.items()]
-        }]}
+        return {
+            "truncated": False,
+            "completion_probabilities": [
+                {"top_logprobs": [{"id": i, "logprob": p} for i, p in scores.items()]}
+            ],
+        }
 
     def test_full_vocabulary_normalizer_cancels(self):
         logits = {357: 2.0, 417: -1.0, 999: 5.0}

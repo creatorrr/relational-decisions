@@ -1,0 +1,14 @@
+{
+  "native_prompt_matches_gguf_template": true,
+  "label_alias_ids": [
+    [
+      41,
+      334
+    ],
+    [
+      42,
+      378
+    ]
+  ],
+  "publisher_revision": "051bcc464b01b9f92942b364d9586b0ef5912432"
+}
