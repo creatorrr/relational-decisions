@@ -1,0 +1,181 @@
+{
+  "version": "h2o-q8-final-heldout-v2",
+  "frozen_utc": "2026-10-09T07:46:58.721183+00:00",
+  "authorization": "User requested the heldout run, then GGUF trials, and instructed us to carry on.",
+  "selection_commit": "de50a57663e92d4e504be057b9ca7d0bf273180d",
+  "selection_evidence": "Same 8 dev programs: H2O Q8 preserves all BF16 hard outputs (85/96 assessments, 40/42 exact queries), halves runtime. d1 Q8 is faster but grounding falls to 73/96. Retain H2O.",
+  "prior_attempt": "BF16 attempt stopped on user request after 3 programs; gold never read; no partial outputs scored or used for selection.",
+  "archive": "benchmarks/nl_logic_v1/sealed/heldout-v1.tar.gz",
+  "archive_sha256": "17de8385bc988a1fce546db426a4932fe92019b1080069240405347d5c37fa5e",
+  "counts": {
+    "groups": 24,
+    "programs": 48,
+    "queries": 272,
+    "assessments": 576,
+    "families": {
+      "left_recursion": 4,
+      "exclusive_choice": 4,
+      "missing_vs_negative": 4,
+      "contradictory_reports": 4,
+      "staged_chain": 4,
+      "cyclic_reachability": 4,
+      "shared_diamond": 4,
+      "repeated_choice": 4,
+      "conjunction": 4,
+      "conditioning": 4,
+      "binding_join": 4,
+      "disjunction": 4
+    }
+  },
+  "gguf_model": "h2o-q8",
+  "threads": 4,
+  "backend_identity": {
+    "backend": "llama.cpp-h2o-q8",
+    "adapter_version": "native-choice-gguf-v1",
+    "model": {
+      "repo": "mradermacher/h2o-lightning-4b-GGUF",
+      "revision": "7a62fde885ed87e7b22a2195099c6b204381138f",
+      "filename": "h2o-lightning-4b.Q8_0.gguf",
+      "sha256": "3428e91d1a023a6f0ee953a63f6e5c741df6148901d5287aa73817b87abe0a9d"
+    },
+    "llama_build": "b11515-3d65c90d0",
+    "server_binary_sha256": "cbb247ad34e83b10bc1958542801e4cb480d2c2ace2d37bbccb260453a7b1b95",
+    "runtime_libraries_sha256": {
+      "libggml-base.so": "12df38711356a17dfa2b02ab3830818bc2af7d9dfdb02b5c2740a8500c676557",
+      "libggml-cpu-alderlake.so": "4fc8d2e35e67680d7b465fd075cb5e11be35659f1293bf58becd4535fd3c7eb8",
+      "libggml-cpu-cannonlake.so": "dfc0ac8f968d34a919e7009d9a59b2c661be50af23ac4555a602b01516fb2c50",
+      "libggml-cpu-cascadelake.so": "f45cb0338b7e60bb7dfb53aa9e5e1c77c992d249843698d80b17f5c869760fc6",
+      "libggml-cpu-cooperlake.so": "9cdf33a1bf0d837ec932ffed37f873e1370ed753139c63b50a7fd31fd84034ac",
+      "libggml-cpu-haswell.so": "bbca6e1788620735294a78bf6d7ce4dc5ca67db0d57912b0969f00f8aa0d8cc0",
+      "libggml-cpu-icelake.so": "115cd202c3039175c49cc2eb803b4b30d17396620ce1c8f5001077198d3ab24b",
+      "libggml-cpu-ivybridge.so": "dd07d8b303c14913ac60aa0f3f0d02d13248fdba43fa05f2dd8ceed1afeed3ba",
+      "libggml-cpu-piledriver.so": "99bffd05ed4bc444f63ffb82245cf0d6f1645ee05f1ad03584ab3ef06a191874",
+      "libggml-cpu-sandybridge.so": "37165f8e4607c7afeb6e84c3bfb964892d1a087fde073729d0c35776bf8c057c",
+      "libggml-cpu-sapphirerapids.so": "3ccbc63dccd3514cca3112a89ed16b6e006a6c340d9fd57d666097b5a8c4c62a",
+      "libggml-cpu-skylakex.so": "c812042f334492b5651cbc4ad153ea595392f47fa3b311426986690719bac9f1",
+      "libggml-cpu-sse42.so": "fe96db3cbd2867ff5d7ab398b09de0b96da9cf39a38bee83ad28aeabc852aa34",
+      "libggml-cpu-x64.so": "f78d138740d0385c4105aea2f8e145f7e9f595e74185e3ea9e2ecd45f6de5cca",
+      "libggml-cpu-zen4.so": "44e26057ba3bc4a9f5c51b2aa5de4c756156af20a87d350295b1925604610a94",
+      "libggml-rpc.so": "7b78941369bddd50f11e3a94098bc1e995c3e41aec4bea3adb6518ad0d434b75",
+      "libggml.so": "354c630e37df7982af7b2d032aafdb0548f8e2f3a255ff0778027e531a357b82",
+      "libllama-batched-bench-impl.so": "b7e74d3a5a68b30ff41495687ce408a85e31c620c4b70ce0fe033272d9eb4e8a",
+      "libllama-bench-impl.so": "990aafe8d673a0ba17ad7b844768fe8e8a908c0296ea05b5874eb8d79c0b1cf8",
+      "libllama-cli-impl.so": "ac41442b1ef1f9e06301a2c2f8047539a09f05aad0f78b8ee2f01f18d1db3b75",
+      "libllama-common.so": "ef64c17c39b772d06e0cc992c586d70226ab9b7e09568aec88d4828bd6f07a35",
+      "libllama-completion-impl.so": "387a958e4d5e8d07239ebd6049db5203ff2c0a12f824b55abbfc3f7cc1046d84",
+      "libllama-fit-params-impl.so": "f340395649da842562a1bc466f048d44ac001b937a401dac4a49fa10f1e8dd9a",
+      "libllama-perplexity-impl.so": "42da2dd6dd5392d23afc52280337e851dd8a4408036c7b232ea3440b992f2d23",
+      "libllama-quantize-impl.so": "8dd43c1fb15f2e6096237a5cc3aa52694b04978c176f10db28c27d15d6c1adcc",
+      "libllama-server-impl.so": "921315adadf7ec6f9cf6dff953b9b3da96aff03f19e806bd23249e6debbac44f",
+      "libllama.so": "d2b172c7bebce69d27a30211ba3d3fc7ff1e4bff5874390b1281517a98194f28",
+      "libmtmd.so": "083123323a9840a5aa1b3c4a6ad62be2c96098e9cda5b8a4c1b87a74dd8682c3"
+    },
+    "server_flags": [
+      "-t",
+      "4",
+      "-tb",
+      "4",
+      "-b",
+      "512",
+      "--cache-ram",
+      "0",
+      "--no-context-shift",
+      "-c",
+      "2048",
+      "-np",
+      "1",
+      "-ub",
+      "128",
+      "--ctx-checkpoints",
+      "32",
+      "--checkpoint-min-step",
+      "0"
+    ],
+    "prompt_version": "binary-reports-v2",
+    "world_prefix": "Unordered reports about one snapshot. No report has priority. Missing information is unknown.\n\n",
+    "task_templates": [
+      {
+        "name": "decision_0_positive",
+        "candidate_id": "candidate",
+        "channel": "positive",
+        "instruction": "Is \"{positive}\" explicitly stated in the reports? Match the exact named entity. A paraphrase counts as stated.",
+        "labels": {
+          "yes": "The reports explicitly state this statement.",
+          "no": "The reports do not state this statement."
+        },
+        "output_labels": {}
+      },
+      {
+        "name": "decision_0_negative",
+        "candidate_id": "candidate",
+        "channel": "negative",
+        "instruction": "Is \"{negative}\" explicitly stated in the reports? Match the exact named entity. A paraphrase counts as stated.",
+        "labels": {
+          "yes": "The reports explicitly state this statement.",
+          "no": "The reports do not state this statement."
+        },
+        "output_labels": {}
+      }
+    ],
+    "score_composition": "independent-positive-negative-product",
+    "attention": "causal; shared prefix with independent question suffixes",
+    "truncation": "reject",
+    "endpoint": "/completion",
+    "temperature": 0.8,
+    "calibration": "published H2O choice temperature; no benchmark calibration",
+    "readout": "verified leading-space A/B tokens; pre-sampling logprobs; label softmax",
+    "prefix_reuse": "reset and prefill exact group common prefix, then cached suffixes",
+    "n_probs": 128,
+    "unused_token_control": {
+      "grammar": "root ::= \" A\"",
+      "samplers": [
+        "temperature"
+      ],
+      "temperature": -1,
+      "score_source": "raw model logits before grammar or sampling"
+    },
+    "prompt_model": "h2oai/h2o-lightning-4b",
+    "prompt_revision": "672dc01ed37a516357cd3c7da777c96699d3f16c",
+    "prompt_source_sha256": {
+      "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+      "serve_config.json": "a423fd6b973334bd4ec91d0c1aee8b1bd94df1d7ec49ecc00c3c4fc4ee8eaa28",
+      "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+      "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+      "h2o_lightning_shim.py": "c899c93d1b51f46dca991f6c3c28c70ca2dfebf3c0fad52e8f3f51ca479d38e6"
+    }
+  },
+  "engine_config": {
+    "schedule": "frontier",
+    "mode": "hard",
+    "batch_size": 4,
+    "search_quantum": 64,
+    "max_steps": 200000,
+    "max_nodes": 100000,
+    "max_tables": 20000
+  },
+  "source_sha256": {
+    "src/relational_decisions/__init__.py": "4b2a48f52ca18c3be5a248fdfe97b91a3ae3e1548660232c7ff8d3cf0c9ea235",
+    "src/relational_decisions/benchmark.py": "432e8b6c1de5ec95cb370d7faca6a30598677d40e0dbddd82d1df6d09769f713",
+    "src/relational_decisions/decisions.py": "fbae4619a9c32e77c34ec843b67229bab8525272ef783117c054a18e28a49e71",
+    "src/relational_decisions/diagram.py": "5f17da4b77fd18242adf4324c10731b2847d4f256c3990d47513d6b606ac546c",
+    "src/relational_decisions/engine.py": "5ae40e770fa4c2680c9dea4496115b0fc96ca506026af36ad04d5fcf2da446d5",
+    "src/relational_decisions/gguf.py": "28d7bbe77ab22431aab441a26d0c411eba610714cd725d906fcd590ce1984c08",
+    "src/relational_decisions/gliner.py": "0355c3432976e4ee133936229f81e0e455dcf13af37813516274017d3fb2dd96",
+    "src/relational_decisions/h2o.py": "00a5746961c622517770617d06e0867d80c4a617f31ceacc642e991b196b575f",
+    "src/relational_decisions/opendecision.py": "e1a12cb4a7bb99847d2a645e8e5045772a1ed8199b9d87463c82f87e22e287ab",
+    "src/relational_decisions/openjev.py": "2b431919ad41a434e986deb6471f2e757239d772841131a51687908aa74dda1b",
+    "src/relational_decisions/prompts.py": "484433455edccd6593c0eb978b6716ff2be13024f2da15f21572b5df16364b89",
+    "src/relational_decisions/terms.py": "4732653f3b11eec62e7652b597b188f19b2feb784f167857169963c5f6b91b43",
+    "experiments/h2o_v1/final_eval.py": "0bebde7587a884c1d00f22ec2b69f12591b7dc6f286ba21802a9567726656cf9",
+    "experiments/h2o_v1/requirements.lock.txt": "d17663ce8808ebbe699a637de379bd9351cdf252a440d791649d10d7b7ae5e00",
+    "benchmarks/nl_logic_v1/logic.py": "20716d37e7f843fb41eab7f77b816f986cea52e05e2cdc5f276064cfcc794cf9",
+    "benchmarks/nl_logic_v1/score.py": "4c489c700c346596e8a8e81c357c5ae97a19009e9f0e0913bb6a1003479d6f7a"
+  },
+  "selection_artifact_sha256": {
+    "experiments/gguf_v1/d1-q8-quick8.metrics.json": "c2a7944d19a56cfd4ed490f36187d239cecda971a9116adfdc1f24169b8e1257",
+    "experiments/gguf_v1/h2o-q8-quick8.metrics.json": "28f5433f3e9d9930380d051daab419fdaab94746f85e230d11d9bc7636b29e5d"
+  },
+  "scoring": "Complete all 48 predictions and seal checksum before reading gold; independently verify gold and all submitted query probabilities.",
+  "technical_correction": "ASCII grammar guarantees the completion transport returns one token-score record. Raw pre-sampling label scores are unchanged; verified on public dev. No gold inspected, no model/prompt/calibration change.",
+  "prior_q8_attempt": "v1 failed after 4 completed programs with no probability record; gold unread, partial outputs unscored. All 48 programs restart with fresh caches."
+}
