@@ -12,6 +12,29 @@ The original plan covered all 48 dev inputs; after the user requested faster
 practical iteration, the actual evaluation was narrowed to the first eight,
 matching the shortened GLiNER layout check. Heldout remains sealed.
 
+## Quick result
+
+On eight programs (96 assessments, 42 queries), OpenJev reaches **39.58%**
+assessment accuracy, **0.3395** macro-F1, and **0.1170** query-probability MAE.
+OpenDecision reaches 43.75%, 0.3846, and 0.1195 on exactly those same inputs.
+OpenJev matches the subset's majority-label accuracy; this small check is not
+a reliable ranking or a heldout result.
+
+The model predicts supported/refuted/both/unknown 30/12/50/4 times. It identifies
+14/18 contradictory cases but only 2/20 unknown and 4/20 refuted cases. Missing
+information and explicit negatives remain weak points. All 42 query outputs
+match the exact reference given its predicted facts.
+
+The checkpoint has 437,159,937 parameters. The eight-program CPU FP32 run took
+186.26 seconds including initialization and peaked at 2.46 GiB RSS. The probe
+confirms bidirectional attention within each row, identical repeated batched
+outputs, and agreement with the public API within 2.24e-7 in four-category
+weights, with identical hard decisions.
+
+See the [matched comparison and practical notes](../question_isolation/README.md).
+Artifacts are saved as `openjev-quick8.*` and `probe.json`; no full 48-program
+OpenJev result is claimed.
+
 ## Input and batching
 
 OpenJev is a bidirectional DeBERTa-v3-large encoder that natively places state

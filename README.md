@@ -185,4 +185,14 @@ and explicit negative reports. It took 38.09 minutes on CPU and peaked at
 input placement, separate GLiNER controls test those effects before attributing
 the gain to the checkpoint alone.
 
+The [isolation controls](experiments/question_isolation/README.md) were stopped
+early at the user's request to favor practical iteration. On 24 matched
+programs, GLiNER 340M falls from 27.08% to 23.96% when questions are isolated.
+An eight-program check of moving the isolated question into the text also
+fails to improve on shared-question GLiNER. On those same eight programs,
+OpenDecision scores 43.75% and the independent OpenJev model scores 39.58%.
+These small checks do not justify replacing the scheduler with serialized
+paths; path context remains a separate experiment. All partial and quick
+results are explicitly labeled, preserved, and checked against exact inference.
+
 Licensed under the [Apache License 2.0](LICENSE).

@@ -1,0 +1,40 @@
+{
+  "overall": {
+    "programs": 8,
+    "assessments": 96,
+    "queries": 42,
+    "assessment_accuracy": 0.3958333333333333,
+    "assessment_macro_f1": 0.3394607843137255,
+    "query_probability_mae": 0.11704761904761905,
+    "query_probability_max_error": 0.6,
+    "query_probability_within_1e-9": 0.6666666666666666,
+    "confusion_matrix": {
+      "supported": {
+        "supported": 18,
+        "refuted": 3,
+        "both": 17,
+        "unknown": 0
+      },
+      "refuted": {
+        "supported": 4,
+        "refuted": 4,
+        "both": 10,
+        "unknown": 2
+      },
+      "both": {
+        "supported": 1,
+        "refuted": 3,
+        "both": 14,
+        "unknown": 0
+      },
+      "unknown": {
+        "supported": 7,
+        "refuted": 2,
+        "both": 9,
+        "unknown": 2
+      }
+    }
+  },
+  "verified_reference_queries": 42,
+  "scope": "diagnostic subset; no paraphrase-pair or heldout claim"
+}

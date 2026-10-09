@@ -1,0 +1,13 @@
+{
+  "status": "complete",
+  "command": [
+    "experiments/question_isolation/run_quick.py",
+    "--model",
+    "openjev",
+    "--output",
+    "runs/openjev-quick8"
+  ],
+  "driver_sha256": "bc96f2d4c63077ffa6589c8b94be516cfaecaa9fd82fc0837eed8a713fd3c792",
+  "wall_seconds": 186.25883549599894,
+  "peak_rss_kib": 2578052
+}

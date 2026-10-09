@@ -1,0 +1,190 @@
+{
+  "backend": {
+    "backend": "openjev",
+    "adapter_version": "isolated-native-questions-v1",
+    "model": "com-kotobalabs/open-jev-deberta-v3-large",
+    "revision": "188ee67a5c93122b916e5acd5bdb0cb3623e380a",
+    "prompt_version": "binary-reports-v2",
+    "world_prefix": "Unordered reports about one snapshot. No report has priority. Missing information is unknown.\n\n",
+    "task_templates": [
+      {
+        "name": "decision_0_positive",
+        "candidate_id": "candidate",
+        "channel": "positive",
+        "instruction": "Is \"{positive}\" explicitly stated in the reports? Match the exact named entity. A paraphrase counts as stated.",
+        "labels": {
+          "yes": "The reports explicitly state this statement.",
+          "no": "The reports do not state this statement."
+        },
+        "output_labels": {}
+      },
+      {
+        "name": "decision_0_negative",
+        "candidate_id": "candidate",
+        "channel": "negative",
+        "instruction": "Is \"{negative}\" explicitly stated in the reports? Match the exact named entity. A paraphrase counts as stated.",
+        "labels": {
+          "yes": "The reports explicitly state this statement.",
+          "no": "The reports do not state this statement."
+        },
+        "output_labels": {}
+      }
+    ],
+    "label_order": [
+      "supported",
+      "refuted",
+      "both",
+      "unknown"
+    ],
+    "score_composition": "independent-positive-negative-product",
+    "option_template": "{label} :: {description}",
+    "question_type": "choice",
+    "questions_per_attention_sequence": 1,
+    "question_batch_size": 8,
+    "question_layout": "native schema instructions",
+    "activation": "softmax",
+    "temperature": 1.05,
+    "calibration": "published temperature; no calibration on this benchmark",
+    "config": {
+      "pool": "span",
+      "temperature": 1.05,
+      "markers": [
+        "[STATE]",
+        "[Q]",
+        "[OPT]"
+      ],
+      "max_state_tokens": 256,
+      "max_len": 512,
+      "hidden": 1024,
+      "base_model": "microsoft/deberta-v3-large",
+      "attn_implementation": "eager",
+      "train": {
+        "states": 18000,
+        "questions": 42000,
+        "epochs": 1.0,
+        "augment": 0.7,
+        "seed": 2
+      },
+      "metrics": {
+        "in_domain": {
+          "n": 3508,
+          "acc": 0.8540478905359179,
+          "brier": 0.2126380754345202,
+          "nll": 0.39161871231692685,
+          "ece": 0.022295263177569035,
+          "mean_conf": 0.8701430000003163
+        },
+        "ood": {
+          "n": 4012,
+          "acc": 0.6899302093718843,
+          "brier": 0.3993802813670758,
+          "nll": 0.7091980578363113,
+          "ece": 0.03451239586188453,
+          "mean_conf": 0.7230830628866867
+        }
+      }
+    },
+    "published_source_sha256": {
+      "typed_decisions/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "typed_decisions/encoder.py": "59ae43a157575cd09ae31afd691156ee4a66ad8929d317970404dd9fe6bbfc53",
+      "typed_decisions/open_jev.py": "15759988c5eb99a41347b4b3f948c0b5ef19dfc6630cc9158bcd4ae80bb2df0d",
+      "typed_decisions/schema.py": "976eca07aceae8e3c1b2ee9911c614359a1b1e04b590837491816cc93e469c3a"
+    },
+    "dtype": "float32",
+    "device": "cpu",
+    "threads": 4,
+    "python": "3.12.14",
+    "machine": "x86_64",
+    "packages": {
+      "torch": "2.14.1+cpu",
+      "transformers": "5.17.0",
+      "tokenizers": "0.23.2",
+      "safetensors": "0.8.0",
+      "huggingface-hub": "1.33.0"
+    },
+    "deterministic_algorithms": true,
+    "truncation": "reject"
+  },
+  "parameters": 437159937,
+  "repeat_bitwise_identical": true,
+  "native_api_vs_batched_max_category_weight_difference": 2.2388855569488442e-07,
+  "native_api_vs_batched_hard_labels_identical": true,
+  "first_layer_attention_masks": [
+    {
+      "shape": [
+        4,
+        1,
+        87,
+        87
+      ],
+      "first_to_last": true,
+      "last_to_first": true
+    },
+    {
+      "shape": [
+        4,
+        1,
+        87,
+        87
+      ],
+      "first_to_last": true,
+      "last_to_first": true
+    },
+    {
+      "shape": [
+        1,
+        1,
+        85,
+        85
+      ],
+      "first_to_last": true,
+      "last_to_first": true
+    },
+    {
+      "shape": [
+        1,
+        1,
+        86,
+        86
+      ],
+      "first_to_last": true,
+      "last_to_first": true
+    },
+    {
+      "shape": [
+        1,
+        1,
+        86,
+        86
+      ],
+      "first_to_last": true,
+      "last_to_first": true
+    },
+    {
+      "shape": [
+        1,
+        1,
+        87,
+        87
+      ],
+      "first_to_last": true,
+      "last_to_first": true
+    }
+  ],
+  "assessments": {
+    "Oak": {
+      "supported": 0.2381218651172503,
+      "refuted": 0.22851891980252503,
+      "both": 0.39591843096047796,
+      "unknown": 0.13744081392206908
+    },
+    "Elm": {
+      "supported": 0.12256452936134554,
+      "refuted": 0.4199633140404835,
+      "both": 0.2578496996863766,
+      "unknown": 0.19962251651644003
+    }
+  },
+  "wall_seconds_including_load": 8.745980632000283,
+  "peak_rss_kib": 1830716
+}

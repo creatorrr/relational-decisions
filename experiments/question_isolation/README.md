@@ -30,6 +30,41 @@ groups. They check question-in-text GLiNER and the independent OpenJev model.
 This deliberately shortened diagnostic is not a representative or heldout
 estimate, and the first eight records do not form complete paraphrase pairs.
 
+The matched quick results (96 assessments and 42 queries) are:
+
+| Configuration | Assessment accuracy | Macro-F1 | Query probability MAE |
+| --- | ---: | ---: | ---: |
+| GLiNER 340M, shared questions | 30.21% | 0.2119 | 0.1197 |
+| GLiNER 340M, isolated native questions | 19.79% | 0.0826 | 0.1387 |
+| GLiNER 340M, isolated question in text | 22.92% | 0.1245 | 0.1387 |
+| GLiNER 1B, shared questions | 26.04% | 0.2533 | 0.0972 |
+| OpenDecision, isolated question in text | 43.75% | 0.3846 | 0.1195 |
+| OpenJev, isolated native questions | 39.58% | 0.3395 | 0.1170 |
+
+The majority-label accuracy is 39.58% on this small, unbalanced prefix.
+OpenJev ties that accuracy, while its macro-F1 exceeds GLiNER's. OpenDecision
+gets four more assessments right than OpenJev. These are useful diagnostic
+signals, not enough to rank generalization. Every query output in this table
+matches the independent reference given that model's predicted facts.
+
+**Working conclusion:** neither isolation alone nor transferring the question
+into the text reproduces OpenDecision's advantage on GLiNER in these checks.
+Keep OpenDecision as the current grounding baseline and OpenJev as another
+candidate. There is no evidence here to justify changing the scheduler to
+serialized paths. Relevant path context remains a separate, untested idea.
+
+`quick-comparison.json` contains the exact input IDs and metrics;
+`summarize_quick.py` regenerates it from the archived predictions. The original
+`summarize.py` is for a future completed full sweep and is not the audit for
+this deliberately shortened experiment. Full-run protocols are retained as
+the historical plan; this section records the actual scope.
+
+The short state-layout run took 193.03 seconds including loading, with 4.13 GiB
+peak RSS. OpenJev took 186.26 seconds with 2.46 GiB peak RSS. Both were fresh
+CPU FP32 runs. The probes verified bitwise repeated-call determinism; batched
+versus serial results matched exactly for the tested GLiNER inputs and within
+2.24e-7 in category weights for OpenJev, with identical hard labels.
+
 | Condition | Questions in one attention sequence | Question placement |
 | --- | --- | --- |
 | Shared baseline | Up to eight | Original GLiNER schema |
