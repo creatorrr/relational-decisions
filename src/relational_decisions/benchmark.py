@@ -12,6 +12,7 @@ from pathlib import Path
 
 from .decisions import DecisionCache, OracleBackend
 from .engine import Engine, EngineConfig
+from .prompts import DEFAULT_PROMPT, PROMPTS
 
 
 def load_rows(path):
@@ -33,6 +34,7 @@ def main():
     parser.add_argument("--search-quantum", type=int, default=64)
     parser.add_argument("--model", default="fastino/gliner2.5-small-v1")
     parser.add_argument("--revision")
+    parser.add_argument("--prompt", choices=PROMPTS, default=DEFAULT_PROMPT)
     parser.add_argument("--threads", type=int, default=4)
     parser.add_argument("--max-tokens", type=int, default=4096)
     parser.add_argument("--output", type=Path, required=True)
@@ -60,7 +62,11 @@ def main():
         from .gliner import GLiNERBackend
 
         backend = GLiNERBackend(
-            args.model, args.revision, threads=args.threads, max_tokens=args.max_tokens
+            args.model,
+            args.revision,
+            threads=args.threads,
+            max_tokens=args.max_tokens,
+            prompt=args.prompt,
         )
     metadata = {
         "created": datetime.now(UTC).isoformat(),

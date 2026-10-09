@@ -1,0 +1,150 @@
+{
+  "explicit-reports-v1": {
+    "programs": 12,
+    "assessments": 144,
+    "queries": 0,
+    "assessment_accuracy": 0.2361111111111111,
+    "assessment_macro_f1": 0.12159468438538205,
+    "query_probability_mae": null,
+    "query_probability_max_error": null,
+    "query_probability_within_1e-9": null,
+    "confusion_matrix": {
+      "supported": {
+        "supported": 0,
+        "refuted": 1,
+        "both": 44,
+        "unknown": 1
+      },
+      "refuted": {
+        "supported": 0,
+        "refuted": 0,
+        "both": 34,
+        "unknown": 0
+      },
+      "both": {
+        "supported": 0,
+        "refuted": 0,
+        "both": 32,
+        "unknown": 1
+      },
+      "unknown": {
+        "supported": 0,
+        "refuted": 0,
+        "both": 29,
+        "unknown": 2
+      }
+    },
+    "elapsed_seconds": 90.49502409200068
+  },
+  "direct-status-v2": {
+    "programs": 12,
+    "assessments": 144,
+    "queries": 0,
+    "assessment_accuracy": 0.25,
+    "assessment_macro_f1": 0.19225117975117975,
+    "query_probability_mae": null,
+    "query_probability_max_error": null,
+    "query_probability_within_1e-9": null,
+    "confusion_matrix": {
+      "supported": {
+        "supported": 3,
+        "refuted": 15,
+        "both": 28,
+        "unknown": 0
+      },
+      "refuted": {
+        "supported": 1,
+        "refuted": 16,
+        "both": 17,
+        "unknown": 0
+      },
+      "both": {
+        "supported": 3,
+        "refuted": 13,
+        "both": 17,
+        "unknown": 0
+      },
+      "unknown": {
+        "supported": 3,
+        "refuted": 12,
+        "both": 16,
+        "unknown": 0
+      }
+    },
+    "elapsed_seconds": 94.04185200200027
+  },
+  "concrete-options-v2": {
+    "programs": 12,
+    "assessments": 144,
+    "queries": 0,
+    "assessment_accuracy": 0.2986111111111111,
+    "assessment_macro_f1": 0.23402605459057071,
+    "query_probability_mae": null,
+    "query_probability_max_error": null,
+    "query_probability_within_1e-9": null,
+    "confusion_matrix": {
+      "supported": {
+        "supported": 21,
+        "refuted": 13,
+        "both": 12,
+        "unknown": 0
+      },
+      "refuted": {
+        "supported": 12,
+        "refuted": 17,
+        "both": 5,
+        "unknown": 0
+      },
+      "both": {
+        "supported": 15,
+        "refuted": 13,
+        "both": 5,
+        "unknown": 0
+      },
+      "unknown": {
+        "supported": 10,
+        "refuted": 16,
+        "both": 5,
+        "unknown": 0
+      }
+    },
+    "elapsed_seconds": 163.63736642799995
+  },
+  "binary-reports-v2": {
+    "programs": 12,
+    "assessments": 144,
+    "queries": 0,
+    "assessment_accuracy": 0.3263888888888889,
+    "assessment_macro_f1": 0.29301596748405256,
+    "query_probability_mae": null,
+    "query_probability_max_error": null,
+    "query_probability_within_1e-9": null,
+    "confusion_matrix": {
+      "supported": {
+        "supported": 18,
+        "refuted": 11,
+        "both": 5,
+        "unknown": 12
+      },
+      "refuted": {
+        "supported": 2,
+        "refuted": 20,
+        "both": 4,
+        "unknown": 8
+      },
+      "both": {
+        "supported": 4,
+        "refuted": 20,
+        "both": 2,
+        "unknown": 7
+      },
+      "unknown": {
+        "supported": 7,
+        "refuted": 14,
+        "both": 3,
+        "unknown": 7
+      }
+    },
+    "elapsed_seconds": 128.63708823100023
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "created_before_screen": "2026-10-09T03:30:20.214608+00:00",
+  "selection_model": {
+    "model": "fastino/GLiNER2.5-Decide",
+    "revision": "9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90"
+  },
+  "comparison_model": {
+    "model": "fastino/GLiNER2.5-Decide-1B",
+    "revision": "67af949e17bebd20f05fe020a971079889e7a462"
+  },
+  "train_input_sha256": "3836dd23a552ef0ecfb01fde50593c4d28a6b43c1ad7416c8a122e1a0a6675eb",
+  "train_selection": "Sorted families; cycle deliveries/gardens/rooms; lexicographically first group in each family/domain; alternate rendering by sorted family index.",
+  "train_ids": [
+    "ac123ab330eef534-v0",
+    "6045907ad869fc4b-v1",
+    "99faa9570ca6dd61-v0",
+    "5e9c7ac7a0f1549e-v1",
+    "4ec92e27bf4e1e1f-v0",
+    "0a1054fa0aefb793-v1",
+    "50d3683a2a4b0c87-v0",
+    "16cfe14c6967ea69-v1",
+    "2f5e32805abbebfc-v0",
+    "d35fc07eb123e8f1-v1",
+    "71618ad51b86e4d4-v0",
+    "71a71b37174fb274-v1"
+  ],
+  "train_panel": [
+    {
+      "id": "ac123ab330eef534-v0",
+      "group_id": "ac123ab330eef534",
+      "family": "binding_join",
+      "domain": "deliveries"
+    },
+    {
+      "id": "6045907ad869fc4b-v1",
+      "group_id": "6045907ad869fc4b",
+      "family": "conditioning",
+      "domain": "gardens"
+    },
+    {
+      "id": "99faa9570ca6dd61-v0",
+      "group_id": "99faa9570ca6dd61",
+      "family": "conjunction",
+      "domain": "rooms"
+    },
+    {
+      "id": "5e9c7ac7a0f1549e-v1",
+      "group_id": "5e9c7ac7a0f1549e",
+      "family": "contradictory_reports",
+      "domain": "deliveries"
+    },
+    {
+      "id": "4ec92e27bf4e1e1f-v0",
+      "group_id": "4ec92e27bf4e1e1f",
+      "family": "cyclic_reachability",
+      "domain": "gardens"
+    },
+    {
+      "id": "0a1054fa0aefb793-v1",
+      "group_id": "0a1054fa0aefb793",
+      "family": "disjunction",
+      "domain": "rooms"
+    },
+    {
+      "id": "50d3683a2a4b0c87-v0",
+      "group_id": "50d3683a2a4b0c87",
+      "family": "exclusive_choice",
+      "domain": "deliveries"
+    },
+    {
+      "id": "16cfe14c6967ea69-v1",
+      "group_id": "16cfe14c6967ea69",
+      "family": "left_recursion",
+      "domain": "gardens"
+    },
+    {
+      "id": "2f5e32805abbebfc-v0",
+      "group_id": "2f5e32805abbebfc",
+      "family": "missing_vs_negative",
+      "domain": "rooms"
+    },
+    {
+      "id": "d35fc07eb123e8f1-v1",
+      "group_id": "d35fc07eb123e8f1",
+      "family": "repeated_choice",
+      "domain": "deliveries"
+    },
+    {
+      "id": "71618ad51b86e4d4-v0",
+      "group_id": "71618ad51b86e4d4",
+      "family": "shared_diamond",
+      "domain": "gardens"
+    },
+    {
+      "id": "71a71b37174fb274-v1",
+      "group_id": "71a71b37174fb274",
+      "family": "staged_chain",
+      "domain": "rooms"
+    }
+  ],
+  "prompts": [
+    "explicit-reports-v1",
+    "direct-status-v2",
+    "concrete-options-v2",
+    "binary-reports-v2"
+  ],
+  "batch_size": 4,
+  "selection_rule": "Highest train assessment macro-F1, then accuracy, then earliest prompt in this protocol. Freeze winner before dev evaluation.",
+  "screen_schedule": "Fixed candidate-ID order in chunks of four; all candidates, no engine scheduling or cache.",
+  "dev_evaluation": "Winner only, both pinned models, all 48 dev renderings; frontier hard mode, batch_size=4, search_quantum=64; fresh caches; same Transformers 5.17.0 environment.",
+  "runtime": "CPU FP32, four threads, deterministic algorithms, no quantization.",
+  "heldout": "Do not inspect or evaluate."
+}

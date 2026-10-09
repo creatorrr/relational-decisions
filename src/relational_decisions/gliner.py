@@ -3,27 +3,50 @@
 import json
 import platform
 import subprocess
+from dataclasses import asdict
 from importlib.metadata import distribution, version
 from pathlib import Path
 
-from .decisions import LABELS
+from .decisions import LABELS, Candidate
+from .prompts import (
+    DEFAULT_PROMPT,
+    LABEL_DESCRIPTIONS,
+    PROMPTS,
+    WORLD_PREFIX,
+    build_tasks,
+    decode_scores,
+)
 
 DEFAULT_MODEL = "fastino/gliner2.5-small-v1"
 DEFAULT_REVISION = "df5910e44bc4ffdb0d95399a83b0ca4516349aa5"
-PROMPT_VERSION = "explicit-reports-v1"
-LABEL_DESCRIPTIONS = {
-    "supported": "Only the positive assertion is explicitly reported.",
-    "refuted": "Only the negative assertion is explicitly reported.",
-    "both": "Both assertions are explicitly reported, so reports conflict.",
-    "unknown": "Neither assertion is explicitly reported; information is missing.",
-}
-WORLD_PREFIX = "Unordered reports about one snapshot. No report has priority. Missing information is unknown.\n\n"
+PROMPT_VERSION = DEFAULT_PROMPT
+
+
+def check_encoder_runtime(config, transformers_version):
+    encoder = config.get("encoder_config", {})
+    # The old 4.x ModernBERT implementation silently ignores this nested RoPE
+    # configuration and applies different local-attention rotary frequencies.
+    if encoder.get("model_type") == "modernbert" and encoder.get("rope_parameters"):
+        release = tuple(int(x) for x in transformers_version.split(".")[:2])
+        if release < (5, 17):
+            raise ValueError(
+                "This ModernBERT checkpoint requires the tested Transformers 5.17+ "
+                "runtime for its rope_parameters configuration; use the prompt_v2 lock file."
+            )
 
 
 class GLiNERBackend:
     def __init__(
-        self, model=DEFAULT_MODEL, revision=None, *, threads=4, max_tokens=4096
+        self,
+        model=DEFAULT_MODEL,
+        revision=None,
+        *,
+        threads=4,
+        max_tokens=4096,
+        prompt=DEFAULT_PROMPT,
     ):
+        if prompt not in PROMPTS:
+            raise ValueError(f"Unknown grounding prompt: {prompt}")
         import gliner2
         import torch
         from gliner2 import AutoExtractor
@@ -48,6 +71,10 @@ class GLiNERBackend:
             revision=revision,
             allow_patterns=["*.json", "*.safetensors", "*.model", "*.txt"],
         )
+        check_encoder_runtime(
+            json.loads((Path(path) / "config.json").read_text()),
+            version("transformers"),
+        )
         torch.set_num_threads(threads)
         torch.manual_seed(0)
         torch.use_deterministic_algorithms(True)
@@ -69,7 +96,7 @@ class GLiNERBackend:
             "backend": "gliner",
             "model": model,
             "revision": revision,
-            "prompt_version": PROMPT_VERSION,
+            "prompt_version": prompt,
             "world_prefix": WORLD_PREFIX,
             "label_order": LABELS,
             "label_descriptions": LABEL_DESCRIPTIONS,
@@ -88,6 +115,27 @@ class GLiNERBackend:
             "activation": "softmax",
             "calibration": "none",
         }
+        self.set_prompt(prompt)
+
+    def set_prompt(self, prompt):
+        if prompt not in PROMPTS:
+            raise ValueError(f"Unknown grounding prompt: {prompt}")
+        self.prompt = prompt
+        self._identity["prompt_version"] = prompt
+        self._identity.pop("task_templates", None)
+        self._identity.pop("score_composition", None)
+        if prompt != DEFAULT_PROMPT:
+            template = Candidate(
+                "candidate", ("p",), ("not_p",), "{positive}", "{negative}"
+            )
+            self._identity["task_templates"] = [
+                asdict(t) for t in build_tasks([template], prompt)
+            ]
+            self._identity["score_composition"] = (
+                "independent-positive-negative-product"
+                if prompt == "binary-reports-v2"
+                else "four-way-categorical"
+            )
 
     @property
     def identity(self):
@@ -98,16 +146,13 @@ class GLiNERBackend:
         from gliner2.classification.compiler import compile_schema
 
         schema = ClassificationSchema()
-        task_ids = {}
-        for i, candidate in enumerate(candidates):
-            task = f"decision_{i}"
-            task_ids[task] = candidate.id
-            instruction = (
-                f"Assess explicit reports. Positive assertion: {candidate.proposition}. "
-                f"Negative assertion: {candidate.negative_proposition}."
-            )
+        tasks = build_tasks(candidates, self.prompt)
+        for task in tasks:
             schema.single(
-                task, LABEL_DESCRIPTIONS, instruction=instruction, activation="softmax"
+                task.name,
+                task.labels,
+                instruction=task.instruction,
+                activation="softmax",
             )
         # Bypass the facade's order-insensitive compilation cache.
         compiled = compile_schema(schema)
@@ -123,12 +168,17 @@ class GLiNERBackend:
             raise ValueError(
                 f"Joint input has {encoded_length} tokens, above limit {self.max_tokens}; reduce the declared batch size"
             )
-        if len(batch.schema_tokens_list[0]) != len(candidates):
+        if len(batch.schema_tokens_list[0]) != len(tasks):
             raise ValueError(
                 "GLiNER preprocessing did not preserve all requested tasks"
             )
         scores = self.classifier.score(text, compiled)
-        return {
-            cid: {label: scores.probability(task, label) for label in LABELS}
-            for task, cid in task_ids.items()
-        }
+        return decode_scores(
+            tasks,
+            {
+                task.name: {
+                    label: scores.probability(task.name, label) for label in task.labels
+                }
+                for task in tasks
+            },
+        )

@@ -99,6 +99,26 @@ It independently compiles each schema to preserve slot order. It checks the
 encoded token length and rejects oversized requests instead of silently
 truncating or changing the requested grouping.
 
+Prompt formulations are versioned in `prompts.py` and selected by `--prompt`.
+The original `explicit-reports-v1` remains the default for reproducibility.
+The experimental `binary-reports-v2` asks whether each of the positive and
+negative statements is explicitly reported, using two yes/no tasks per
+candidate. Thus a batch of four candidates contains eight classifier tasks.
+
+For positive-report probability `p` and negative-report probability `n`, it
+assigns category weights `p*(1-n)`, `(1-p)*n`, `p*n`, and `(1-p)*(1-n)` to
+supported, refuted, both, and unknown respectively. This construction assumes
+independence between those two judgments. In hard mode the highest-weight
+category is selected with the engine's stable label tie breaking. In soft mode
+that within-candidate assumption is additional to the engine's assumption of
+independence between candidates; this is not an estimated joint distribution.
+
+Decide 1B uses a ModernBERT encoder with a newer nested rotary-position
+configuration. Use the dependencies pinned in the prompt experiment. The
+adapter requires the tested Transformers 5.17+ runtime for that configuration
+because the original 4.x runtime would silently use different local rotary
+frequencies. Loading is strict: mismatched checkpoint weights raise an error.
+
 The decision cache keys the complete world text, ordered candidate definitions,
 model revision, prompt version, label definitions, precision, and runtime
 versions/configuration. Different schemas or text produce different keys.
@@ -122,5 +142,5 @@ diagram implementation accepts at most 256 categorical variables.
 
 The model interface is synchronous: fair symbolic work exposes a frontier,
 then a model call services part of it. This is cooperative scheduling, not
-parallel model execution. INT8 inference and larger classifiers remain future
-experiments; the first adapter uses the already-tested FP32 small checkpoint.
+parallel model execution. Small, Decide 340M, and Decide 1B have been run locally
+in FP32. INT8 inference remains a future experiment.

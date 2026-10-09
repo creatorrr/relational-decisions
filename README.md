@@ -104,6 +104,19 @@ rd-bench --backend gliner --split dev --schedule frontier \
 the entire registered schema when the first neural goal is requested.
 `frontier` batches currently ready goals, up to the declared batch size.
 
+`--prompt` selects a versioned grounding formulation. The default is the original
+`explicit-reports-v1`; experiments also support `direct-status-v2`,
+`concrete-options-v2`, and `binary-reports-v2`. The binary formulation asks two
+yes/no questions per proposition, for its positive and negative reports. Its
+four category weights are a product of the two answers, introducing an extra
+independence assumption in soft mode. Prompt definitions and label mappings
+are part of the cache identity.
+
+The [prompt experiment](experiments/prompt_v2/README.md) compares formulations
+on train and evaluates the selected one with Decide 340M and Decide 1B on dev.
+The 1B checkpoint needs the newer dependencies pinned in that experiment;
+the adapter rejects older runtimes that would misread its rotary configuration.
+
 The default `--mode hard` uses the selected evidence category as an observed
 fact. `--mode soft` gives each proposition a four-outcome random variable using
 the normalized model scores. Soft mode assumes independent choices across
