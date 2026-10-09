@@ -26,7 +26,9 @@ def main():
     )
     parser.add_argument("--split", choices=["train", "dev"], default="dev")
     parser.add_argument(
-        "--backend", choices=["oracle", "gliner", "opendecision"], default="oracle"
+        "--backend",
+        choices=["oracle", "gliner", "opendecision", "openjev"],
+        default="oracle",
     )
     parser.add_argument(
         "--schedule", choices=["frontier", "full", "single"], default="frontier"
@@ -72,10 +74,19 @@ def main():
             max_tokens=args.max_tokens,
             prompt=args.prompt or DEFAULT_PROMPT,
         )
-    else:
+    elif args.backend == "opendecision":
         from .opendecision import DEFAULT_MODEL, PROMPT, OpenDecisionBackend
 
         backend = OpenDecisionBackend(
+            args.model or DEFAULT_MODEL,
+            args.revision,
+            threads=args.threads,
+            prompt=args.prompt or PROMPT,
+        )
+    else:
+        from .openjev import DEFAULT_MODEL, PROMPT, OpenJevBackend
+
+        backend = OpenJevBackend(
             args.model or DEFAULT_MODEL,
             args.revision,
             threads=args.threads,

@@ -124,6 +124,13 @@ processes each answer option independently; batched predicates do not share
 attention. Complete questions are placed alongside the world text to fit the
 model's native schema limits without truncation.
 
+The [question-isolation controls](experiments/question_isolation/README.md)
+replay the GLiNER baseline's exact request groups while separating questions
+into independent attention rows, then test the question-in-text layout.
+The [independent OpenJev implementation](experiments/openjev_v1/README.md) is
+available through `--backend openjev`; it uses the same frozen questions in
+independent rows to fit its native context limit.
+
 The default `--mode hard` uses the selected evidence category as an observed
 fact. `--mode soft` gives each proposition a four-outcome random variable using
 the normalized model scores. Soft mode assumes independent choices across

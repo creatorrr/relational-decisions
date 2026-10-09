@@ -1,0 +1,23 @@
+{
+  "model": "com-kotobalabs/open-jev-deberta-v3-large",
+  "revision": "188ee67a5c93122b916e5acd5bdb0cb3623e380a",
+  "split": "dev",
+  "programs": 48,
+  "prompt": "binary-reports-v2",
+  "prior_selection_sha256": "200133880135a5bc588547b84732d4c6928ef35284612d9f9cf15e4a3677511b",
+  "selection_note": "Transfer the frozen questions without OpenJev-specific prompt selection. One question per attention sequence chosen before scoring because the full eight-question schemas exceed this model's 512-token limit, and to match the GLiNER isolation control.",
+  "serialization": "native question instructions; choice options label :: description",
+  "schedule": "frontier",
+  "mode": "hard",
+  "batch_size": 4,
+  "search_quantum": 64,
+  "questions_per_attention_sequence": 1,
+  "question_batch_size": 8,
+  "threads": 4,
+  "device": "cpu",
+  "dtype": "float32",
+  "temperature": 1.05,
+  "temperature_note": "Use the published temperature; no benchmark calibration. Positive temperature does not change binary hard decisions.",
+  "source": "Reviewed typed_decisions code bundled in the same pinned model snapshot",
+  "heldout": "sealed; never open or evaluate"
+}
