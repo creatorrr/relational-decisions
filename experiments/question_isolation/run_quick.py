@@ -15,6 +15,7 @@ from run_dev import RecordedBackend, read_rows
 from relational_decisions import Candidate
 from relational_decisions.decisions import DecisionCache
 from relational_decisions.engine import Engine, EngineConfig
+from relational_decisions.h2o import H2OLightningBackend
 from relational_decisions.openjev import OpenJevBackend
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -65,7 +66,9 @@ def score_subset(inputs, predictions, gold):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--model", choices=["gliner-state", "openjev"], required=True)
+    parser.add_argument(
+        "--model", choices=["gliner-state", "openjev", "h2o"], required=True
+    )
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     cache_path = args.output.with_name(args.output.name + "-cache")
@@ -89,8 +92,10 @@ def main():
                 "9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90",
                 layout="isolated-question-in-state",
             )
-        else:
+        elif args.model == "openjev":
             backend = OpenJevBackend()
+        else:
+            backend = H2OLightningBackend()
         meta = {
             "status": "running",
             "scope": "first 8 dev input records; diagnostic only",

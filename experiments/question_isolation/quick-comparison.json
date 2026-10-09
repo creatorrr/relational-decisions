@@ -250,6 +250,46 @@
       },
       "verified_reference_queries": 42,
       "scope": "diagnostic subset; no paraphrase-pair or heldout claim"
+    },
+    "h2o-lightning-isolated-native": {
+      "overall": {
+        "programs": 8,
+        "assessments": 96,
+        "queries": 42,
+        "assessment_accuracy": 0.8854166666666666,
+        "assessment_macro_f1": 0.8402659574468085,
+        "query_probability_mae": 0.014666666666666666,
+        "query_probability_max_error": 0.4,
+        "query_probability_within_1e-9": 0.9523809523809523,
+        "confusion_matrix": {
+          "supported": {
+            "supported": 38,
+            "refuted": 0,
+            "both": 0,
+            "unknown": 0
+          },
+          "refuted": {
+            "supported": 0,
+            "refuted": 20,
+            "both": 0,
+            "unknown": 0
+          },
+          "both": {
+            "supported": 4,
+            "refuted": 7,
+            "both": 7,
+            "unknown": 0
+          },
+          "unknown": {
+            "supported": 0,
+            "refuted": 0,
+            "both": 0,
+            "unknown": 20
+          }
+        }
+      },
+      "verified_reference_queries": 42,
+      "scope": "diagnostic subset; no paraphrase-pair or heldout claim"
     }
   },
   "heldout_opened": false

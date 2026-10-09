@@ -1,0 +1,13 @@
+{
+  "status": "complete",
+  "command": [
+    "experiments/question_isolation/run_quick.py",
+    "--model",
+    "h2o",
+    "--output",
+    "runs/h2o-quick8"
+  ],
+  "driver_sha256": "a85cd6f481f267561d921c6f39ebe3d443647bbb309a447e893ea14d5d33b7ed",
+  "wall_seconds": 1072.7736441649995,
+  "peak_rss_kib": 7748024
+}

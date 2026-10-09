@@ -27,7 +27,7 @@ def main():
     parser.add_argument("--split", choices=["train", "dev"], default="dev")
     parser.add_argument(
         "--backend",
-        choices=["oracle", "gliner", "opendecision", "openjev"],
+        choices=["oracle", "gliner", "opendecision", "openjev", "h2o"],
         default="oracle",
     )
     parser.add_argument(
@@ -83,7 +83,7 @@ def main():
             threads=args.threads,
             prompt=args.prompt or PROMPT,
         )
-    else:
+    elif args.backend == "openjev":
         from .openjev import DEFAULT_MODEL, PROMPT, OpenJevBackend
 
         backend = OpenJevBackend(
@@ -92,6 +92,17 @@ def main():
             threads=args.threads,
             prompt=args.prompt or PROMPT,
         )
+    else:
+        from .h2o import DEFAULT_MODEL, DEFAULT_REVISION, PROMPT, H2OLightningBackend
+
+        if args.model not in (None, DEFAULT_MODEL) or args.revision not in (
+            None,
+            DEFAULT_REVISION,
+        ):
+            parser.error("H2O supports only the reviewed, pinned model snapshot")
+        if args.prompt not in (None, PROMPT):
+            parser.error(f"H2O supports only {PROMPT}")
+        backend = H2OLightningBackend(threads=args.threads)
     metadata = {
         "created": datetime.now(UTC).isoformat(),
         "split": args.split,

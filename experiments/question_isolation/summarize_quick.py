@@ -24,6 +24,7 @@ def main():
         "gliner-1b-shared": HERE.parent / "prompt_v2/decide-1b-dev",
         "opendecision-isolated-state": HERE.parent / "opendecision_v1/opendecision-dev",
         "openjev-isolated-native": HERE.parent / "openjev_v1/openjev-quick8",
+        "h2o-lightning-isolated-native": HERE.parent / "h2o_v1/h2o-quick8",
     }
     results = {
         name: score_subset(

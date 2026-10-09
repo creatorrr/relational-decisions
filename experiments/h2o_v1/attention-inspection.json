@@ -1,0 +1,68 @@
+{
+  "conclusion": "Both text decision paths are causal; d1 tree branches cannot attend to sibling questions. Vision attention is a separate issue.",
+  "d1_inference_run": false,
+  "sources": [
+    {
+      "model": "LiquidAI/d1-3B",
+      "revision": "051bcc464b01b9f92942b364d9586b0ef5912432",
+      "url": "https://huggingface.co/LiquidAI/d1-3B/blob/051bcc464b01b9f92942b364d9586b0ef5912432/hybrid.py",
+      "sha256": "ce579827b952a6978a3560f70e74be9e228f9029de46048996b0c5f58d7f1f39",
+      "excerpts": [
+        {
+          "start_line": 157,
+          "end_line": 163,
+          "text": "    \"\"\"Each branch over its own tokens, causally (within `window`), with its log-sum-exp.\"\"\"\n    if not _fused(q) and len(tree.branch) <= CHUNK:  # small enough for one masked product\n        same, off = tree.branch[:, None] == tree.branch[None], tree.offset\n        allowed = same & (off[None] <= off[:, None])\n        if window is not None:\n            allowed &= off[None] > off[:, None] - window\n        return _explicit(q, k, v, allowed, scale)"
+        },
+        {
+          "start_line": 212,
+          "end_line": 234,
+          "text": "def causal_attention(q: Tensor, k: Tensor, v: Tensor, window: int | None, scale: float) -> Tensor:\n    \"\"\"Right-padded chains: causal, within `window` if set.\"\"\"\n    if window is None or q.shape[2] <= window:\n        return F.scaled_dot_product_attention(q, k, v, is_causal=True, scale=scale, enable_gqa=True)\n    return _windowed(q, k, v, window, scale)\n\n\ndef attention(q: Tensor, k: Tensor, v: Tensor, tree: Tree | None, window: int | None, scale: float) -> Tensor:\n    \"\"\"Chains, or a tree: the trunk causally, each branch over the trunk and over\n    its own tokens.\"\"\"\n    if tree is None:\n        return causal_attention(q, k, v, window, scale)\n    p = tree.p\n    qb = q[:, :, p:]\n    mine = _own(qb, k[:, :, p:], v[:, :, p:], tree, window, scale)\n    if p == 0:\n        return mine[0].to(q.dtype)\n    trunk = causal_attention(q[:, :, :p], k[:, :, :p], v[:, :, :p], window, scale)\n    if window is None:\n        seen = _over_trunk(qb, k[:, :, :p], v[:, :, :p], scale)\n    else:  # only the trunk's last window-1 keys are in reach of a branch\n        tail = min(p, window - 1)\n        allowed = torch.arange(p - tail, p, device=q.device)[None] > tree.positions[p:, None] - window"
+        }
+      ]
+    },
+    {
+      "model": "LiquidAI/d1-3B",
+      "revision": "051bcc464b01b9f92942b364d9586b0ef5912432",
+      "url": "https://huggingface.co/LiquidAI/d1-3B/blob/051bcc464b01b9f92942b364d9586b0ef5912432/runner.py",
+      "sha256": "24d3ae718e9f9717771c0df39c93d324d00aa27bf3e12bab085c0922096cb0dd",
+      "excerpts": [
+        {
+          "start_line": 123,
+          "end_line": 129,
+          "text": "        \"\"\"Log-softmax at the answer slot, one row per token list, in one pass.\n\n        The rows are one tree (`hybrid.py`): their common start is its trunk and\n        is read once; the rest of each row is a branch, packed with no padding.\n        Mathematically each row alone; in bf16 the kernels differ by batch shape.\n        \"\"\"\n        if len(rows) == 1:  # nothing to share: a plain chain is faster than a tree of one"
+        }
+      ]
+    },
+    {
+      "model": "h2oai/h2o-lightning-4b",
+      "revision": "672dc01ed37a516357cd3c7da777c96699d3f16c",
+      "url": "https://huggingface.co/h2oai/h2o-lightning-4b/blob/672dc01ed37a516357cd3c7da777c96699d3f16c/h2o_lightning_shim.py",
+      "sha256": "c899c93d1b51f46dca991f6c3c28c70ca2dfebf3c0fad52e8f3f51ca479d38e6",
+      "excerpts": [
+        {
+          "start_line": 1,
+          "end_line": 16,
+          "text": "#!/usr/bin/env python3\n\"\"\"H2O-Lightning-4B shim: typed decisions over a stock vLLM server, one output token per decision. Stdlib only.\n\nWHAT IT DOES\n    POST /v1/systemone  (the `typesafe` decision wire format; /api/alpha/decisions is an alias)\n      -> renders each question in the prompt the model was trained on (serve_config.json: the chat template with\n         thinking off, the system prompt, the \"plain\" layout, compact JSON for a structured state, one label per\n         option, the \"Answer:\" prefill)\n      -> sends ONE vLLM completion per question with max_tokens=1 and `logprob_token_ids` set to that question's\n         label tokens, so every option is read at the answer slot and none can fall out of a top-k\n      -> applies one temperature for every question type, then the yes/no commit floor\n      -> returns {\"model\", \"answers\", \"probability_source\", \"effort_used\", \"usage\"}\n\n    Several questions about one state are sent concurrently; vLLM's prefix cache shares the state between them, and\n    usage.input_tokens counts that shared head once plus each question's own tail.\n    It generates no text and calls nothing but the local vLLM server."
+        }
+      ]
+    },
+    {
+      "package": "transformers",
+      "version": "5.18.0",
+      "file": "models/qwen3_5/modeling_qwen3_5.py",
+      "sha256": "d0c8561d91e31e50d9a57b74196c5a7ad023e42ebe9f84004d0a535310879939",
+      "excerpts": [
+        {
+          "start_line": 748,
+          "end_line": 760,
+          "text": "class Qwen3_5Attention(nn.Module):\n    \"\"\"Multi-headed attention from 'Attention Is All You Need' paper\"\"\"\n\n    def __init__(self, config: Qwen3_5Config, layer_idx: int):\n        super().__init__()\n        self.config = config\n        self.layer_idx = layer_idx\n        self.head_dim = getattr(config, \"head_dim\", config.hidden_size // config.num_attention_heads)\n        self.num_key_value_groups = config.num_attention_heads // config.num_key_value_heads\n        self.scaling = self.head_dim**-0.5\n        self.attention_dropout = config.attention_dropout\n        self.is_causal = True\n        self.q_proj = nn.Linear("
+        },
+        {
+          "start_line": 1271,
+          "end_line": 1287,
+          "text": "\n        if not isinstance(causal_mask_mapping := attention_mask, dict):\n            # Prepare mask arguments\n            mask_kwargs = {\n                \"config\": self.config,\n                \"inputs_embeds\": inputs_embeds,\n                \"attention_mask\": attention_mask,\n                \"past_key_values\": past_key_values,\n                \"position_ids\": text_position_ids,\n            }\n            # Create the masks\n            causal_mask_mapping = {\n                \"full_attention\": create_causal_mask(**mask_kwargs),\n                \"linear_attention\": create_recurrent_attention_mask(**mask_kwargs),\n            }\n\n        hidden_states = inputs_embeds"
+        }
+      ]
+    }
+  ]
+}

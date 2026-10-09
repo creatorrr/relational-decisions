@@ -40,6 +40,7 @@ The matched quick results (96 assessments and 42 queries) are:
 | GLiNER 1B, shared questions | 26.04% | 0.2533 | 0.0972 |
 | OpenDecision, isolated question in text | 43.75% | 0.3846 | 0.1195 |
 | OpenJev, isolated native questions | 39.58% | 0.3395 | 0.1170 |
+| H2O-Lightning-4B, isolated native questions | 88.54% | 0.8403 | 0.0147 |
 
 The majority-label accuracy is 39.58% on this small, unbalanced prefix.
 OpenJev ties that accuracy, while its macro-F1 exceeds GLiNER's. OpenDecision
@@ -47,10 +48,17 @@ gets four more assessments right than OpenJev. These are useful diagnostic
 signals, not enough to rank generalization. Every query output in this table
 matches the independent reference given that model's predicted facts.
 
+The later [H2O-Lightning diagnostic](../h2o_v1/README.md) uses the same eight
+inputs and frozen question wording, with its native causal prompt and CPU
+BF16 backbone/FP32 scores. It gets 85/96 assessments and 40/42 ground-truth
+query probabilities right. All eleven assessment errors collapse contradictory
+evidence to one side. This is an encouraging practical improvement; the larger
+model and different runtime do not make it an architecture-only comparison.
+
 **Working conclusion:** neither isolation alone nor transferring the question
 into the text reproduces OpenDecision's advantage on GLiNER in these checks.
-Keep OpenDecision as the current grounding baseline and OpenJev as another
-candidate. There is no evidence here to justify changing the scheduler to
+OpenDecision remains the completed full-dev baseline; H2O is the strongest
+candidate in this small diagnostic. There is no evidence here to justify changing the scheduler to
 serialized paths. Relevant path context remains a separate, untested idea.
 
 `quick-comparison.json` contains the exact input IDs and metrics;

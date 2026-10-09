@@ -131,6 +131,12 @@ The [independent OpenJev implementation](experiments/openjev_v1/README.md) is
 available through `--backend openjev`; it uses the same frozen questions in
 independent rows to fit its native context limit.
 
+[H2O-Lightning-4B](experiments/h2o_v1/README.md) is available through
+`--backend h2o`, using its native choice prompt and published temperature.
+It runs locally with a BF16 backbone and FP32 answer scores. Its text attention
+is causal; the model evaluates questions independently. The linked experiment
+also documents why LiquidAI/d1-3B's shared question tree is causal.
+
 The default `--mode hard` uses the selected evidence category as an observed
 fact. `--mode soft` gives each proposition a four-outcome random variable using
 the normalized model scores. Soft mode assumes independent choices across
@@ -194,5 +200,12 @@ OpenDecision scores 43.75% and the independent OpenJev model scores 39.58%.
 These small checks do not justify replacing the scheduler with serialized
 paths; path context remains a separate experiment. All partial and quick
 results are explicitly labeled, preserved, and checked against exact inference.
+
+The subsequent [H2O-Lightning-4B check](experiments/h2o_v1/README.md) reaches
+**88.54% assessment accuracy** on those same eight programs, with **0.0147 query
+MAE** and **40/42 exact query probabilities**. All eleven assessment errors
+collapse contradictory reports to one side. The local CPU BF16 run took
+17.88 minutes and peaked at 7.39 GiB RSS. This is a promising diagnostic result;
+the full dev split and sealed heldout have not been evaluated with H2O.
 
 Licensed under the [Apache License 2.0](LICENSE).
