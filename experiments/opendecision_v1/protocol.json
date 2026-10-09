@@ -1,0 +1,23 @@
+{
+  "model": "Tokz-labs/OpenDecision-Large",
+  "revision": "37ced3072592962b1e0cfdcc77eb511f8a3f7b54",
+  "package_source": "https://github.com/tokz-labs/OpenDecision",
+  "package_commit": "fb5da5376cd72f699b001bb89be47b592fbce030",
+  "split": "dev",
+  "programs": 48,
+  "prompt": "binary-reports-v2",
+  "prior_selection_sha256": "200133880135a5bc588547b84732d4c6928ef35284612d9f9cf15e4a3677511b",
+  "selection_note": "Transfer the previously train-selected GLiNER prompt; no OpenDecision-specific prompt selection or dev tuning.",
+  "serialization": "question-in-state-v1",
+  "serialization_note": "Keep the complete frozen question before the world in each state; the native 20-token decision header would truncate these 28-34-token questions. Use answer as the header, and retain the frozen yes/no labels and descriptions. Native token limits unchanged; reject any truncation.",
+  "schedule": "frontier",
+  "mode": "hard",
+  "batch_size": 4,
+  "search_quantum": 64,
+  "threads": 4,
+  "device": "cpu",
+  "dtype": "float32",
+  "score_head": "policy",
+  "temperature": 1,
+  "heldout": "sealed; never open or evaluate"
+}

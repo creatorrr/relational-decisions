@@ -104,7 +104,7 @@ rd-bench --backend gliner --split dev --schedule frontier \
 the entire registered schema when the first neural goal is requested.
 `frontier` batches currently ready goals, up to the declared batch size.
 
-`--prompt` selects a versioned grounding formulation. The default is the original
+For GLiNER, `--prompt` selects a versioned grounding formulation. The default is the original
 `explicit-reports-v1`; experiments also support `direct-status-v2`,
 `concrete-options-v2`, and `binary-reports-v2`. The binary formulation asks two
 yes/no questions per proposition, for its positive and negative reports. Its
@@ -116,6 +116,13 @@ The [prompt experiment](experiments/prompt_v2/README.md) compares formulations
 on train and evaluates the selected one with Decide 340M and Decide 1B on dev.
 The 1B checkpoint needs the newer dependencies pinned in that experiment;
 the adapter rejects older runtimes that would misread its rotary configuration.
+
+[OpenDecision-Large](experiments/opendecision_v1/README.md) is available through
+`--backend opendecision`, with its own pinned dependencies and model revision.
+It defaults to the frozen `binary-reports-v2` questions. This cross-encoder
+processes each answer option independently; batched predicates do not share
+attention. Complete questions are placed alongside the world text to fit the
+model's native schema limits without truncation.
 
 The default `--mode hard` uses the selected evidence category as an observed
 fact. `--mode soft` gives each proposition a four-outcome random variable using

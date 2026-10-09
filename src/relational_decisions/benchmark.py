@@ -25,16 +25,20 @@ def main():
         "--benchmark", type=Path, default=Path("benchmarks/nl_logic_v1")
     )
     parser.add_argument("--split", choices=["train", "dev"], default="dev")
-    parser.add_argument("--backend", choices=["oracle", "gliner"], default="oracle")
+    parser.add_argument(
+        "--backend", choices=["oracle", "gliner", "opendecision"], default="oracle"
+    )
     parser.add_argument(
         "--schedule", choices=["frontier", "full", "single"], default="frontier"
     )
     parser.add_argument("--mode", choices=["hard", "soft"], default="hard")
     parser.add_argument("--batch-size", type=int, default=4)
     parser.add_argument("--search-quantum", type=int, default=64)
-    parser.add_argument("--model", default="fastino/gliner2.5-small-v1")
+    parser.add_argument("--model", help="Backend's pinned default model if omitted")
     parser.add_argument("--revision")
-    parser.add_argument("--prompt", choices=PROMPTS, default=DEFAULT_PROMPT)
+    parser.add_argument(
+        "--prompt", choices=PROMPTS, help="Backend's default prompt if omitted"
+    )
     parser.add_argument("--threads", type=int, default=4)
     parser.add_argument("--max-tokens", type=int, default=4096)
     parser.add_argument("--output", type=Path, required=True)
@@ -58,15 +62,24 @@ def main():
             for r in load_rows(args.benchmark / "data" / f"{args.split}.gold.jsonl")
         }
         backend = None
-    else:
+    elif args.backend == "gliner":
         from .gliner import GLiNERBackend
 
         backend = GLiNERBackend(
-            args.model,
+            args.model or "fastino/gliner2.5-small-v1",
             args.revision,
             threads=args.threads,
             max_tokens=args.max_tokens,
-            prompt=args.prompt,
+            prompt=args.prompt or DEFAULT_PROMPT,
+        )
+    else:
+        from .opendecision import DEFAULT_MODEL, PROMPT, OpenDecisionBackend
+
+        backend = OpenDecisionBackend(
+            args.model or DEFAULT_MODEL,
+            args.revision,
+            threads=args.threads,
+            prompt=args.prompt or PROMPT,
         )
     metadata = {
         "created": datetime.now(UTC).isoformat(),
@@ -121,7 +134,7 @@ def main():
                 flush=True,
             )
     # Model execution receives input records only. Gold is read by the separate
-    # scorer after predictions are complete, never by the GLiNER adapter.
+    # scorer after predictions are complete, never by the neural adapter.
     scored = subprocess.run(
         [
             sys.executable,

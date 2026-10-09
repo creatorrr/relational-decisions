@@ -119,6 +119,20 @@ adapter requires the tested Transformers 5.17+ runtime for that configuration
 because the original 4.x runtime would silently use different local rotary
 frequencies. Loading is strict: mismatched checkpoint weights raise an error.
 
+The optional `opendecision` backend runs the pinned OpenDecision-Large
+cross-encoder with `binary-reports-v2`. Each complete question is included in
+its own world input because the native decision header would truncate it.
+Answer labels and descriptions are preserved; four truncation checks reject
+oversized requests. See the [experiment](../experiments/opendecision_v1/README.md)
+for the exact serialization and dependencies.
+
+OpenDecision encodes each yes/no answer option in a separate attention row.
+Several ready predicates can share a batched call, but their representations
+cannot attend to each other. Frontier scheduling still provides laziness and
+batching; it does not supply cross-predicate context to this model. The adapter
+uses the policy softmax head, without temperature calibration, and the same
+positive/negative product construction as the GLiNER binary prompt.
+
 The decision cache keys the complete world text, ordered candidate definitions,
 model revision, prompt version, label definitions, precision, and runtime
 versions/configuration. Different schemas or text produce different keys.
