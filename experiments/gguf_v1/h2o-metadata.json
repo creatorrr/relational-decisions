@@ -1,0 +1,22 @@
+{
+  "general.architecture": "qwen35",
+  "general.type": "model",
+  "general.name": "H2O Lightning 4b",
+  "general.basename": "h2o-lightning",
+  "general.size_label": "4B",
+  "general.license": "apache-2.0",
+  "general.base_model.count": 1,
+  "general.base_model.0.name": "Qwen3.5 4B",
+  "general.base_model.0.organization": "Qwen",
+  "general.base_model.0.repo_url": "https://huggingface.co/Qwen/Qwen3.5-4B",
+  "general.tags": [
+    "decision-making",
+    "calibration",
+    "jevbench",
+    "text-classification"
+  ],
+  "general.quantization_version": 2,
+  "general.file_type": 7,
+  "general.url": "https://huggingface.co/mradermacher/h2o-lightning-4b-GGUF",
+  "general.source.url": "https://huggingface.co/h2oai/h2o-lightning-4b"
+}

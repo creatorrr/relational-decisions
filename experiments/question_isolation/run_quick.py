@@ -16,6 +16,7 @@ from relational_decisions import Candidate
 from relational_decisions.decisions import DecisionCache
 from relational_decisions.engine import Engine, EngineConfig
 from relational_decisions.h2o import H2OLightningBackend
+from relational_decisions.gguf import GGUFBackend
 from relational_decisions.openjev import OpenJevBackend
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -67,7 +68,7 @@ def score_subset(inputs, predictions, gold):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--model", choices=["gliner-state", "openjev", "h2o"], required=True
+        "--model", choices=["gliner-state", "openjev", "h2o", "h2o-q8", "d1-q8"], required=True
     )
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
@@ -85,6 +86,7 @@ def main():
         "command": sys.argv,
         "driver_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
     }
+    backend = None
     try:
         if args.model == "gliner-state":
             backend = IsolatedGLiNERBackend(
@@ -94,6 +96,8 @@ def main():
             )
         elif args.model == "openjev":
             backend = OpenJevBackend()
+        elif args.model in ("h2o-q8", "d1-q8"):
+            backend = GGUFBackend(args.model)
         else:
             backend = H2OLightningBackend()
         meta = {
@@ -168,6 +172,9 @@ def main():
         (args.output / "metadata.json").write_text(json.dumps(meta, indent=2) + "\n")
         print(json.dumps(metrics, indent=2))
     finally:
+        if isinstance(backend, GGUFBackend):
+            resources.update(backend.resources())
+            backend.close()
         resources.update(
             wall_seconds=time.perf_counter() - start,
             peak_rss_kib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,

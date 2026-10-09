@@ -1,0 +1,8 @@
+{
+  "reason": "User requested a GGUF speed/accuracy test before continuing the final evaluation.",
+  "completed_programs": 3,
+  "gold_read": false,
+  "scored": false,
+  "partial_outputs": "Retained locally; excluded from any final score.",
+  "frozen_protocol_commit": "1c9f7adeb7d32ffcaeb2cc5a7359593a26069511"
+}

@@ -3,7 +3,13 @@
 The user selected H2O-Lightning-4B after the eight-program development
 diagnostic and authorized a final heldout run on 2026-10-09. The system is
 frozen in [final-protocol.json](final-protocol.json) before opening any archive
-members. Status: protocol frozen; final evaluation pending.
+members. Status: **stopped, unscored**, after the user requested GGUF trials.
+Three programs completed and part of a fourth was evaluated. Gold was never
+read, and no partial predictions were scored or used to select a runtime.
+The interruption is recorded in [final-interruption.json](final-interruption.json).
+The original frozen protocol below is retained as history; the GGUF comparison
+uses public dev cases. A replacement final run must freeze its runtime and
+start all 48 programs again. See [GGUF experiments](../gguf_v1/README.md).
 
 A preflight attempt stopped before reading inputs because the runner compared
 an in-memory tuple with its JSON list representation. The comparison was fixed
