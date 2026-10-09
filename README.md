@@ -206,6 +206,12 @@ The subsequent [H2O-Lightning-4B check](experiments/h2o_v1/README.md) reaches
 MAE** and **40/42 exact query probabilities**. All eleven assessment errors
 collapse contradictory reports to one side. The local CPU BF16 run took
 17.88 minutes and peaked at 7.39 GiB RSS. This is a promising diagnostic result;
-the full dev split and sealed heldout have not been evaluated with H2O.
+the full dev split has not been evaluated with H2O.
+
+The [GGUF comparison](experiments/gguf_v1/README.md) preserves every H2O BF16
+hard decision on those eight programs using Q8_0 and shared-prefix computation,
+while reducing runtime to 8.89 minutes. LiquidAI d1 Q8_0 takes 4.28 minutes but
+grounding accuracy falls to 76.04%, so H2O Q8_0 is selected for the final heldout
+evaluation. Both models use causal attention with independent question suffixes.
 
 Licensed under the [Apache License 2.0](LICENSE).

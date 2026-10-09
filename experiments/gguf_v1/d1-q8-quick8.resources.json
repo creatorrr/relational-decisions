@@ -1,0 +1,16 @@
+{
+  "status": "complete",
+  "command": [
+    "experiments/question_isolation/run_quick.py",
+    "--model",
+    "d1-q8",
+    "--output",
+    "runs/d1-q8-quick8"
+  ],
+  "driver_sha256": "11daa6208ad5ff08a7807aecf53e4d10eaccaf0751763dfbf3a822a461381e22",
+  "server_peak_rss_kib": 3224492,
+  "http_seconds": 253.5792781550008,
+  "http_calls": 25,
+  "wall_seconds": 256.98357151899836,
+  "peak_rss_kib": 34872
+}

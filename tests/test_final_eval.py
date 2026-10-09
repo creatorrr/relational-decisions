@@ -26,6 +26,12 @@ SPEC.loader.exec_module(DRIVER)
 
 class FinalEvaluationTests(unittest.TestCase):
     def test_predictions_are_sealed_before_gold_and_resume_keeps_completed_work(self):
+        self.exercise_runner(gguf=False)
+
+    def test_gguf_server_cleanup_and_resources_survive_resume(self):
+        self.exercise_runner(gguf=True)
+
+    def exercise_runner(self, *, gguf):
         data = ROOT / "benchmarks/nl_logic_v1/data"
         all_inputs = DRIVER.parse_rows((data / "dev.inputs.jsonl").read_bytes())
         group = next(iter(all_inputs.values()))["group_id"]
@@ -48,9 +54,19 @@ class FinalEvaluationTests(unittest.TestCase):
                 "backend": "public-dev-fixture",
                 "label_order": ("supported", "refuted", "both", "unknown"),
             }
+            closed: ClassVar[int] = 0
+
+            def __init__(self, *args, **kwargs):
+                pass
 
             def assess(self, world, candidates):
                 return OracleBackend(labels[world]).assess(world, candidates)
+
+            def resources(self):
+                return {"server_peak_rss_kib": 1234}
+
+            def close(self):
+                type(self).closed += 1
 
         with tempfile.TemporaryDirectory() as folder:
             folder = Path(folder)
@@ -69,6 +85,7 @@ class FinalEvaluationTests(unittest.TestCase):
                     "archive_sha256": DRIVER.sha(archive),
                     "source_sha256": {},
                     "threads": 4,
+                    **({"gguf_model": "h2o-q8"} if gguf else {}),
                     "backend_identity": PublicFixtureBackend.identity,
                     "engine_config": asdict(EngineConfig()),
                     "counts": {
@@ -119,6 +136,9 @@ class FinalEvaluationTests(unittest.TestCase):
                 patch.object(
                     DRIVER, "H2OLightningBackend", lambda **kw: PublicFixtureBackend()
                 ),
+                patch.object(DRIVER, "GGUFBackend", PublicFixtureBackend)
+                if gguf
+                else contextlib.nullcontext(),
                 patch.object(DRIVER, "read_member", checked_read),
                 contextlib.redirect_stdout(io.StringIO()),
             ):
@@ -141,6 +161,10 @@ class FinalEvaluationTests(unittest.TestCase):
                 self.assertEqual(metrics["overall"]["assessment_accuracy"], 1.0)
                 self.assertEqual(metrics["overall"]["query_probability_mae"], 0.0)
                 self.assertEqual(reads.count("heldout.gold.jsonl"), 1)
+                if gguf:
+                    self.assertEqual(PublicFixtureBackend.closed, 2)
+                    resources = json.loads((output / "resources.json").read_text())
+                    self.assertEqual(resources["server_peak_rss_kib"], 1234)
 
 
 if __name__ == "__main__":

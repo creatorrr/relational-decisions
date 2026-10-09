@@ -69,4 +69,30 @@ python experiments/question_isolation/run_quick.py --model d1-q8 --output runs/d
 python experiments/question_isolation/run_quick.py --model h2o-q8 --output runs/h2o-q8-quick8
 ```
 
-The dev comparison and replacement final selection are pending.
+## Matched dev results and selection
+
+| Runtime | Correct assessments | Macro-F1 | Exact queries | Query MAE | Wall time | RSS |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| H2O BF16, independent forwards | 85/96 | 0.8403 | 40/42 | 0.01467 | 17.88 min | 7.39 GiB |
+| H2O Q8_0, prefix reuse | 85/96 | 0.8403 | 40/42 | 0.01467 | 8.89 min | 4.61 GiB server + 0.49 GiB client |
+| d1 Q8_0, native branches | 73/96 | 0.7234 | 41/42 | 0.00514 | 4.28 min | 3.08 GiB server + 0.03 GiB client |
+
+H2O Q8's hard assessments and exact query outputs match BF16 on every one of
+these eight programs. The runtime is 2.01 times faster including startup and
+uses substantially less memory. This combines quantization, a different
+inference implementation, and prefix reuse; the speed gain is not attributed
+to quantization alone.
+
+d1 is faster and has one more exact query on this subset, but makes 23 grounding
+errors instead of 11. Downstream queries do not expose every primitive error.
+We retain the already selected H2O model, now in Q8_0 with prefix reuse, for
+the final heldout run. No further prompt or quantization sweep is performed.
+All 42 query outputs for each runtime agree with the independent exact
+evaluator given that runtime's predicted facts.
+
+Checked-in `*-quick8.*` files contain dev results only. The d1 run used the
+driver before formatting at commit `01dce02`; H2O used `19407ad`. Formatting
+changed the driver checksum, with no behavioral change.
+
+The replacement final protocol and final report are saved alongside this
+experiment. Gold is read only after all 48 programs' predictions are sealed.

@@ -25,6 +25,8 @@ def main():
         "opendecision-isolated-state": HERE.parent / "opendecision_v1/opendecision-dev",
         "openjev-isolated-native": HERE.parent / "openjev_v1/openjev-quick8",
         "h2o-lightning-isolated-native": HERE.parent / "h2o_v1/h2o-quick8",
+        "h2o-lightning-q8-prefix-reuse": HERE.parent / "gguf_v1/h2o-q8-quick8",
+        "d1-q8-native-prefix-branches": HERE.parent / "gguf_v1/d1-q8-quick8",
     }
     results = {
         name: score_subset(
