@@ -7,8 +7,10 @@ The model snapshot includes the reviewed inference source; code and weights
 are pinned together. No API credentials are used.
 
 The frozen `binary-reports-v2` questions, world prefix, yes/no descriptions,
-hard-mode mapping, and all 48 dev inputs are reused without model-specific
-prompt selection. Heldout remains sealed.
+and hard-mode mapping are reused without model-specific prompt selection.
+The original plan covered all 48 dev inputs; after the user requested faster
+practical iteration, the actual evaluation was narrowed to the first eight,
+matching the shortened GLiNER layout check. Heldout remains sealed.
 
 ## Input and batching
 
@@ -59,3 +61,11 @@ The wrapper requires fresh output/cache directories and records commands,
 protocol and source hashes, timing, and peak process RSS. The adapter records
 hashes of all bundled inference source files as well as the model revision,
 runtime versions, CPU FP32 precision, and deterministic settings.
+
+The commands above reproduce the original full-run plan. For the actual
+eight-program diagnostic, run:
+
+```bash
+python experiments/question_isolation/run_quick.py --model openjev \
+  --output runs/openjev-quick8
+```

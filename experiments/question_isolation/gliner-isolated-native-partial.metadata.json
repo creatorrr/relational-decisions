@@ -1,0 +1,89 @@
+{
+  "created": "2026-10-09T05:36:55.589757+00:00",
+  "status": "stopped-early",
+  "split": "dev",
+  "backend": {
+    "backend": "gliner",
+    "model": "fastino/GLiNER2.5-Decide",
+    "revision": "9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90",
+    "prompt_version": "binary-reports-v2",
+    "world_prefix": "Unordered reports about one snapshot. No report has priority. Missing information is unknown.\n\n",
+    "label_order": [
+      "supported",
+      "refuted",
+      "both",
+      "unknown"
+    ],
+    "label_descriptions": {
+      "supported": "Only the positive assertion is explicitly reported.",
+      "refuted": "Only the negative assertion is explicitly reported.",
+      "both": "Both assertions are explicitly reported, so reports conflict.",
+      "unknown": "Neither assertion is explicitly reported; information is missing."
+    },
+    "dtype": "float32",
+    "device": "cpu",
+    "threads": 4,
+    "max_tokens": 4096,
+    "python": "3.12.14",
+    "machine": "x86_64",
+    "gliner_source_commit": "08c8c8df0803075035ac6a02e8ee8c5554d2e06b",
+    "packages": {
+      "gliner2": "2.1.0",
+      "torch": "2.14.1+cpu",
+      "transformers": "5.17.0",
+      "tokenizers": "0.23.2"
+    },
+    "deterministic_algorithms": true,
+    "activation": "softmax",
+    "calibration": "none",
+    "task_templates": [
+      {
+        "name": "decision_0_positive",
+        "candidate_id": "candidate",
+        "channel": "positive",
+        "instruction": "Is \"{positive}\" explicitly stated in the reports? Match the exact named entity. A paraphrase counts as stated.",
+        "labels": {
+          "yes": "The reports explicitly state this statement.",
+          "no": "The reports do not state this statement."
+        },
+        "output_labels": {}
+      },
+      {
+        "name": "decision_0_negative",
+        "candidate_id": "candidate",
+        "channel": "negative",
+        "instruction": "Is \"{negative}\" explicitly stated in the reports? Match the exact named entity. A paraphrase counts as stated.",
+        "labels": {
+          "yes": "The reports explicitly state this statement.",
+          "no": "The reports do not state this statement."
+        },
+        "output_labels": {}
+      }
+    ],
+    "score_composition": "independent-positive-negative-product",
+    "isolation_version": "independent-question-rows-v1",
+    "question_layout": "isolated-native",
+    "question_batch_size": 8,
+    "questions_per_attention_sequence": 1,
+    "state_template": "{world_prefix}{world}",
+    "task_name": "original baseline slot name"
+  },
+  "config": {
+    "schedule": "frontier",
+    "mode": "hard",
+    "batch_size": 4,
+    "search_quantum": 64,
+    "max_steps": 200000,
+    "max_nodes": 100000,
+    "max_tables": 20000
+  },
+  "input_sha256": "0b0268b8866e38070532168de2e929a93bf279badaba32d84a4150650b9f15ef",
+  "programs": 48,
+  "complete_assessments": true,
+  "model_requests": "Exact replay of baseline trace groups before symbolic evaluation",
+  "baseline_traces_sha256": "eb38381804b48bfab9dbc96b1f4f601f34f2d03b16bd895c39272b0d45a240c5",
+  "original_status": "running",
+  "completed_programs": 24,
+  "planned_programs": 48,
+  "stop_reason": "User requested pragmatic early stopping after the isolation control was already informative; queued full state-layout and OpenJev sweeps were canceled."
+}

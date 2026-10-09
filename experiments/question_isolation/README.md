@@ -5,8 +5,30 @@ better proposition accuracy. That comparison changed the checkpoint, whether
 questions shared attention, and where questions appeared in the input. These
 controls separate the last two changes on the existing GLiNER 340M checkpoint.
 
-The protocol freezes two additional dev runs before their predictions are
-observed. Neither is used to select a prompt. Heldout remains sealed.
+The initial protocol froze two additional dev runs before their predictions
+were observed. At the user's request we then stopped the exhaustive sweep:
+the native-isolation run completed 24 programs, and the remaining comparisons
+use only the first eight dev programs as a quick diagnostic. Neither is used
+to select a prompt. Heldout remains sealed.
+
+## Practical notes
+
+Isolating questions alone did not help. On the 24 completed programs (288
+assessments), the shared-question baseline scores **27.08%**, while isolated
+native questions score **23.96%**. Macro-F1 falls from 0.1990 to 0.1089; query
+MAE rises from 0.1817 to 0.1881. The isolated model predicts `unknown` 284 times
+and `supported` four times. All 133 resulting query probabilities match the
+independent reference given those predicted facts.
+
+These partial results are preserved under `gliner-isolated-native-partial.*`
+and compared on exactly the same input IDs in `partial-comparison.json`.
+The run was interrupted during the next program, so its resource measurement
+includes unfinished work. It is not a complete 48-program evaluation.
+
+The eight-program follow-ups retain the frozen wording and original request
+groups. They check question-in-text GLiNER and the independent OpenJev model.
+This deliberately shortened diagnostic is not a representative or heldout
+estimate, and the first eight records do not form complete paraphrase pairs.
 
 | Condition | Questions in one attention sequence | Question placement |
 | --- | --- | --- |
@@ -55,6 +77,16 @@ python experiments/question_isolation/run_dev.py --layout isolated-question-in-s
 
 Output and cache directories must be new. Each run saves predictions, traces,
 metrics, immutable model/source identities, timing, and peak process RSS.
+
+Those commands reproduce the originally planned full sweeps. The actual quick
+follow-ups use:
+
+```bash
+python experiments/question_isolation/run_quick.py --model gliner-state \
+  --output runs/gliner-state-quick8
+python experiments/question_isolation/run_quick.py --model openjev \
+  --output runs/openjev-quick8
+```
 
 If question isolation helps, a later experiment can test a bounded path through
 the symbolic rules as relevant context for a single target proposition. That
