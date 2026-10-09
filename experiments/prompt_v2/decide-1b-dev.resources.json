@@ -1,0 +1,42 @@
+{
+  "command": [
+    "rd-bench",
+    "--backend",
+    "gliner",
+    "--split",
+    "dev",
+    "--model",
+    "fastino/GLiNER2.5-Decide-1B",
+    "--revision",
+    "67af949e17bebd20f05fe020a971079889e7a462",
+    "--prompt",
+    "binary-reports-v2",
+    "--schedule",
+    "frontier",
+    "--mode",
+    "hard",
+    "--batch-size",
+    "4",
+    "--search-quantum",
+    "64",
+    "--cache",
+    "runs/prompt-v2-1b-dev-cache",
+    "--output",
+    "runs/prompt-v2-1b-dev"
+  ],
+  "protocol_sha256": "0635796df25f8d26892e666a23a9986681b08643a43c03ba7903d6b347850a88",
+  "selection_sha256": "200133880135a5bc588547b84732d4c6928ef35284612d9f9cf15e4a3677511b",
+  "runtime_source_sha256": {
+    "src/relational_decisions/__init__.py": "4b2a48f52ca18c3be5a248fdfe97b91a3ae3e1548660232c7ff8d3cf0c9ea235",
+    "src/relational_decisions/benchmark.py": "b02f3ca0c5411dab396facadbf14c2b33ad6f2401cd65530c6aea973fe39fa41",
+    "src/relational_decisions/decisions.py": "fbae4619a9c32e77c34ec843b67229bab8525272ef783117c054a18e28a49e71",
+    "src/relational_decisions/diagram.py": "5f17da4b77fd18242adf4324c10731b2847d4f256c3990d47513d6b606ac546c",
+    "src/relational_decisions/engine.py": "5ae40e770fa4c2680c9dea4496115b0fc96ca506026af36ad04d5fcf2da446d5",
+    "src/relational_decisions/gliner.py": "0355c3432976e4ee133936229f81e0e455dcf13af37813516274017d3fb2dd96",
+    "src/relational_decisions/prompts.py": "484433455edccd6593c0eb978b6716ff2be13024f2da15f21572b5df16364b89",
+    "src/relational_decisions/terms.py": "4732653f3b11eec62e7652b597b188f19b2feb784f167857169963c5f6b91b43"
+  },
+  "status": "complete",
+  "total_wall_seconds_including_init": 1075.776687222,
+  "process_peak_rss_kib": 9744812
+}

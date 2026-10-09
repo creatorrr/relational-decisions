@@ -1,0 +1,127 @@
+{
+  "command": [
+    "rd-bench",
+    "--backend",
+    "gliner",
+    "--split",
+    "dev",
+    "--model",
+    "fastino/GLiNER2.5-Decide",
+    "--revision",
+    "9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90",
+    "--prompt",
+    "binary-reports-v2",
+    "--schedule",
+    "frontier",
+    "--mode",
+    "hard",
+    "--batch-size",
+    "4",
+    "--search-quantum",
+    "64",
+    "--cache",
+    "runs/prompt-v2-340m-dev-cache",
+    "--output",
+    "runs/prompt-v2-340m-dev-resumed"
+  ],
+  "protocol_sha256": "0635796df25f8d26892e666a23a9986681b08643a43c03ba7903d6b347850a88",
+  "selection_sha256": "200133880135a5bc588547b84732d4c6928ef35284612d9f9cf15e4a3677511b",
+  "runtime_source_sha256": {
+    "src/relational_decisions/__init__.py": "4b2a48f52ca18c3be5a248fdfe97b91a3ae3e1548660232c7ff8d3cf0c9ea235",
+    "src/relational_decisions/benchmark.py": "b02f3ca0c5411dab396facadbf14c2b33ad6f2401cd65530c6aea973fe39fa41",
+    "src/relational_decisions/decisions.py": "fbae4619a9c32e77c34ec843b67229bab8525272ef783117c054a18e28a49e71",
+    "src/relational_decisions/diagram.py": "5f17da4b77fd18242adf4324c10731b2847d4f256c3990d47513d6b606ac546c",
+    "src/relational_decisions/engine.py": "5ae40e770fa4c2680c9dea4496115b0fc96ca506026af36ad04d5fcf2da446d5",
+    "src/relational_decisions/gliner.py": "0355c3432976e4ee133936229f81e0e455dcf13af37813516274017d3fb2dd96",
+    "src/relational_decisions/prompts.py": "484433455edccd6593c0eb978b6716ff2be13024f2da15f21572b5df16364b89",
+    "src/relational_decisions/terms.py": "4732653f3b11eec62e7652b597b188f19b2feb784f167857169963c5f6b91b43"
+  },
+  "resumed_after_environment_restart": true,
+  "timing_comparable_to_uncached_full_run": false,
+  "original_output": "runs/prompt-v2-340m-dev",
+  "original_complete_programs": 39,
+  "original_complete_program_backend_calls": 122,
+  "original_complete_program_seconds": 459.1330515079926,
+  "original_predictions_sha256": "ab25a9b2978234e378301a21498c5f36af6f93383aad5b1c70b5150ed1b2ba66",
+  "original_traces_sha256": "63cbb87e059a0d9e76aedb56e46f84efbcd939181a5c2f928ffc63c507432d78",
+  "original_metadata": {
+    "created": "2026-10-09T03:57:31.264863+00:00",
+    "split": "dev",
+    "backend": {
+      "backend": "gliner",
+      "model": "fastino/GLiNER2.5-Decide",
+      "revision": "9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90",
+      "prompt_version": "binary-reports-v2",
+      "world_prefix": "Unordered reports about one snapshot. No report has priority. Missing information is unknown.\n\n",
+      "label_order": [
+        "supported",
+        "refuted",
+        "both",
+        "unknown"
+      ],
+      "label_descriptions": {
+        "supported": "Only the positive assertion is explicitly reported.",
+        "refuted": "Only the negative assertion is explicitly reported.",
+        "both": "Both assertions are explicitly reported, so reports conflict.",
+        "unknown": "Neither assertion is explicitly reported; information is missing."
+      },
+      "dtype": "float32",
+      "device": "cpu",
+      "threads": 4,
+      "max_tokens": 4096,
+      "python": "3.12.14",
+      "machine": "x86_64",
+      "gliner_source_commit": "08c8c8df0803075035ac6a02e8ee8c5554d2e06b",
+      "packages": {
+        "gliner2": "2.1.0",
+        "torch": "2.14.1+cpu",
+        "transformers": "5.17.0",
+        "tokenizers": "0.23.2"
+      },
+      "deterministic_algorithms": true,
+      "activation": "softmax",
+      "calibration": "none",
+      "task_templates": [
+        {
+          "name": "decision_0_positive",
+          "candidate_id": "candidate",
+          "channel": "positive",
+          "instruction": "Is \"{positive}\" explicitly stated in the reports? Match the exact named entity. A paraphrase counts as stated.",
+          "labels": {
+            "yes": "The reports explicitly state this statement.",
+            "no": "The reports do not state this statement."
+          },
+          "output_labels": {}
+        },
+        {
+          "name": "decision_0_negative",
+          "candidate_id": "candidate",
+          "channel": "negative",
+          "instruction": "Is \"{negative}\" explicitly stated in the reports? Match the exact named entity. A paraphrase counts as stated.",
+          "labels": {
+            "yes": "The reports explicitly state this statement.",
+            "no": "The reports do not state this statement."
+          },
+          "output_labels": {}
+        }
+      ],
+      "score_composition": "independent-positive-negative-product"
+    },
+    "config": {
+      "schedule": "frontier",
+      "mode": "hard",
+      "batch_size": 4,
+      "search_quantum": 64,
+      "max_steps": 200000,
+      "max_nodes": 100000,
+      "max_tables": 20000
+    },
+    "complete_assessments": true,
+    "input_sha256": "0b0268b8866e38070532168de2e929a93bf279badaba32d84a4150650b9f15ef",
+    "programs": 48,
+    "status": "running"
+  },
+  "status": "complete",
+  "resumed_process_wall_seconds_including_init": 121.12162525500025,
+  "resumed_process_peak_rss_kib": 4327020
+}

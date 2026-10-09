@@ -33,6 +33,77 @@ distributions, confusion matrices, and selection metadata are in `train-screen/`
 The original prompt and defaults remain available; selection does not rewrite
 the old experiments.
 
+## Dev results
+
+Both columns use the frozen `binary-reports-v2` prompt and matched dependencies:
+
+| Metric | Decide 340M | Decide 1B |
+| --- | ---: | ---: |
+| Assessment accuracy | 26.56% (153/576) | 26.74% (154/576) |
+| Assessment macro-F1 | 0.1938 | 0.2533 |
+| Query probability MAE | 0.1732 | 0.1697 |
+| Query probabilities within 1e-9 | 59.56% (162/272) | 63.60% (173/272) |
+| Paraphrase assessment agreement | 73.61% | 43.06% |
+
+The larger checkpoint gets only one additional assessment correct. An
+exploratory paired bootstrap over the 24 worlds gives a 95% percentile interval
+of -3.47 to +3.65 percentage points for the accuracy difference (1B minus 340M;
+5,000 draws, seed 20261009). This provides no clear evidence of an accuracy
+benefit on this development set. The 1B model has better macro-F1 and query
+metrics, but both remain below the 32.64% always-supported accuracy baseline.
+
+Their error patterns differ substantially. The 340M model predicts unknown
+462 times, supported 37, refuted 77, and both zero times; it misses every
+contradictory evidence category. The 1B model predicts both 311 times, supported
+95, refuted 71, and unknown 99 times. It treats 107 of the 188 positive-only
+cases as conflicting reports. More varied predictions do not yet amount to
+reliable grounding.
+
+The winner's 32.64% train-panel accuracy falls to 26.56% on 340M dev. The screen
+and dev also differ in wording and batch scheduling, so this cannot isolate
+which shift caused the drop. The prompt was selected with 340M, then transferred
+unchanged to 1B; these results do not estimate either model's best achievable
+performance after further prompt search or training.
+
+For historical context, the original-prompt 340M run scored 23.61% accuracy,
+0.1707 macro-F1, and 0.1985 query MAE. That run used older dependencies. The
+matched train screen here isolates formulation changes; comparing the historical
+dev run with this experiment also changes the runtime.
+
+The independently enumerating reference reproduced all 272 submitted query
+probabilities for each model from its predicted assessments. Both archived
+metric files were rescored, and model settings and runtime source hashes match
+apart from checkpoint identity. `comparison.json` records the audit and paired
+comparison; `summarize.py` reproduces it from the checked-in dev artifacts.
+All 19 unit tests and the independent ProbLog benchmark validation passed.
+The evaluated runtime source is commit `19bbbe552e584391c06fad630a9b966607476cba`.
+
+### Execution and recovery
+
+The 1B run made 161 uncached backend calls in 1,031.3 seconds after initialization
+(17.2 minutes). Peak process RSS including loading was 9,744,812 KiB (9.29 GiB).
+Total wall time including initialization was 1,075.8 seconds. It fits the
+16 GiB box in FP32; no quantization was used.
+
+An environment restart killed the 340M process after 39 complete programs and
+122 completed model calls. Its cache survived. A new process replayed those
+programs and computed the remaining nine, making 27 new calls. All 39 replayed
+prediction records exactly match the originals; the final run covers all 48
+programs and 149 batches. No prompts, weights, or settings changed on resume.
+
+The resumed metadata's 113.2-second elapsed time is **not a fresh full-run
+timing**. The original 39 completed programs recorded 459.1 seconds, but the
+restart prevents reporting one uninterrupted wall time or a combined peak RSS.
+The resumed process alone peaked at 4,327,020 KiB. These are single-run resource
+observations, not a controlled throughput comparison.
+
+Files with the `decide-340m-dev.interrupted` prefix preserve the original
+partial run; the primary `decide-340m-dev` files contain the complete resumed
+result. Resources record the original hashes, interruption, and cache reuse.
+The protocol's fresh-cache timing condition was therefore interrupted for
+340M; its accuracy comparison is still complete and uses the frozen protocol.
+Heldout contents remained unused and the sealed archive checksum is unchanged.
+
 ## Selected formulation
 
 For each proposition, ask separately whether the reports explicitly state:
@@ -89,6 +160,8 @@ python -m venv .venv
   --selection runs/new-screen/selection.json --output runs/new-1b-dev
 .venv/bin/python experiments/prompt_v2/run_dev.py --model 340m \
   --selection runs/new-screen/selection.json --output runs/new-340m-dev
+# Audit the already archived dev results (standard library only):
+.venv/bin/python experiments/prompt_v2/summarize.py
 ```
 
 Run the two dev commands sequentially on a machine with this memory budget.

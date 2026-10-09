@@ -141,7 +141,9 @@ jointly scoring predicates.
 The first probe used a 73.9M-parameter model on CPU in FP32. The development
 box has a 16 GiB RAM limit, four CPU cores of quota, and no GPU. GLiNER2.5-Decide
 (marketed as 340M) also runs locally in FP32: its dev evaluation took 7.0 minutes
-after initialization and peaked at 4.24 GiB process RSS.
+after initialization and peaked at 4.24 GiB process RSS. Decide 1B runs in FP32
+too: the later two-question dev evaluation took 17.2 minutes after initialization
+and peaked at 9.29 GiB, including loading.
 
 The first engine matches all 192 open programs exactly with oracle assessments
 in both hard and soft modes. The first GLiNER Small development baseline reaches
@@ -151,5 +153,14 @@ same settings, Decide reaches 23.61% and 0.1985 respectively, and never predicts
 the current formulation is not yet a reliable language grounding system. The
 [baseline report](experiments/engine_v1/README.md) preserves predictions,
 traces, and the full comparison. Heldout remains unused.
+
+A [train-only prompt screen](experiments/prompt_v2/README.md) selected separate
+positive-report and negative-report questions from four formulations. With that
+frozen prompt and matched dependencies, dev accuracy is 26.56% for Decide 340M
+and 26.74% for Decide 1B: one additional correct assessment for the larger model.
+The 1B model has better macro-F1 (0.2533 versus 0.1938) and slightly lower query
+MAE (0.1697 versus 0.1732), but neither reliably distinguishes explicit evidence,
+contradictions, and missing information. Full results and the documented recovery
+of an interrupted 340M run are preserved in the prompt report.
 
 Licensed under the [Apache License 2.0](LICENSE).

@@ -1,0 +1,9 @@
+{
+  "prompt_variants_checked": 4,
+  "programs_per_prompt": 12,
+  "assessments_per_prompt": 144,
+  "archived_metrics_reproduced": true,
+  "selected_prompt": "binary-reports-v2",
+  "selection_matches_prespecified_rule": true,
+  "model_received_gold": false
+}

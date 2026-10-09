@@ -1,0 +1,130 @@
+{
+  "models": {
+    "340m": {
+      "overall": {
+        "programs": 48,
+        "assessments": 576,
+        "queries": 272,
+        "assessment_accuracy": 0.265625,
+        "assessment_macro_f1": 0.19377982725808812,
+        "query_probability_mae": 0.17318010949362764,
+        "query_probability_max_error": 1.0,
+        "query_probability_within_1e-9": 0.5955882352941176,
+        "confusion_matrix": {
+          "supported": {
+            "supported": 22,
+            "refuted": 21,
+            "both": 0,
+            "unknown": 145
+          },
+          "refuted": {
+            "supported": 2,
+            "refuted": 22,
+            "both": 0,
+            "unknown": 106
+          },
+          "both": {
+            "supported": 7,
+            "refuted": 17,
+            "both": 0,
+            "unknown": 102
+          },
+          "unknown": {
+            "supported": 6,
+            "refuted": 17,
+            "both": 0,
+            "unknown": 109
+          }
+        }
+      },
+      "predicted_labels": {
+        "supported": 37,
+        "refuted": 77,
+        "both": 0,
+        "unknown": 462
+      },
+      "recall_by_label": {
+        "supported": 0.11702127659574468,
+        "refuted": 0.16923076923076924,
+        "both": 0.0,
+        "unknown": 0.8257575757575758
+      },
+      "paraphrase_assessment_agreement": 0.7361111111111112,
+      "paraphrase_query_probability_mean_difference": 0.023529411764705882,
+      "verified_reference_programs": 48,
+      "verified_reference_queries": 272,
+      "rescored_metrics_match": true
+    },
+    "1b": {
+      "overall": {
+        "programs": 48,
+        "assessments": 576,
+        "queries": 272,
+        "assessment_accuracy": 0.2673611111111111,
+        "assessment_macro_f1": 0.25333230011386076,
+        "query_probability_mae": 0.16974483329917334,
+        "query_probability_max_error": 1.0,
+        "query_probability_within_1e-9": 0.6360294117647058,
+        "confusion_matrix": {
+          "supported": {
+            "supported": 37,
+            "refuted": 20,
+            "both": 107,
+            "unknown": 24
+          },
+          "refuted": {
+            "supported": 13,
+            "refuted": 19,
+            "both": 71,
+            "unknown": 27
+          },
+          "both": {
+            "supported": 21,
+            "refuted": 15,
+            "both": 70,
+            "unknown": 20
+          },
+          "unknown": {
+            "supported": 24,
+            "refuted": 17,
+            "both": 63,
+            "unknown": 28
+          }
+        }
+      },
+      "predicted_labels": {
+        "supported": 95,
+        "refuted": 71,
+        "both": 311,
+        "unknown": 99
+      },
+      "recall_by_label": {
+        "supported": 0.19680851063829788,
+        "refuted": 0.14615384615384616,
+        "both": 0.5555555555555556,
+        "unknown": 0.21212121212121213
+      },
+      "paraphrase_assessment_agreement": 0.4305555555555556,
+      "paraphrase_query_probability_mean_difference": 0.1366451287832206,
+      "verified_reference_programs": 48,
+      "verified_reference_queries": 272,
+      "rescored_metrics_match": true
+    }
+  },
+  "matched_model_settings_except_checkpoint": true,
+  "matched_evaluated_source_hashes": true,
+  "resumed_340m_predictions_match_original_programs": 39,
+  "accuracy_difference_1b_minus_340m": 0.0017361111111111108,
+  "exploratory_paired_world_bootstrap": {
+    "worlds": 24,
+    "draws": 5000,
+    "seed": 20261009,
+    "percentile_95_interval": [
+      -0.034722222222222224,
+      0.036458333333333336
+    ],
+    "interpretation": "Conditional development comparison of a prompt selected on 340M train; not a heldout result or an estimate of each model's best prompt."
+  },
+  "timing_note": "340M was interrupted by an environment restart and resumed from the exact-input cache; its metadata elapsed time covers replay and the remaining inference, not a fresh full run.",
+  "heldout_contents_inspected_or_evaluated": false
+}
