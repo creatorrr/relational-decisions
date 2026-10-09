@@ -1,0 +1,22 @@
+{
+  "model": "fastino/GLiNER2.5-Decide",
+  "revision": "9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90",
+  "prompt": "binary-reports-v2",
+  "split": "dev",
+  "baseline": "experiments/prompt_v2/decide-340m-dev",
+  "baseline_traces_sha256": "eb38381804b48bfab9dbc96b1f4f601f34f2d03b16bd895c39272b0d45a240c5",
+  "baseline_predictions_sha256": "937fefedeb6ff369b09400697b5cf7a9244da79b0fe3455f9c8cb696fb78a963",
+  "conditions": {
+    "shared": "Existing archived baseline: up to eight questions share a schema and attention sequence.",
+    "isolated-native": "One binary question per attention sequence. Preserve its original task name, instruction, label descriptions, world text and prefix; remove other questions. Replay exact original candidate groups and slot indices.",
+    "isolated-question-in-state": "One binary question per sequence, with complete Question: instruction before the world as in the OpenDecision adapter. Use answer as the schema task name and no schema instruction. This layout condition includes the task-name change."
+  },
+  "selection": "No prompt selection. Freeze both controls before their predictions are observed. Requested after interim OpenDecision scores on 16 programs.",
+  "question_batch_size": 8,
+  "threads": 4,
+  "device": "cpu",
+  "dtype": "float32",
+  "max_tokens": 4096,
+  "probability_evaluation": "Freeze all model assessments obtained by replaying the baseline request groups, then run the unchanged hard-mode engine. Distinguish replayed model requests from the engine's subsequent lookup requests.",
+  "heldout": "sealed; never open or evaluate"
+}

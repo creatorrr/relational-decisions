@@ -17,5 +17,6 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install -e . -r benchmarks/nl_logic_v1/requirements.txt
       - run: python -m unittest discover -s tests -v
+      - run: python experiments/question_isolation/validate_replay.py
       - run: python benchmarks/nl_logic_v1/validate.py --problog
       - run: rd-bench --backend oracle --split dev --output runs/ci-oracle-dev
