@@ -1,0 +1,25 @@
+{
+  "created": "2026-10-09T02:49:56.489429+00:00",
+  "split": "dev",
+  "backend": {
+    "backend": "oracle-v1"
+  },
+  "config": {
+    "schedule": "frontier",
+    "mode": "hard",
+    "batch_size": 4,
+    "search_quantum": 64,
+    "max_steps": 200000,
+    "max_nodes": 100000,
+    "max_tables": 20000
+  },
+  "complete_assessments": true,
+  "input_sha256": "0b0268b8866e38070532168de2e929a93bf279badaba32d84a4150650b9f15ef",
+  "programs": 48,
+  "status": "complete",
+  "elapsed_seconds": 0.11670230100025947,
+  "backend_calls": 166,
+  "batches": 166,
+  "max_diagram_nodes": 13,
+  "max_tables": 39
+}

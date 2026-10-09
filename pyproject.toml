@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "relational-decisions"
+version = "0.1.0"
+description = "Tabled relational search with batched neural predicates and exact probabilistic explanations"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+
+[project.scripts]
+rd-bench = "relational_decisions.benchmark:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
