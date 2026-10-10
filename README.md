@@ -3,6 +3,10 @@
 Experiments toward a relational programming engine with natural-language
 predicates, local decision models, and probabilistic inference.
 
+The proposed [Python DSL design and implementation plan](docs/dsl-design.md)
+describes the path to typed, composable rules with natural-language evidence.
+The DSL is not implemented yet.
+
 The first runtime implements miniKanren-style interleaved search with suspended
 neural goals. A deterministic scheduler groups ready predicates for model
 evaluation. Memoized goal tables handle recursion, and canonical decision
@@ -213,6 +217,12 @@ hard decision on those eight programs using Q8_0 and shared-prefix computation,
 while reducing runtime to 8.89 minutes. LiquidAI d1 Q8_0 takes 4.28 minutes but
 grounding accuracy falls to 76.04%, so H2O Q8_0 is selected for the final heldout
 evaluation. Both models use causal attention with independent question suffixes.
+
+The [additional-model diagnostic](experiments/additional_models/README.md)
+compares K2-Type-0.9B and Lux-9B Q4_K_M with the saved H2O baseline on the same
+eight dev programs: 32/96 and 80/96 correct assessments respectively, versus
+H2O's 85/96. Lux has 41/42 exact queries, versus H2O's 40/42; contradictory
+reports remain its main grounding weakness. H2O was not rerun.
 
 The [completed heldout run](experiments/gguf_v1/final-report.md) scores
 **87.50% grounding accuracy (504/576)** and **250/272 exact query probabilities

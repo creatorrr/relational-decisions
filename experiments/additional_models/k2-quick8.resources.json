@@ -1,0 +1,18 @@
+{
+  "status": "complete",
+  "command": [
+    "experiments/additional_models/run_quick.py",
+    "--model",
+    "k2",
+    "--model-path",
+    "/workspace/scratch/model-bench/k2",
+    "--output",
+    "/workspace/scratch/model-bench/k2-quick8"
+  ],
+  "driver_sha256": "9c50d5c5f3fb65a6b96db6aff8d358378d1d5412b0038c73e26fcb6284aca96e",
+  "forward_seconds": 245.738673311007,
+  "forward_calls": 24,
+  "input_tokens": 16328,
+  "wall_seconds": 252.63687111800027,
+  "peak_rss_kib": 2266656
+}

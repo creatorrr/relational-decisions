@@ -1,0 +1,102 @@
+{
+  "model": {
+    "backend": "k2-native-cpu",
+    "model": "IFM/K2-Type-0.9B",
+    "revision": "0648c43e30d20d85b621e3604c397f8af4d5b1de",
+    "prompt_version": "binary-reports-v2",
+    "world_prefix": "Unordered reports about one snapshot. No report has priority. Missing information is unknown.\n\n",
+    "dtype": "bfloat16 backbone / float32 pointer head",
+    "device": "cpu",
+    "threads": 4,
+    "temperature": 1.4778441535263076,
+    "readout": "publisher pointer head; published temperature; native softmax without HTTP rounding",
+    "attention": "publisher block-causal mask; per-question position reset",
+    "option_order": [
+      "yes",
+      "no"
+    ],
+    "truncation": "reject",
+    "question_group_size_max": 8,
+    "score_composition": "independent-positive-negative-product",
+    "packages": {
+      "torch": "2.14.1+cpu",
+      "transformers": "5.19.0",
+      "safetensors": "0.8.0",
+      "huggingface-hub": "2.2.0"
+    },
+    "snapshot_sha256": {
+      ".gitattributes": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361",
+      "README.md": "c19f65d894968032a89c399c9baa39d2076151de9aa6cb1de33b2afb44cfafc9",
+      "chat_template.jinja": "5415a881f1c4391f8463187d1ffe80f2227d15ea060a54ce4c73eb626943bf01",
+      "chat_template_asst_tool_gen.jinja": "5415a881f1c4391f8463187d1ffe80f2227d15ea060a54ce4c73eb626943bf01",
+      "chat_template_generation.jinja": "6864a24302198296f98072813b15e81226501d46b9427b48683c5ab307eaa3b9",
+      "config.json": "12da4ff7894d025702825b9fee8b2b2a534ec415abc387ca16987dba985870c4",
+      "configuration_k2_horizon.py": "5c2f993c1053d9462ebea6dea416c897fddfbb4a5edd904e486936b20d4badc5",
+      "decision_config.json": "f0fbee2079eec1c131906083f74a79de196e7f9bee6cdf38ffb363d786f247c9",
+      "generation_config.json": "03dc0a9172940c92ad99d4a439c9e82cff735665c4ee502c7be52055665f7ff5",
+      "jev/__init__.py": "b4ca3f79bd021506a8e99661e7cc6c538bcd2bc36d1a87faf1f90c5f3d296b30",
+      "jev/encode.py": "281a930993745f5bbcd1e9a62e5d24bd46c5fa041be8b00e536b5b9f93df35ed",
+      "jev/model.py": "969d30b80527bd5b953cf311aa9cb3c63a6faf563423786b3f8fe6e81a47a72a",
+      "jev/serve.py": "f67766de87bf28fcd04829f999676ee358b2921c493f582ac4d39ef1674543f2",
+      "model.safetensors": "786cd5be07bb5267e6bbac3599db6779b4be9ffe46b35656e2578af8747f28b0",
+      "modeling_k2_horizon.py": "fb09e010956bd51cfa7d4055b4381cff34c9e06164066b49e3546f38b2e6242f",
+      "pointer_head.safetensors": "9158178c1d1b156062105ed02369f616f106f592ed6a32ed000cd46af614aaf1",
+      "requirements.txt": "45d260fb5ab28c965b20a898bc22ec9b14f32a473f22844953c3aa51ccbeb534",
+      "special_tokens_map.json": "9eed1a02fb143b0adef73772d48ab811d3ad11117b7272480b38d6fd10f1fff4",
+      "tokenizer.json": "7a42bd219df0b747f000ca3e39f8eca9b93e965707e8be0b6603cac56aaad738",
+      "tokenizer_config.json": "0465b8c8c981ba6a2562ab096393551d2cc7cf57228e97ed181142a55b048b4b"
+    },
+    "concurrency": "sequential model inference; CPU-heavy setup completed first"
+  },
+  "world": "Ada is a member. Bea is not a member.",
+  "grouped": {
+    "ada": {
+      "supported": 0.5798258832706829,
+      "refuted": 0.034452690106813844,
+      "both": 0.32408078705848986,
+      "unknown": 0.06164068426749747
+    },
+    "bea": {
+      "supported": 0.04640165235979765,
+      "refuted": 0.6155085580448159,
+      "both": 0.17298686422194454,
+      "unknown": 0.16510279126299565
+    }
+  },
+  "repeated": {
+    "ada": {
+      "supported": 0.5798258832706829,
+      "refuted": 0.034452690106813844,
+      "both": 0.32408078705848986,
+      "unknown": 0.06164068426749747
+    },
+    "bea": {
+      "supported": 0.04640165235979765,
+      "refuted": 0.6155085580448159,
+      "both": 0.17298686422194454,
+      "unknown": 0.16510279126299565
+    }
+  },
+  "individual": {
+    "ada": {
+      "supported": 0.5782964220184361,
+      "refuted": 0.03461528267185887,
+      "both": 0.3256102213722194,
+      "unknown": 0.061478088838646805
+    },
+    "bea": {
+      "supported": 0.047706762447524476,
+      "refuted": 0.6107295053609505,
+      "both": 0.17630549477010504,
+      "unknown": 0.16525819271793551
+    }
+  },
+  "repeat_bitwise_equal": true,
+  "group_vs_single_max_absolute_error": 0.004779052683865359,
+  "scope": "synthetic interface smoke; not accuracy evidence",
+  "resources": {
+    "forward_seconds": 11.188793648998399,
+    "forward_calls": 4,
+    "input_tokens": 770
+  }
+}

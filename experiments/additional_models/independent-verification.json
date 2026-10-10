@@ -1,0 +1,191 @@
+[
+  {
+    "path": "experiments/gguf_v1/h2o-q8-quick8",
+    "correct_assessments": 85,
+    "assessment_count": 96,
+    "exact_queries": 40,
+    "query_count": 42,
+    "independent_exact_queries_verified": 42,
+    "all_recorded_metrics_match": true,
+    "per_label_correct": {
+      "supported": [
+        38,
+        38
+      ],
+      "refuted": [
+        20,
+        20
+      ],
+      "both": [
+        7,
+        18
+      ],
+      "unknown": [
+        20,
+        20
+      ]
+    },
+    "metrics": {
+      "programs": 8,
+      "assessments": 96,
+      "queries": 42,
+      "assessment_accuracy": 0.8854166666666666,
+      "assessment_macro_f1": 0.8402659574468085,
+      "query_probability_mae": 0.014666666666666666,
+      "query_probability_max_error": 0.4,
+      "query_probability_within_1e-9": 0.9523809523809523,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 38,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 0
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 20,
+          "both": 0,
+          "unknown": 0
+        },
+        "both": {
+          "supported": 4,
+          "refuted": 7,
+          "both": 7,
+          "unknown": 0
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 20
+        }
+      }
+    }
+  },
+  {
+    "path": "experiments/additional_models/k2-quick8",
+    "correct_assessments": 32,
+    "assessment_count": 96,
+    "exact_queries": 32,
+    "query_count": 42,
+    "independent_exact_queries_verified": 42,
+    "all_recorded_metrics_match": true,
+    "per_label_correct": {
+      "supported": [
+        13,
+        38
+      ],
+      "refuted": [
+        8,
+        20
+      ],
+      "both": [
+        11,
+        18
+      ],
+      "unknown": [
+        0,
+        20
+      ]
+    },
+    "metrics": {
+      "programs": 8,
+      "assessments": 96,
+      "queries": 42,
+      "assessment_accuracy": 0.3333333333333333,
+      "assessment_macro_f1": 0.2921812287743131,
+      "query_probability_mae": 0.08333333333333333,
+      "query_probability_max_error": 0.56,
+      "query_probability_within_1e-9": 0.7619047619047619,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 13,
+          "refuted": 1,
+          "both": 24,
+          "unknown": 0
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 8,
+          "both": 12,
+          "unknown": 0
+        },
+        "both": {
+          "supported": 1,
+          "refuted": 6,
+          "both": 11,
+          "unknown": 0
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 6,
+          "both": 14,
+          "unknown": 0
+        }
+      }
+    }
+  },
+  {
+    "path": "experiments/additional_models/lux-q4-quick8",
+    "correct_assessments": 80,
+    "assessment_count": 96,
+    "exact_queries": 41,
+    "query_count": 42,
+    "independent_exact_queries_verified": 42,
+    "all_recorded_metrics_match": true,
+    "per_label_correct": {
+      "supported": [
+        37,
+        38
+      ],
+      "refuted": [
+        20,
+        20
+      ],
+      "both": [
+        3,
+        18
+      ],
+      "unknown": [
+        20,
+        20
+      ]
+    },
+    "metrics": {
+      "programs": 8,
+      "assessments": 96,
+      "queries": 42,
+      "assessment_accuracy": 0.8333333333333334,
+      "assessment_macro_f1": 0.7544326241134752,
+      "query_probability_mae": 0.005142857142857143,
+      "query_probability_max_error": 0.216,
+      "query_probability_within_1e-9": 0.9761904761904762,
+      "confusion_matrix": {
+        "supported": {
+          "supported": 37,
+          "refuted": 1,
+          "both": 0,
+          "unknown": 0
+        },
+        "refuted": {
+          "supported": 0,
+          "refuted": 20,
+          "both": 0,
+          "unknown": 0
+        },
+        "both": {
+          "supported": 9,
+          "refuted": 6,
+          "both": 3,
+          "unknown": 0
+        },
+        "unknown": {
+          "supported": 0,
+          "refuted": 0,
+          "both": 0,
+          "unknown": 20
+        }
+      }
+    }
+  }
+]

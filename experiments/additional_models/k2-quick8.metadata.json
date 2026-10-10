@@ -1,0 +1,69 @@
+{
+  "status": "complete",
+  "scope": "first 8 dev input records; diagnostic only",
+  "reason": "User requested trials of K2-Type and Lux Q4_K_M alongside the recorded H2O baseline",
+  "input_ids": [
+    "c07d27ac8f9d32a3-v1",
+    "b544543b41572961-v0",
+    "f83116bec37f77dc-v1",
+    "a542c69fe8f4639b-v1",
+    "fa0b24616cbeaf3e-v1",
+    "e22c0cf6dc0f1f79-v0",
+    "0b306f4b2afdf6ba-v1",
+    "1248b16510fd5e1c-v1"
+  ],
+  "input_sha256": "0b0268b8866e38070532168de2e929a93bf279badaba32d84a4150650b9f15ef",
+  "backend": {
+    "backend": "k2-native-cpu",
+    "model": "IFM/K2-Type-0.9B",
+    "revision": "0648c43e30d20d85b621e3604c397f8af4d5b1de",
+    "prompt_version": "binary-reports-v2",
+    "world_prefix": "Unordered reports about one snapshot. No report has priority. Missing information is unknown.\n\n",
+    "dtype": "bfloat16 backbone / float32 pointer head",
+    "device": "cpu",
+    "threads": 4,
+    "temperature": 1.4778441535263076,
+    "readout": "publisher pointer head; published temperature; native softmax without HTTP rounding",
+    "attention": "publisher block-causal mask; per-question position reset",
+    "option_order": [
+      "yes",
+      "no"
+    ],
+    "truncation": "reject",
+    "question_group_size_max": 8,
+    "score_composition": "independent-positive-negative-product",
+    "packages": {
+      "torch": "2.14.1+cpu",
+      "transformers": "5.19.0",
+      "safetensors": "0.8.0",
+      "huggingface-hub": "2.2.0"
+    },
+    "snapshot_sha256": {
+      ".gitattributes": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361",
+      "README.md": "c19f65d894968032a89c399c9baa39d2076151de9aa6cb1de33b2afb44cfafc9",
+      "chat_template.jinja": "5415a881f1c4391f8463187d1ffe80f2227d15ea060a54ce4c73eb626943bf01",
+      "chat_template_asst_tool_gen.jinja": "5415a881f1c4391f8463187d1ffe80f2227d15ea060a54ce4c73eb626943bf01",
+      "chat_template_generation.jinja": "6864a24302198296f98072813b15e81226501d46b9427b48683c5ab307eaa3b9",
+      "config.json": "12da4ff7894d025702825b9fee8b2b2a534ec415abc387ca16987dba985870c4",
+      "configuration_k2_horizon.py": "5c2f993c1053d9462ebea6dea416c897fddfbb4a5edd904e486936b20d4badc5",
+      "decision_config.json": "f0fbee2079eec1c131906083f74a79de196e7f9bee6cdf38ffb363d786f247c9",
+      "generation_config.json": "03dc0a9172940c92ad99d4a439c9e82cff735665c4ee502c7be52055665f7ff5",
+      "jev/__init__.py": "b4ca3f79bd021506a8e99661e7cc6c538bcd2bc36d1a87faf1f90c5f3d296b30",
+      "jev/encode.py": "281a930993745f5bbcd1e9a62e5d24bd46c5fa041be8b00e536b5b9f93df35ed",
+      "jev/model.py": "969d30b80527bd5b953cf311aa9cb3c63a6faf563423786b3f8fe6e81a47a72a",
+      "jev/serve.py": "f67766de87bf28fcd04829f999676ee358b2921c493f582ac4d39ef1674543f2",
+      "model.safetensors": "786cd5be07bb5267e6bbac3599db6779b4be9ffe46b35656e2578af8747f28b0",
+      "modeling_k2_horizon.py": "fb09e010956bd51cfa7d4055b4381cff34c9e06164066b49e3546f38b2e6242f",
+      "pointer_head.safetensors": "9158178c1d1b156062105ed02369f616f106f592ed6a32ed000cd46af614aaf1",
+      "requirements.txt": "45d260fb5ab28c965b20a898bc22ec9b14f32a473f22844953c3aa51ccbeb534",
+      "special_tokens_map.json": "9eed1a02fb143b0adef73772d48ab811d3ad11117b7272480b38d6fd10f1fff4",
+      "tokenizer.json": "7a42bd219df0b747f000ca3e39f8eca9b93e965707e8be0b6603cac56aaad738",
+      "tokenizer_config.json": "0465b8c8c981ba6a2562ab096393551d2cc7cf57228e97ed181142a55b048b4b"
+    },
+    "concurrency": "sequential model inference; CPU-heavy setup completed first"
+  },
+  "driver_sha256": "9c50d5c5f3fb65a6b96db6aff8d358378d1d5412b0038c73e26fcb6284aca96e",
+  "adapter_sha256": "b8532d39297a2a6c80e420a89f6465c0ca5918ff89ff67448729d4ec8a8f890f",
+  "request_groups_sha256": "eb38381804b48bfab9dbc96b1f4f601f34f2d03b16bd895c39272b0d45a240c5",
+  "heldout_opened": false
+}

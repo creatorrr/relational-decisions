@@ -1,0 +1,8 @@
+{
+  "general.architecture": "qwen35",
+  "qwen35.decision.type": "decision2",
+  "qwen35.decision.head_dim": 256,
+  "general.file_type": 15,
+  "effective_binary_choice_temperature": 1.0,
+  "temperature_note": "No qwen35.decision.temperature.* keys in pinned GGUF. Native get_temperature uses published runtime fallback1.0; no calibration fitted."
+}

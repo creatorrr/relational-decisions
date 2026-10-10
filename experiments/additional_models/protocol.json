@@ -1,0 +1,26 @@
+{
+  "scope": "First 8 public dev programs; diagnostic only; 96 candidate assessments and 42 queries",
+  "models": [
+    "IFM/K2-Type-0.9B@0648c43e30d20d85b621e3604c397f8af4d5b1de",
+    "vllm-sr/Decision-2.0-Lux-9B-GGUF@8576ef7a1c13b2b33b414eda1cfc8d81f816dc68 Q4_K_M"
+  ],
+  "baseline": "Saved experiments/gguf_v1/h2o-q8-quick8; no H2O rerun",
+  "prompt": "binary-reports-v2",
+  "request_groups": "Replay original decide-340m dev trace candidate groups; split binary tasks into groups of at most 8 for native inference",
+  "threads": 4,
+  "execution": "Sequential inference after CPU-heavy setup complete. Downloads and build parallel.",
+  "score_composition": "independent-positive-negative-product; unchanged engine hard-label decision and exact query evaluation",
+  "calibration": "Publisher calibration only; no benchmark tuning",
+  "heldout_opened": false,
+  "gold_policy": "Read public dev gold only after all 8 model predictions sealed; no tuning from scores",
+  "timing": "Run wall clock includes model initialization and checksum verification, excludes download/build; archived H2O timing historical and not controlled contemporaneous speed comparison",
+  "sha256": {
+    "experiments/additional_models/run_quick.py": "9c50d5c5f3fb65a6b96db6aff8d358378d1d5412b0038c73e26fcb6284aca96e",
+    "experiments/additional_models/adapters.py": "b8532d39297a2a6c80e420a89f6465c0ca5918ff89ff67448729d4ec8a8f890f",
+    "benchmarks/nl_logic_v1/data/dev.inputs.jsonl": "0b0268b8866e38070532168de2e929a93bf279badaba32d84a4150650b9f15ef",
+    "experiments/prompt_v2/decide-340m-dev.traces.jsonl": "eb38381804b48bfab9dbc96b1f4f601f34f2d03b16bd895c39272b0d45a240c5",
+    "experiments/gguf_v1/h2o-q8-quick8.metadata.json": "90f9032519b88bbb884aa114ab6ece2ae3b6c56a30fbf525883625d3bc003754",
+    "experiments/gguf_v1/h2o-q8-quick8.predictions.jsonl": "0e88699690c97d801f713e90f3c271bb736633ce51a70f650af11b374a581c5e"
+  },
+  "serialization_note": "K2 native Python encoder preserves yes/no option insertion order. Lux native nlohmann JSON iterates choice criteria sorted as no/yes. Semantic questions/descriptions unchanged; no option-order tuning."
+}

@@ -1,0 +1,118 @@
+{
+  "model": {
+    "backend": "lux-decision2-gguf",
+    "model": "vllm-sr/Decision-2.0-Lux-9B-GGUF",
+    "revision": "8576ef7a1c13b2b33b414eda1cfc8d81f816dc68",
+    "quantization": "Q4_K_M",
+    "sha256": "6f9150bad413c4627ef457e1225b757d3018ce0319f8d80b6cbf92efbbcd5590",
+    "runtime_commit": "c9f5974870fc7982ab2f424bc0840af256189719",
+    "build_info": "b1-c9f5974",
+    "server_binary_sha256": "8d9688f788fd80e39c3fd324dc2156e4f362e964fc71192289ca203314104ed0",
+    "server_flags": [
+      "--embeddings",
+      "--pooling",
+      "none",
+      "-c",
+      "8192",
+      "-b",
+      "8192",
+      "-ub",
+      "8192",
+      "-np",
+      "1",
+      "-t",
+      "4",
+      "-tb",
+      "4",
+      "--no-context-shift",
+      "--cache-ram",
+      "0"
+    ],
+    "runtime_libraries_sha256": {
+      "libggml-base.so": "e1790d58a84fd221b5ce966c7232a3692ac50aa6de020d97bf707e486a302696",
+      "libggml-base.so.0": "e1790d58a84fd221b5ce966c7232a3692ac50aa6de020d97bf707e486a302696",
+      "libggml-base.so.0.26.0": "e1790d58a84fd221b5ce966c7232a3692ac50aa6de020d97bf707e486a302696",
+      "libggml-cpu.so": "0cfcca599b4423eed5a6b5ce14e481947d974542fe5fe9d3cfe490cfa67d08f2",
+      "libggml-cpu.so.0": "0cfcca599b4423eed5a6b5ce14e481947d974542fe5fe9d3cfe490cfa67d08f2",
+      "libggml-cpu.so.0.26.0": "0cfcca599b4423eed5a6b5ce14e481947d974542fe5fe9d3cfe490cfa67d08f2",
+      "libggml.so": "cd2734adfa31a7cf02147effe7e3a664faa47c9f4ea59cbf010d2676cf4697a1",
+      "libggml.so.0": "cd2734adfa31a7cf02147effe7e3a664faa47c9f4ea59cbf010d2676cf4697a1",
+      "libggml.so.0.26.0": "cd2734adfa31a7cf02147effe7e3a664faa47c9f4ea59cbf010d2676cf4697a1",
+      "libllama-common.so": "0ca23cde85dec2d3aa9d3233114078c0dba86fdcffdd465b2d03a4ea13dd2c17",
+      "libllama-common.so.0": "0ca23cde85dec2d3aa9d3233114078c0dba86fdcffdd465b2d03a4ea13dd2c17",
+      "libllama-common.so.0.6.0": "0ca23cde85dec2d3aa9d3233114078c0dba86fdcffdd465b2d03a4ea13dd2c17",
+      "libllama-server-impl.so": "981d7f3925dcc2674ffa9f1a12b36794449c59e99a89735eddb43bad71d2986b",
+      "libllama.so": "bb62634b8f205173985bf1a0f536817ab55cbf124c078a38e8a529b5291084ef",
+      "libllama.so.0": "bb62634b8f205173985bf1a0f536817ab55cbf124c078a38e8a529b5291084ef",
+      "libllama.so.0.6.0": "bb62634b8f205173985bf1a0f536817ab55cbf124c078a38e8a529b5291084ef",
+      "libmtmd.so": "226e3022ad649e86f96bd7db52cb826fb96c20eba25815719226bc5fe2d94a98",
+      "libmtmd.so.0": "226e3022ad649e86f96bd7db52cb826fb96c20eba25815719226bc5fe2d94a98",
+      "libmtmd.so.0.6.0": "226e3022ad649e86f96bd7db52cb826fb96c20eba25815719226bc5fe2d94a98"
+    },
+    "prompt_version": "binary-reports-v2",
+    "world_prefix": "Unordered reports about one snapshot. No report has priority. Missing information is unknown.\n\n",
+    "endpoint": "/v1/systemone",
+    "readout": "native Decision2 head and GGUF temperature metadata",
+    "option_order": [
+      "no",
+      "yes"
+    ],
+    "attention": "publisher Decision2 single-question native requests; no inter-question attention",
+    "truncation": "reject",
+    "question_group_size_max": 8,
+    "score_composition": "independent-positive-negative-product",
+    "threads": 4,
+    "concurrency": "sequential model inference; CPU-heavy setup completed first"
+  },
+  "world": "Ada is a member. Bea is not a member.",
+  "grouped": {
+    "ada": {
+      "supported": 0.8173096795001789,
+      "refuted": 0.0064097796801885895,
+      "both": 0.03784183810985447,
+      "unknown": 0.13843870270977812
+    },
+    "bea": {
+      "supported": 0.016963219257912353,
+      "refuted": 0.751126123751164,
+      "both": 0.08942004860333268,
+      "unknown": 0.14249060838759073
+    }
+  },
+  "repeated": {
+    "ada": {
+      "supported": 0.8173096795001789,
+      "refuted": 0.0064097796801885895,
+      "both": 0.03784183810985447,
+      "unknown": 0.13843870270977812
+    },
+    "bea": {
+      "supported": 0.016963219257912353,
+      "refuted": 0.751126123751164,
+      "both": 0.08942004860333268,
+      "unknown": 0.14249060838759073
+    }
+  },
+  "individual": {
+    "ada": {
+      "supported": 0.8173096795001789,
+      "refuted": 0.0064097796801885895,
+      "both": 0.03784183810985447,
+      "unknown": 0.13843870270977812
+    },
+    "bea": {
+      "supported": 0.016963219257912353,
+      "refuted": 0.751126123751164,
+      "both": 0.08942004860333268,
+      "unknown": 0.14249060838759073
+    }
+  },
+  "repeat_bitwise_equal": true,
+  "group_vs_single_max_absolute_error": 0.0,
+  "scope": "synthetic interface smoke; not accuracy evidence",
+  "resources": {
+    "server_peak_rss_kib": 8924664,
+    "http_seconds": 70.36805039799947,
+    "http_calls": 5
+  }
+}

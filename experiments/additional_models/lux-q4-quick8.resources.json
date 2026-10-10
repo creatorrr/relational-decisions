@@ -1,0 +1,20 @@
+{
+  "status": "complete",
+  "command": [
+    "experiments/additional_models/run_quick.py",
+    "--model",
+    "lux-q4",
+    "--model-path",
+    "/workspace/scratch/model-bench/lux/Decision-2.0-Lux-9B-Q4_K_M.gguf",
+    "--server-binary",
+    "/workspace/scratch/model-bench/llama.cpp/build/bin/llama-server",
+    "--output",
+    "/workspace/scratch/model-bench/lux-q4-quick8"
+  ],
+  "driver_sha256": "9c50d5c5f3fb65a6b96db6aff8d358378d1d5412b0038c73e26fcb6284aca96e",
+  "server_peak_rss_kib": 9247640,
+  "http_seconds": 3494.205933285997,
+  "http_calls": 25,
+  "wall_seconds": 3506.5021508909995,
+  "peak_rss_kib": 21980
+}
